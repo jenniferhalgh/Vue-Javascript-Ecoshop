@@ -61,7 +61,7 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Purpose
 
-2-5 sentences describing what the system does
+The system will allow users to browse and buy items from different stores in one website. The different stores can include fast fashion and second hand options, in addition to that a vegan and small/local creators filter when shopping for items. This helps customers be more eco friendly and choose to help the local community as we give them options to do so. Allowing all stores on one platform is time efficient for the customers and optimizes shipment. While browsing and adding items to the shopping cart, the customer can see a rating of how sustainable the item is. The customers have various options for payment such as klarna, swish, and card which can be done through our system. The customer has multiple options for delivery which include sustainable ones such as budbee. 
 
 ### Pages
 
