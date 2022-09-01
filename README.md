@@ -65,8 +65,11 @@ The system will allow users to browse and buy items from different stores in one
 
 ### Pages
 
-* Home: 1-3 sentences describing what the page displays and what a user can do
-* Shopping cart: ...
+* Home page: contains a message about our shops and showing how we are different from other similar websites. On the top of the page there is a search bar with filters (second hand, vegan, etc).
+* Check out page: Contains all the items the customer selected (as well as total price) and they can deselect them if wanted. All the steps of order completion can be viewed at the top of the page.
+* Payment page: The customer can choose their desired payment method and input their payment information. 
+* Delivery method: this page has multiple options for delivery including more sustainable delivery options for the customer to choose from.
+* Order complete: Verification that the order was placed and the payment was confirmed with order number on top. An email will be sent too.
 
 ### Entity-Relationship (ER) Diagram
 
