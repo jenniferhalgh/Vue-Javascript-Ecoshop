@@ -11,8 +11,13 @@ var item = new Schema(
 
     quantity :  { type: Number },
 
-    store : { type: String }
-    }
+    store : { type: String },
+
+    category:[{
+        type: String,
+        allowedValues: ["Second Hand","Small Creator","Default","Vegan"]
+    }]
+}
 );
 
 //module.exports = mongoose.model("itemModel",item);
