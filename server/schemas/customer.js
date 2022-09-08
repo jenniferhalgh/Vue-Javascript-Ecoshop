@@ -30,10 +30,10 @@ var customer = new Schema (
         type:String  
     },
     shoppingCart:[{
-        type: Schema.Types.itemId, ref: "item"
+        type: Schema.Types.ObjectId, ref: "item"
     }],
     paymentInfo:[{
-        type: Schema.Types.cardInfo, ref: "paymentInfo"
+        type: Schema.Types.ObjectId, ref: "paymentInfo"
     }]
 
 //export customer file
