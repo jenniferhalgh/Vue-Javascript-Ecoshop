@@ -20,11 +20,15 @@ var customer = new Schema (
         } 
     },
     personalNumber:{
-        type:String
+        type:String, max:12, min:10
     },
     contact: {
-        email: { type: String },
-        phone: { type: String },
+        email: { 
+            type: String 
+        },
+        phone: { 
+            type: String 
+        },
     },
     adress:{
         type:String  
@@ -35,9 +39,8 @@ var customer = new Schema (
     paymentInfo:[{
         type: Schema.Types.ObjectId, ref: "paymentInfo"
     }]
-
-//export customer file
 }
 )
 
+//export customer file
 const customerModel = mongoose.model("customerModel", customer);
