@@ -40,7 +40,7 @@ var customer = new Schema (
         type: Schema.Types.ObjectId, ref: "paymentInfo"
     }]
 }
-)
+);
 
 //export customer file
 const customerModel = mongoose.model("customerModel", customer);

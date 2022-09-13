@@ -15,4 +15,5 @@ var paymentInfo = new Schema (
         }
     }
 }
-)
+);
+const paymentInfoModel = mongoose.model("paymentInfoModel", paymentInfo);

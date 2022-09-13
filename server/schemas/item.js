@@ -21,3 +21,4 @@ var item = new Schema(
 );
 
 //module.exports = mongoose.model("itemModel",item);
+const itemModel = mongoose.model("itemModel", item);

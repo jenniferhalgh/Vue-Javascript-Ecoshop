@@ -8,3 +8,4 @@ items:[{type: Schema.Types.ObjectId, ref: "items"}]
 
 });
 //module.exports = mongoose.model('storeModel', store);
+const storeModel = mongoose.model("storeModel", store);
