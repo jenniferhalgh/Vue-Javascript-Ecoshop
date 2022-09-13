@@ -9,7 +9,7 @@ var customerSchema = new Schema (
         },
         lastname:{
             type:String
-        },
+        }
     },
     account:{
         username:{
@@ -20,24 +20,25 @@ var customerSchema = new Schema (
         } 
     },
     personalNumber:{
-        type:String, max:12, min:10
+        type:String, max:12, min:10, unique:true
     },
     contact: {
         email: { 
-            type: String 
+            type: String,
+            unique: true
         },
         phone: { 
             type: String 
-        },
+        }
     },
     adress:{
         type:String  
     },
     shoppingCart:[{
-        type: Schema.Types.ObjectId, ref: "item"
+        type: Schema.Types.ObjectId, ref: "items"
     }],
     paymentInfo:[{
-        type: Schema.Types.ObjectId, ref: "paymentInfo"
+        type: Schema.Types.ObjectId, ref: "paymentInfos"
     }]
 }
 )
