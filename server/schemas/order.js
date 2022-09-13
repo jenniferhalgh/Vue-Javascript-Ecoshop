@@ -9,3 +9,4 @@ total_sum: {type: Number}
 });
 
 //module.exports = mongoose.model('orderModel', order);
+const orderModel = mongoose.model("orderModel", order);
