@@ -24,40 +24,40 @@ router.get('/paymentInfos', function(req, res){
 //delete customer's payment information
 router.delete('/customers/:id/paymentInfos/:id', function(req, res, next){
     var id = req.params.id;
-    PaymentInfo.findOneAndDelete({_id: id}, function(err, paymentInfos) {
+    PaymentInfo.findOneAndDelete({_id: id}, function(err, paymentInfo) {
         if (err) { return res.status(500).send(err);}
-        if (paymentInfos == null) {
+        if (paymentInfo == null) {
             return res.status(404).json({"message": "No payment information found"});
         }
-        res.status(204).json(paymentInfos);
+        res.status(204).json(paymentInfo);
     });
 });
 router.delete('/customers/:id/paymentInfos', function(req, res){
-    PaymentInfo.deleteMany(function(err, paymentInfos){
+    PaymentInfo.deleteMany(function(err, paymentInfo){
         if(err){return res.status(500).send(err);}
-        res.status(204).json(paymentInfos);
+        res.status(204).json(paymentInfo);
     });
 });
 //update customer's payment information
 router.put('/customers/:id/paymentInfos/:id', function(req, res){
     var id = req.params.id;
-    PaymentInfo.findOneAndReplace({_id: id}, req.body, {option: true}, function(err, paymentInfos){
+    PaymentInfo.findOneAndReplace({_id: id}, req.body, {option: true}, function(err, paymentInfo){
         if (err) { return res.status(500).send(err);}
-        if (paymentInfos == null) {
+        if (paymentInfo == null) {
             return res.status(404).json({"message": "No payment information found"});
         }
     
-        res.status(200).json(paymentInfos);
+        res.status(200).json(paymentInfo);
     });
 });
 router.patch('/customers/:id/paymentInfos/:id', function(req, res, next){
-    PaymentInfo.findByIdAndUpdate(req.params.id, req.body,function(err, paymentInfos){
+    PaymentInfo.findByIdAndUpdate(req.params.id, req.body,function(err, paymentInfo){
         if (err) { return res.status(500).send(err);}
-        if (paymentInfos == null) {
+        if (paymentInfo == null) {
             return res.status(404).json({"message": "No payment information found"});
         }
     });
-    res.status(200).json(paymentInfos);
+    res.status(200).json(PaymentInfo);
 });
 
 module.exports = router;
