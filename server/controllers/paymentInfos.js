@@ -1,72 +1,57 @@
 var express = require("express");
 var router = express.Router();
-var customer = require("server/schemas/customer.js");
-var paymentInfos = require ("server/schemas/paymentInfo.js");
-const app = express.Router();
+var PaymentInfo = require("../models/paymentInfo");
 
 
 //store customer's payment information
-app.post('/api/paymentInfos', function(req, res, next){
-    var paymentInfo = new paymentInfo(req.body);
-    try{
-        var savedPaymentInfo = await paymentInfo.save();
-        res.status(200).json(savedReview);
-    }catch(err){
-        return res.status(500).send(err);
-    }
+router.post("/paymentInfos", function(req, res){
+    var paymentInfo = new PaymentInfo(req.body);
+    paymentInfo.save(function(err) {
+        if (err) { return res.status(500).send(err);}
+        res.status(201).json(paymentInfo);
+        console.log(paymentInfo);
+    });
 });
 
 //get customer's payment information
-app.get('/api/customers/:id/paymentInfos', function(req, rest, next){
-    try {
-        await paymentInfos.find(function(err, paymentInfo){
-            if(err){
-                return res.status(500).send(err);
-            }
-            res.status(200).json({paymentInfo: paymentInfo});//idk 
-        });
-    }catch(err){
-        return res.status(500).send(err);
-    }
+router.get('/paymentInfos', function(req, res){
+    PaymentInfo.find(function(err, paymentInfo){
+        if(err){return res.status(500).send(err);}
+        res.status(200).json({"paymentInfos": paymentInfo});
+    });
 });
 
 //delete customer's payment information
-app.delete('/api/customers/:id/paymentInfos', function(req, res, next){
-    await paymentInfo.delete(function (err, paymentInfo){
-        if (err){
-            return res.status(500).send(err);
-          }
-          res.status(200).json(paymentInfo);
+router.delete('/customers/:id/paymentInfos/:id', function(req, res, next){
+    var id = req.params.id;
+    PaymentInfo.findOneAndDelete({_id: id}, function(err, paymentInfo) {
+        if (err) { return res.status(500).send(err);}
+        if (paymentInfo == null) {
+            return res.status(404).json({"message": "No payment information found"});
+        }
+        res.status(204).json(paymentInfo);
     });
+});
+//update customer's payment information
+router.put('/customers/:id/paymentInfos/:id', function(req, res){
+    var id = req.params.id;
+    PaymentInfo.findOneAndReplace({_id: id}, req.body, {option: true}, function(err, paymentInfo){
+        if (err) { return res.status(500).send(err);}
+        if (paymentInfo == null) {
+            return res.status(404).json({"message": "No payment information found"});
+        }
+    
+        res.status(200).json(paymentInfo);
+    });
+});
+router.patch('/customers/:id/paymentInfos/:id', function(req, res, next){
+    PaymentInfo.findByIdAndUpdate(req.params.id, req.body,function(err, paymentInfo){
+        if (err) { return res.status(500).send(err);}
+        if (paymentInfo == null) {
+            return res.status(404).json({"message": "No payment information found"});
+        }
+    });
+    res.status(200).json(PaymentInfo);
 });
 
-//update customer's payment information
-app.put('/api/customers/:id/paymentInfos/:id', function(req, res, next){
-    await paymentInfos.findById(req.params.id);
-    const updatePaymentInfo = await paymentInfos.findByIdAndUpdate(
-        req.params.id,
-      {
-        $set: req.body,
-      },
-      { new: true }
-    );
-    res.status(200).json({updatePaymentInfo});
-    if (err){
-            return res.status(500).send(err);
-    }
-});
-app.patch('/api/customers/:id/paymentInfos', function(req, res, next){
-    paymentInfos.findByIdAndUpdate(req.params.id, req.body,{
-    new: true,
-    useFindAndModify: false,
-    })
-    .then((paymentInfos) => {
-        if (!paymentInfos) {
-          return res.status(404).send();
-        }
-        res.status(201).send(paymentInfos);
-      })
-    .catch((error) => {
-        res.status(500).send(error);
-    });
-});
+module.exports = router;
