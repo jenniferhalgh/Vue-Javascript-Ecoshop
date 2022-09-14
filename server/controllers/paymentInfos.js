@@ -32,12 +32,6 @@ router.delete('/customers/:id/paymentInfos/:id', function(req, res, next){
         res.status(204).json(paymentInfo);
     });
 });
-router.delete('/customers/:id/paymentInfos', function(req, res){
-    PaymentInfo.deleteMany(function(err, paymentInfo){
-        if(err){return res.status(500).send(err);}
-        res.status(204).json(paymentInfo);
-    });
-});
 //update customer's payment information
 router.put('/customers/:id/paymentInfos/:id', function(req, res){
     var id = req.params.id;
