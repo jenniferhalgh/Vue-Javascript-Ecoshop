@@ -5,8 +5,11 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 
+var customerController = require("./controllers/customers");
+var storeController = require("./controllers/stores");
+var itemController = require("./controllers/items");
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/animalDevelopmentDB';
+var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://group20:group20@cluster0.uqdxdkk.mongodb.net/?retryWrites=true&w=majority';
 var port = process.env.PORT || 3000;
 
 // Connect to MongoDB
@@ -39,6 +42,10 @@ app.get('/api', function(req, res) {
 app.use('/api/*', function (req, res) {
     res.status(404).json({ 'message': 'Not Found' });
 });
+
+app.use(customerController);
+app.use(storeController);
+app.use(itemController);
 
 // Configuration for serving frontend in production mode
 // Support Vuejs HTML 5 history mode

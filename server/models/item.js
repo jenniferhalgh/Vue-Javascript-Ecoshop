@@ -3,7 +3,6 @@ var Schema = mongoose.Schema;
 
 var itemSchema = new Schema(
     {
-    itemID:  { type: String },
 
     name :  { type: String },
 
@@ -11,7 +10,7 @@ var itemSchema = new Schema(
 
     quantity :  { type: Number },
 
-    store : { type: String },
+    store : { type: Schema.Types.ObjectId, ref: "stores" },
 
     category:[{
         type: String,
