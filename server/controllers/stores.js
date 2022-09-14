@@ -100,21 +100,18 @@ router.get('/stores/:store_id/items', function(req, res){
 });
 
 //Add item to a store
-router.post("/store/:store_id/items", function(req, res){
+router.post("/stores/:store_id/items", function(req, res){
     var id = req.params.store_id;
     Store.findById(id, function(err, store){
         if (err) {return res.status(500).send(err);}
         if (Store == null) {
             return res.status(404).json({"message": "Store not found"});
         }
-
         var item = new Item(req.body);
-        item.save(function(err) {
-            if (err) { return res.status(500).send(err);}
-    });
-    store.items.push(item);
-    store.save();
-    res.status(201).json(store);
+        item.save(function(err) {});
+        store.items.push(item);
+        store.save();
+        return res.status(201).json(store);
     });
 });
 
