@@ -6,6 +6,8 @@ var cors = require('cors');
 var history = require('connect-history-api-fallback');
 
 //var paymentInfoController = require("./controllers/paymentInfos");
+//var itemController = require("../server/controllers/items");
+//var orderController = require("../server/controllers/orders");
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/animalDevelopmentDB';
@@ -38,6 +40,8 @@ app.get('/api', function(req, res) {
 });
 
 //app.use(paymentInfoController);
+//app.use(itemController);
+//app.use(orderController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
