@@ -38,6 +38,10 @@ app.get('/api', function(req, res) {
     res.json({'message': 'Welcome to your DIT342 backend ExpressJS project!'});
 });
 
+//app.use(paymentInfoController);
+//app.use(itemController);
+//app.use(orderController);
+
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
     res.status(404).json({ 'message': 'Not Found' });
