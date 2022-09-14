@@ -69,14 +69,6 @@ router.delete('/customers/:id', function(req, res) {
     });
 });
 
-//Delete all customers
-router.delete('/customers', function(req, res){
-Customer.deleteMany(function(err, customers){
-    if(err){return res.status(500).send(err);}
-    res.status(204).json(customers);
-});
-});
-
 //Show the items in the shopping cart
 router.get('/customers/:id/shoppingCart', function(req, res){
     var id = req.params.id;
@@ -88,7 +80,5 @@ router.get('/customers/:id/shoppingCart', function(req, res){
     res.status(200).send(customer);
     })
 });
-
-
 
 module.exports = router;
