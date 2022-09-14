@@ -81,8 +81,4 @@ router.get('/customers/:id/shoppingCart', function(req, res){
     })
 });
 
-router.
-
-
-
 module.exports = router;
