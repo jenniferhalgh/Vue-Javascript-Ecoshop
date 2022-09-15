@@ -39,6 +39,9 @@ var customerSchema = new Schema (
     },
     paymentInfo:[{
         type: Schema.Types.ObjectId, ref: "paymentInfos"
+    }],
+    orders:[{
+        type: Schema.Types.ObjectId, ref: "orders"
     }]
 }
 )
