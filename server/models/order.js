@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var orderSchema = new Schema (
 {
-order_id: {type: String},
+    
 items:[{type: Schema.Types.ObjectId, ref: "items"}],
 total_sum: {type: Number},
 customers : { type: Schema.Types.ObjectId, ref: "customers" }
