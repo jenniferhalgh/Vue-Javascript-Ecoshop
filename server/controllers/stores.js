@@ -1,7 +1,6 @@
 var express = require("express");
 const Store = require("../models/store");
 const Item = require("../models/item");
-const store = require("../models/store");
 var router = express.Router();
 
 //List all stores

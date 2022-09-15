@@ -1,51 +1,2786 @@
 {
 	"info": {
-		"_postman_id": "f7ee95b5-9cb9-442f-a6a9-42de46138872",
+		"_postman_id": "bb1533fc-0d04-465e-935f-e3be6b5809ee",
 		"name": "server",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23291016"
 	},
 	"item": [
 		{
-			"name": "GET /api",
-			"event": [
+			"name": "customers",
+			"item": [
 				{
-					"listen": "prerequest",
-					"script": {
-						"id": "b58d92ec-5214-450c-adb0-28e068aa71b9",
-						"exec": [
-							""
+					"name": "createCustomer",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
 						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/api",
-					"host": [
-						"{{host}}"
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": {\"firstname\": \"Anasha\",\"lastname\":\"Sarker\"}, \"account\": {\"username\": \"jenniferhalgh\", \"password\": \"jennifer123\"},\n\"personalNumber\": \"200311281223\", \"contact\": {\"email\": \"anash@gmail.com\", \"phone\": \"0737628386\"},\n\"adress\": \"Nowhere Street 123\", \"shoppingCart\": null, \"paymentInfo\":[], \"orders\": [], \"_id\" : \"63238d3b3bacafe20b7292ca\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "createCustomer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\": {\"firstname\": \"Jennifer\",\"lastname\":\"Hälgh\"}, \"account\": {\"username\": \"jenniferhalgh\", \"password\": \"jennifer123\"},\n\"personalNumber\": \"200203011234\", \"contact\": {\"email\": \"jennife@gmail.com\", \"phone\": \"0737628386\"},\n\"adress\": \"Nowhere Street 123\", \"shoppingCart\": null, \"paymentInfo\":[], \"orders\": []\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/customers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "330"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14a-w6IvdgENFS/97nT2fTMEYYENYpo\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 16:42:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"paymentInfo\": [],\n    \"orders\": [],\n    \"_id\": \"632355f08372959addef47ad\",\n    \"name\": {\n        \"firstname\": \"Jennifer\",\n        \"lastname\": \"Hälgh\"\n    },\n    \"account\": {\n        \"username\": \"jenniferhalgh\",\n        \"password\": \"jennifer123\"\n    },\n    \"personalNumber\": \"200203011234\",\n    \"contact\": {\n        \"email\": \"jennife@gmail.com\",\n        \"phone\": \"0737628386\"\n    },\n    \"adress\": \"Nowhere Street 123\",\n    \"shoppingCart\": null,\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "createPaymentInfo",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"path": [
-						"api"
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cardInfo\":{\n        \"nameOnCard\":\"Shahd Metwally\",\n        \"cardNum\":\"1234567890123456\",\n        \"cvv\":\"123\"\n    },\n    \"customer\" : \"63238d3b3bacafe20b7292ca\",\n    \"_id\": \"63238ebe1bd2346c7886a2b4\"\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/paymentInfos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"63238d3b3bacafe20b7292ca",
+								"paymentInfos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "createPaymentInfo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cardInfo\":{\n        \"nameOnCard\":\"Shahd Metwally\",\n        \"cardNum\":\"1234567890123456\",\n        \"cvv\":\"123\"\n    },\n    \"customer\" : \"6321e0b1fa2ee8651c392f9d\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/customers/632355e68372959addef47a9/paymentInfos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355e68372959addef47a9",
+										"paymentInfos"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-Ii4CDkVtfmERZUeCxPI5omg0DMg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 16:44:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    \"632356448372959addef47bd\",\n    \"6323565a8372959addef47c4\",\n    \"6323565d8372959addef47c8\"\n]"
+						}
+					]
+				},
+				{
+					"name": "createStore",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"H&M\", \"items\": [], \"_id\": \"63238ef01bd2346c7886a2b8\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/stores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"stores"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "createStore",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\": \"Ginatricot\", \"items\": []}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/stores",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stores"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-u1Q0BfD7yIQKfRUcwsyU5Z57D0s\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:16:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [],\n    \"_id\": \"63235e0416d34da75d67ffaf\",\n    \"name\": \"Ginatricot\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "createAnItemInAStore",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"t-shirt\",\n    \"price\": 150,\n    \"quantity\": 30,\n    \"store\": \"63238ef01bd2346c7886a2b8\",\n    \"category\": \"Default\",\n     \"_id\": \"63238ef01bd2346c7886a2b8\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/stores/63238ef01bd2346c7886a2b8/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"stores",
+								"63238ef01bd2346c7886a2b8",
+								"items"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "createAnItemInAStore",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"hello\",\n    \"price\": 150,\n    \"quantity\": 30,\n    \"store\": \"63235e0416d34da75d67ffaf\",\n    \"category\": \"Default\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/stores/63235e0416d34da75d67ffaf/items",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stores",
+										"63235e0416d34da75d67ffaf",
+										"items"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "204"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cc-SMhjd/0uLaOxTg8AsEyy1NxavP0\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:17:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"_id\": \"63235e3d6dde74a85b41f361\",\n            \"name\": \"hello\",\n            \"price\": 150,\n            \"quantity\": 30,\n            \"store\": \"63235e0416d34da75d67ffaf\",\n            \"category\": \"Default\"\n        }\n    ],\n    \"_id\": \"63235e0416d34da75d67ffaf\",\n    \"name\": \"Ginatricot\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "createShoppingCart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"customer\":\"63238d3b3bacafe20b7292ca\",\"items\":[], \"_id\": \"63238e551bd2346c7886a2b0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/shoppingCart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"63238d3b3bacafe20b7292ca",
+								"shoppingCart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "createShoppingCart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/customers/632355eb8372959addef47ab/shoppingCart",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355eb8372959addef47ab",
+										"shoppingCart"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "398"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18e-rN7GhwDWchh00H+4WKYQMkfOepQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:23:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": {\n        \"firstname\": \"Jennifer\",\n        \"lastname\": \"Hälgh\"\n    },\n    \"account\": {\n        \"username\": \"jenniferhalgh\",\n        \"password\": \"jennifer123\"\n    },\n    \"contact\": {\n        \"email\": \"jennifer@gmail.com\",\n        \"phone\": \"0737628386\"\n    },\n    \"paymentInfo\": [\n        \"632356368372959addef47b8\"\n    ],\n    \"orders\": [],\n    \"_id\": \"632355eb8372959addef47ab\",\n    \"personalNumber\": \"200202011234\",\n    \"adress\": \"Nowhere Street 123\",\n    \"shoppingCart\": {\n        \"items\": [],\n        \"_id\": \"63235f836dde74a85b41f384\"\n    },\n    \"__v\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "postOrder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"items\": [\"63238ef01bd2346c7886a2b8\"],\n\"total_sum\": 100,\n\"customers\": \"63238d3b3bacafe20b7292ca\",\n\"_id\": \"6323906d3e80b7777268010c\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"63238d3b3bacafe20b7292ca",
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "postOrder",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/customers/632355eb8372959addef47ab/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355eb8372959addef47ab",
+										"orders"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f-lv+25ImS+W19KNjWbBtayqGzw5s\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:28:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"items\": [],\n        \"_id\": \"632360aa29ebffabc4604c07\"\n    }\n]"
+						}
 					]
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "stores",
+			"item": [
+				{
+					"name": "getAllCustomers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAllCustomers",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/customers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "678"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a6-yu3jIOFUuUthFj9atGssMmJhQPM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 16:43:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"customers\": [\n        {\n            \"name\": {\n                \"firstname\": \"Jennifer\",\n                \"lastname\": \"Hälgh\"\n            },\n            \"account\": {\n                \"username\": \"jenniferhalgh\",\n                \"password\": \"jennifer123\"\n            },\n            \"contact\": {\n                \"email\": \"jennifr@gmail.com\",\n                \"phone\": \"0737628386\"\n            },\n            \"paymentInfo\": [],\n            \"orders\": [],\n            \"_id\": \"632355e68372959addef47a9\",\n            \"personalNumber\": \"200102011234\",\n            \"adress\": \"Nowhere Street 123\",\n            \"shoppingCart\": null,\n            \"__v\": 0\n        },\n        {\n            \"name\": {\n                \"firstname\": \"Jennifer\",\n                \"lastname\": \"Hälgh\"\n            },\n            \"account\": {\n                \"username\": \"jenniferhalgh\",\n                \"password\": \"jennifer123\"\n            },\n            \"contact\": {\n                \"email\": \"jennifer@gmail.com\",\n                \"phone\": \"0737628386\"\n            },\n            \"paymentInfo\": [],\n            \"orders\": [],\n            \"_id\": \"632355eb8372959addef47ab\",\n            \"personalNumber\": \"200202011234\",\n            \"adress\": \"Nowhere Street 123\",\n            \"shoppingCart\": null,\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "getACustomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"63238d3b3bacafe20b7292ca"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getACustomer",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/customers/632355f08372959addef47ad",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355f08372959addef47ad"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "330"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14a-eoRoOXUe8NgifbMKHjAaHAPyKpc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 16:42:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": {\n        \"firstname\": \"Jennifer\",\n        \"lastname\": \"Hälgh\"\n    },\n    \"account\": {\n        \"username\": \"jenniferhalgh\",\n        \"password\": \"jennifer123\"\n    },\n    \"contact\": {\n        \"email\": \"jennife@gmail.com\",\n        \"phone\": \"0737628386\"\n    },\n    \"paymentInfo\": [],\n    \"orders\": [],\n    \"_id\": \"632355f08372959addef47ad\",\n    \"personalNumber\": \"200203011234\",\n    \"adress\": \"Nowhere Street 123\",\n    \"shoppingCart\": null,\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "getAStore",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/stores/63238ef01bd2346c7886a2b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"stores",
+								"63238ef01bd2346c7886a2b8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAStore",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/stores/63235e0416d34da75d67ffaf",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stores",
+										"63235e0416d34da75d67ffaf"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"63-MQ2ZhXTbU9pD0hIDeIBoBUP0hCg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:18:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        \"63235e3d6dde74a85b41f361\"\n    ],\n    \"_id\": \"63235e0416d34da75d67ffaf\",\n    \"name\": \"Ginatricot\",\n    \"__v\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "getAllStores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/stores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"stores"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAllStores",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/stores",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stores"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "112"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"70-LzurJnCoF2Abh9O0Xfh06RSCHIs\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:18:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"stores\": [\n        {\n            \"items\": [\n                \"63235e3d6dde74a85b41f361\"\n            ],\n            \"_id\": \"63235e0416d34da75d67ffaf\",\n            \"name\": \"Ginatricot\",\n            \"__v\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "getAnItemOfAStore",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/stores/63238ef01bd2346c7886a2b8/items/63238ef01bd2346c7886a2b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"stores",
+								"63238ef01bd2346c7886a2b8",
+								"items",
+								"63238ef01bd2346c7886a2b8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAnItemOfAStore",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/stores/63235e0416d34da75d67ffaf/items/63235e3d6dde74a85b41f361",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stores",
+										"63235e0416d34da75d67ffaf",
+										"items",
+										"63235e3d6dde74a85b41f361"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "141"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8d-ojUaifu65V8yvjzyGJIFxdtYoQg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:18:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"63235e3d6dde74a85b41f361\",\n        \"name\": \"hello\",\n        \"price\": 150,\n        \"quantity\": 30,\n        \"store\": \"63235e0416d34da75d67ffaf\",\n        \"category\": \"Default\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "getAllItemsOfAStore",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/stores/63238ef01bd2346c7886a2b8/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"stores",
+								"63238ef01bd2346c7886a2b8",
+								"items"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAllItemsOfAStore",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/stores/63235e0416d34da75d67ffaf/items",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stores",
+										"63235e0416d34da75d67ffaf",
+										"items"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "141"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8d-ojUaifu65V8yvjzyGJIFxdtYoQg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:19:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"63235e3d6dde74a85b41f361\",\n        \"name\": \"hello\",\n        \"price\": 150,\n        \"quantity\": 30,\n        \"store\": \"63235e0416d34da75d67ffaf\",\n        \"category\": \"Default\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "getAnItem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/items/63238ef01bd2346c7886a2b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"items",
+								"63238ef01bd2346c7886a2b8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAnItem",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/items/63235f2c6dde74a85b41f37a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items",
+										"63235f2c6dde74a85b41f37a"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "139"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8b-PNMn/zDpRHf5CIG64sshI32j8yc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:22:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"63235f2c6dde74a85b41f37a\",\n    \"name\": \"hello\",\n    \"price\": 150,\n    \"quantity\": 30,\n    \"store\": \"63235e0416d34da75d67ffaf\",\n    \"category\": \"Default\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "getAllItems",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"items"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAllItems",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/items",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "151"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"97-T+7SRpiAmUkBqU65D4ejoHLHO7g\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:22:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"_id\": \"63235f2c6dde74a85b41f37a\",\n            \"name\": \"hello\",\n            \"price\": 150,\n            \"quantity\": 30,\n            \"store\": \"63235e0416d34da75d67ffaf\",\n            \"category\": \"Default\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "getCustomerShoppingCart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/shoppingCart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"63238d3b3bacafe20b7292ca",
+								"shoppingCart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getCustomerShoppingCart",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/customers/632355eb8372959addef47ab/shoppingCart",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355eb8372959addef47ab",
+										"shoppingCart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"35-e8FTRGHEPRp7XRxQ7ykGfy1npmc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:23:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [],\n    \"_id\": \"63235f836dde74a85b41f384\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "getASpecificCustomersOrder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"63238d3b3bacafe20b7292ca",
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getASpecificCustomersOrder",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/customers/632355eb8372959addef47ab/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355eb8372959addef47ab",
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-YcAAOAYmMyEikPU0v/NM7DZMG2g\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:28:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"items\": [],\n        \"_id\": \"632360aa29ebffabc4604c07\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "getAllOrders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"order_id\": \"123\",\n\"items\":[],\n\"total_sum\": 21\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAllOrders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"order_id\": \"123\",\n\"items\":[],\n\"total_sum\": 21\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "66"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42-6odl11F1cXdcMxSApmH9YF3ngaM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:28:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orders\": [\n        {\n            \"items\": [],\n            \"_id\": \"632360aa29ebffabc4604c07\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "getPaymentInfos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/paymentInfos/63238ebe1bd2346c7886a2b4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"63238d3b3bacafe20b7292ca",
+								"paymentInfos",
+								"63238ebe1bd2346c7886a2b4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getPaymentInfos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/customers/632355e68372959addef47a9/paymentInfos/6323565d8372959addef47c8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355e68372959addef47a9",
+										"paymentInfos",
+										"6323565d8372959addef47c8"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "166"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a6-L4v6VzmJubRFNN7ajnJ0G0+ey1c\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 16:44:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"cardInfo\": {\n            \"nameOnCard\": \"Shahd Metwally\",\n            \"cardNum\": \"1234567890123456\",\n            \"cvv\": \"123\"\n        },\n        \"_id\": \"6323565d8372959addef47c8\",\n        \"customer\": \"6321e0b1fa2ee8651c392f9d\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "getAllPaymentInfos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/paymentInfos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"63238d3b3bacafe20b7292ca",
+								"paymentInfos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAllPaymentInfos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:3000/customers/632355e68372959addef47a9/paymentInfos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355e68372959addef47a9",
+										"paymentInfos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "496"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f0-opGx6Z+ZmTKDxxBvVraBG4pYRBA\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 16:44:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"cardInfo\": {\n            \"nameOnCard\": \"Shahd Metwally\",\n            \"cardNum\": \"1234567890123456\",\n            \"cvv\": \"123\"\n        },\n        \"_id\": \"632356448372959addef47bd\",\n        \"customer\": \"6321e0b1fa2ee8651c392f9d\",\n        \"__v\": 0\n    },\n    {\n        \"cardInfo\": {\n            \"nameOnCard\": \"Shahd Metwally\",\n            \"cardNum\": \"1234567890123456\",\n            \"cvv\": \"123\"\n        },\n        \"_id\": \"6323565a8372959addef47c4\",\n        \"customer\": \"6321e0b1fa2ee8651c392f9d\",\n        \"__v\": 0\n    },\n    {\n        \"cardInfo\": {\n            \"nameOnCard\": \"Shahd Metwally\",\n            \"cardNum\": \"1234567890123456\",\n            \"cvv\": \"123\"\n        },\n        \"_id\": \"6323565d8372959addef47c8\",\n        \"customer\": \"6321e0b1fa2ee8651c392f9d\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "items",
+			"item": [
+				{
+					"name": "partialUpdateCustomer",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"personalNumber\": \"199910071234\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"63238d3b3bacafe20b7292ca"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "partialUpdateCustomer",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"personalNumber\": \"199910071234\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/customers/632355f08372959addef47ad",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355f08372959addef47ad"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14a-eoRoOXUe8NgifbMKHjAaHAPyKpc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 16:42:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "completeUpdateCustomer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": {\"firstname\": \"Jennifer\",\"lastname\":\"Hälgh\"}, \"account\": {\"username\": \"jenniferhalgh\", \"password\": \"jennifer123\"},\n\"personalNumber\": \"200212311234\", \"contact\": {\"email\": \"jennianr@gmail.com\", \"phone\": \"0737628386\"},\n\"adress\": \"Nowhere Street 123\", \"shoppingCart\": \"63238e551bd2346c7886a2b0\", \"paymentInfo\":[], \"orders\": [], \"_id\":\"63238d3b3bacafe20b7292ca\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"63238d3b3bacafe20b7292ca"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "completeUpdateCustomer",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\": {\"firstname\": \"Jennifer\",\"lastname\":\"Hälgh\"}, \"account\": {\"username\": \"jenniferhalgh\", \"password\": \"jennifer123\"},\n\"personalNumber\": \"200205011234\", \"contact\": {\"email\": \"jennir@gmail.com\", \"phone\": \"0737628386\"},\n\"adress\": \"Nowhere Street 123\", \"shoppingCart\": null, \"paymentInfo\":[], \"orders\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/customers/632355f08372959addef47ad",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355f08372959addef47ad"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "330"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14a-ka51DQqXkUJTbwegyuZblLrfuIw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 16:43:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": {\n        \"firstname\": \"Jennifer\",\n        \"lastname\": \"Hälgh\"\n    },\n    \"account\": {\n        \"username\": \"jenniferhalgh\",\n        \"password\": \"jennifer123\"\n    },\n    \"contact\": {\n        \"email\": \"jennife@gmail.com\",\n        \"phone\": \"0737628386\"\n    },\n    \"paymentInfo\": [],\n    \"orders\": [],\n    \"_id\": \"632355f08372959addef47ad\",\n    \"personalNumber\": \"199910071234\",\n    \"adress\": \"Nowhere Street 123\",\n    \"shoppingCart\": null,\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "partialUpdateStore",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"H&M\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/stores/63238ef01bd2346c7886a2b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"stores",
+								"63238ef01bd2346c7886a2b8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "partialUpdateStore",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/stores/63235e0416d34da75d67ffaf",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stores",
+										"63235e0416d34da75d67ffaf"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"63-MQ2ZhXTbU9pD0hIDeIBoBUP0hCg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:19:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "updatePartialInfoOfAnItem",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"price\": 200}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/items/63238ef01bd2346c7886a2b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"items",
+								"63238ef01bd2346c7886a2b8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "updatePartialInfoOfAnItem",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/items/63235f2c6dde74a85b41f37a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items",
+										"63235f2c6dde74a85b41f37a"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8b-PNMn/zDpRHf5CIG64sshI32j8yc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:22:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "replaceAnItem",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"pants\",\n    \"price\": 100,\n    \"quantity\": 30,\n    \"store\": \"63238ef01bd2346c7886a2b8\",\n    \"category\": \"Default\",\n     \"_id\": \"63238ef01bd2346c7886a2b8\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/items/63238ef01bd2346c7886a2b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"items",
+								"63238ef01bd2346c7886a2b8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "replaceAnItem",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/items/63235f2c6dde74a85b41f37a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items",
+										"63235f2c6dde74a85b41f37a"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "139"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8b-PNMn/zDpRHf5CIG64sshI32j8yc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:22:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"63235f2c6dde74a85b41f37a\",\n    \"name\": \"hello\",\n    \"price\": 150,\n    \"quantity\": 30,\n    \"store\": \"63235e0416d34da75d67ffaf\",\n    \"category\": \"Default\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "addItemInShoppingCart",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/shoppingCart/63238ef01bd2346c7886a2b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"63238d3b3bacafe20b7292ca",
+								"shoppingCart",
+								"63238ef01bd2346c7886a2b8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "addItemInShoppingCart",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/customers/632355eb8372959addef47ab/shoppingCart/63235f2c6dde74a85b41f37a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355eb8372959addef47ab",
+										"shoppingCart",
+										"63235f2c6dde74a85b41f37a"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"57-pXgEJIrs7g+Nm1FeE/Uo81IHy/Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:23:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"_id\": \"63235f2c6dde74a85b41f37a\"\n        }\n    ],\n    \"_id\": \"63235f836dde74a85b41f384\",\n    \"__v\": 0\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "deleteSpecificPaymentInfo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cardInfo\":{\n        \"nameOnCard\":\"Shahd Metwally\",\n        \"cardNum\":\"1234567890123456\",\n        \"cvv\":\"123\"\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/paymentInfos/63238ebe1bd2346c7886a2b4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"63238d3b3bacafe20b7292ca",
+								"paymentInfos",
+								"63238ebe1bd2346c7886a2b4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "deleteSpecificPaymentInfo",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cardInfo\":{\n        \"nameOnCard\":\"Shahd Metwally\",\n        \"cardNum\":\"1234567890123456\",\n        \"cvv\":\"123\"\n    }\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/customers/632355e68372959addef47a9/paymentInfos/6323565a8372959addef47c4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355e68372959addef47a9",
+										"paymentInfos",
+										"6323565a8372959addef47c4"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-Ii4CDkVtfmERZUeCxPI5omg0DMg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 16:44:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "removeItemFromCart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3001/shoppingCart/63238e551bd2346c7886a2b0/items/63238ef01bd2346c7886a2b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"shoppingCart",
+								"63238e551bd2346c7886a2b0",
+								"items",
+								"63238ef01bd2346c7886a2b8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "removeItemFromCart",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:3000/shoppingCart/63235f836dde74a85b41f384/items/63235f2c6dde74a85b41f37a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"shoppingCart",
+										"63235f836dde74a85b41f384",
+										"items",
+										"63235f2c6dde74a85b41f37a"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c-DfIlrn+BGo3PfIqtAqJrlOk3Lnw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:25:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "deleteAnItemFromAStore",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/stores/63238ef01bd2346c7886a2b8/items/63238ef01bd2346c7886a2b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"stores",
+								"63238ef01bd2346c7886a2b8",
+								"items",
+								"63238ef01bd2346c7886a2b8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "deleteAnItemFromAStore",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/stores/63235e0416d34da75d67ffaf/items/63235e3d6dde74a85b41f361",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stores",
+										"63235e0416d34da75d67ffaf",
+										"items",
+										"63235e3d6dde74a85b41f361"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c-dvVaXIO8kU/HV8L95aplFMyJMWQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:20:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "deleteAllPaymentInfosOfACustomer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/paymentInfos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"63238d3b3bacafe20b7292ca",
+								"paymentInfos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "deleteAllPaymentInfosOfACustomer",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:3000/customers/632355e68372959addef47a9/paymentInfos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355e68372959addef47a9",
+										"paymentInfos"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19a-kJ6oj1owVshSnbeeKcFOwO0eIws\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 16:46:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "deleteAllItemsInAStore",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/stores/63238ef01bd2346c7886a2b8/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"stores",
+								"63238ef01bd2346c7886a2b8",
+								"items"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "deleteAllItemsInAStore",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/stores/63235e0416d34da75d67ffaf/items",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stores",
+										"63235e0416d34da75d67ffaf",
+										"items"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-jwmw/9TkAg+9xqClOCiH04rUfQI\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:20:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "deleteACustomer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"63238d3b3bacafe20b7292ca"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "deleteACustomer",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/customers/632355f08372959addef47ad",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355f08372959addef47ad"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"141-DhGgAl0/IcMNYlT2Z67EZv+sdro\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 16:43:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "deleteAStore",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/stores/63238ef01bd2346c7886a2b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"stores",
+								"63238ef01bd2346c7886a2b8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "deleteAStore",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/stores/63235e0416d34da75d67ffaf",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stores",
+										"63235e0416d34da75d67ffaf"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-jwmw/9TkAg+9xqClOCiH04rUfQI\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:20:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "05864cff-5cba-4070-bac3-a59328954ebf",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -55,7 +2790,6 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "e9c319be-3306-4fc5-ba34-fcf64391213a",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -65,11 +2799,9 @@
 	],
 	"variable": [
 		{
-			"id": "cd185905-a834-4211-8030-583d17702534",
 			"key": "host",
 			"value": "http://localhost:3000",
 			"type": "string"
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
