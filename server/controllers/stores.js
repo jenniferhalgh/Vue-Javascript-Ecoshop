@@ -1,6 +1,7 @@
 var express = require("express");
 const Store = require("../models/store");
 const Item = require("../models/item");
+const store = require("../models/store");
 var router = express.Router();
 
 //List all stores
@@ -73,6 +74,24 @@ router.delete('/stores/:store_id/items/:item_id', function(req, res) {
         res.status(204).json(store.items);
     });
 });
+
+//Delete all item from a store
+router.delete("/stores/:store_id/items", function (req, res) {
+    Item.deleteMany(function (err, item) {
+        if (err) { return res.status(500).send(err);}
+        if (item == null) {
+            return res.status(404).json({"message": "Item not found"});
+        }});
+    Store.findByIdAndUpdate({ _id: req.params.store_id },{ $set: { "items":[] } }, 
+        function(err, store) {
+        if (err) { return res.status(500).send(err);}
+        if (store == null) {
+            return res.status(404).json({"message": "Store not found"});
+        }
+        res.status(204).json(store);
+    });
+
+  });
 
 
 //List specific item from a specific store
