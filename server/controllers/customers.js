@@ -73,7 +73,7 @@ router.delete('/customers/:id', function(req, res) {
 
 
 //Get shopping cart
-router.get('/customers/:id/shoppingCart', function(req, res){
+router.get('/customers/:id/shoppingCarts', function(req, res){
         var id = req.params.id;
         Customer.findById(id).populate("shoppingCart").exec(function(err, customer){
         if (err) {return res.status(500).send(err);}
@@ -86,7 +86,7 @@ router.get('/customers/:id/shoppingCart', function(req, res){
 
 
       //create shopping cart
-router.post("/customers/:id/shoppingCart", function(req, res){
+router.post("/customers/:id/shoppingCarts", function(req, res){
     var id = req.params.id;
     Customer.findById(id, function(err, customer){
         if (err) {return res.status(500).send(err);}
@@ -104,7 +104,7 @@ router.post("/customers/:id/shoppingCart", function(req, res){
 });
 });
 
-router.patch("/customers/:id/shoppingCart/:item_id", function(req, res){
+router.patch("/customers/:id/shoppingCarts/:item_id", function(req, res){
     var id = req.params.id;
     Customer.findById(id).populate('shoppingCart').exec(function(err, customer) {
         if (err) {return res.status(500).send(err);}
@@ -127,7 +127,8 @@ router.patch("/customers/:id/shoppingCart/:item_id", function(req, res){
 })});
 
 //remove an item from shopping cart
-router.delete('/shoppingCart/:shoppingCart_id/items/:item_id', function(req, res) {
+router.delete('/shoppingCarts/:shoppingCart_id/items/:item_id', function(req, res) {
+
     ShoppingCart.findByIdAndUpdate({ _id: req.params.shoppingCart_id },{ $pull: { items: req.params.item_id  } }, 
         function(err, shoppingCart) {
         if (err) { return res.status(500).send(err);}

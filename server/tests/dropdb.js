@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 // Variables
-var mongoURI = process.env.MONGODB_URI;
+var mongoURI = 'mongodb+srv://group20:group20@cluster0.uqdxdkk.mongodb.net/?retryWrites=true&w=majority';
 
 if (!mongoURI) {
     console.error('Missing MONGODB_URI for dropping test database.');
