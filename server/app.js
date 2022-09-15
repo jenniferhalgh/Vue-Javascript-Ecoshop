@@ -9,6 +9,7 @@ var history = require('connect-history-api-fallback');
 var customerController = require("./controllers/customers");
 var storeController = require("./controllers/stores");
 var itemController = require("./controllers/items");
+var orderController = require("./controllers/orders");
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://group20:group20@cluster0.uqdxdkk.mongodb.net/?retryWrites=true&w=majority';
 var port = process.env.PORT || 3000;
@@ -47,6 +48,7 @@ app.use('/api/*', function (req, res) {
 app.use(customerController);
 app.use(storeController);
 app.use(itemController);
+app.use(orderController);
 //app.use(shoppingCartController);
 // Configuration for serving frontend in production mode
 // Support Vuejs HTML 5 history mode
