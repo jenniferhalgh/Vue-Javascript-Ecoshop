@@ -73,7 +73,7 @@ The system will allow users to browse and buy items from different stores in one
 
 ### Entity-Relationship (ER) Diagram
 
-![ER Diagram](images/ER- WebDevelopment.png)
+![ER Diagram](images/ER- Web development.png)
 
 ## Teaser (MS3)
 
