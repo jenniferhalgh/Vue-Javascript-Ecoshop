@@ -1,6 +1,7 @@
 var express = require("express");
 const Customer = require("../models/customer");
 const PaymentInfo = require("../models/paymentInfo");
+const ShoppingCart = require("../models/shoppingCart");
 var router = express.Router();
 
 //List all customers
@@ -79,6 +80,26 @@ router.get('/customers/:id/shoppingCart', function(req, res){
     }
     res.status(200).send(customer);
     })
+});
+
+
+      //create shopping cart
+router.post("/customers/:id/shoppingCart", function(req, res){
+    var id = req.params.id;
+    Customer.findById(id, function(err, customer){
+        if (err) {return res.status(500).send(err);}
+        if (customer == null) {
+            return res.status(404).json({"message": "Customer not found"});
+        }
+    var shoppingCart = new ShoppingCart(req.body);
+    shoppingCart.save(function(err) {
+        if (err) { return res.status(500).send(err);}
+        console.log(shoppingCart);
+    });
+    customer.shoppingCart = shoppingCart;
+        customer.save();
+        return res.status(201).json(customer);
+});
 });
 
 module.exports = router;
