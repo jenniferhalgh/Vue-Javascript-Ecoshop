@@ -1,5 +1,6 @@
 var express = require("express");
 const Item = require("../models/item");
+const Store = require("../models/store");
 var router = express.Router();
 
 //List all items
@@ -10,17 +11,29 @@ router.get('/items', function(req, res){
     });
 });
 
-//List an item with a specific id
+//List a item with a specific id
 router.get('/items/:id', function(req, res){
     var id = req.params.id;
-    Store.findById(id).populate("items").exec(function(err, item){
+    Item.findById(id).populate("stores").exec(function(err, item){
     if (err) {return res.status(500).send(err);}
     if (item == null) {
-        return res.status(404).json({"message": "Store not found"});
+        return res.status(404).json({"message": "Item not found"});
     }
     res.status(200).send(item);
     })
 });
+
+router.get("/items?category=:category", function (req, res, next) {
+    console.log("finding");
+    Item.find({ category: { $all: [req.params.category]}}).exec(
+        function (err,item) {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      console.log("success");
+      return res.status(200).json(item);
+    });
+  });
 
 
 //Update partial info of an item

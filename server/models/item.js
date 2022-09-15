@@ -12,10 +12,10 @@ var itemSchema = new Schema(
 
     store : { type: Schema.Types.ObjectId, ref: "stores" },
 
-    category:[{
+    category:{
         type: String,
         allowedValues: ["Second Hand","Small Creator","Default","Vegan"]
-    }]
+    }
 }
 );
 

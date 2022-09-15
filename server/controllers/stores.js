@@ -14,13 +14,13 @@ router.get('/stores', function(req, res){
 //List a store with a specific id
 router.get('/stores/:id', function(req, res){
     var id = req.params.id;
-    Store.findById(id).populate("items").exec(function(err, store){
-    if (err) {return res.status(500).send(err);}
+    Store.findById(id, function(err, store){
+        if (err) {return res.status(500).send(err);}
     if (store == null) {
         return res.status(404).json({"message": "Store not found"});
     }
     res.status(200).send(store);
-    })
+    });
 });
 
 //Register new store
@@ -76,23 +76,25 @@ router.delete('/stores/:store_id/items/:item_id', function(req, res) {
 
 
 //List specific item from a specific store
-router.get('/stores/:store_id/items/:item_id', function(req, res){
+router.get('/stores/:store_id/items/:item_id', function(req, res){ 
     var id = req.params.store_id;
-    Store.findById(id).populate({path: "items", match: {_id: req.params.item_id} }).exec(function(err, store){
+    var ObjectId = require('mongoose').Types.ObjectId; 
+    Store.findById(id).populate({path: 'items', match: {_id: req.params.item_id} }).exec(function(err, store){
     if (err) {return res.status(500).send(err);}
-    if (Store == null) {
+    if (store == null) {
         return res.status(404).json({"message": "Store not found"});
     }
-    res.status(200).send(store.items);
+    res.status(200).send(store);
+    
     })
 });
 
 //Get all items from a specific store
 router.get('/stores/:store_id/items', function(req, res){
     var id = req.params.store_id;
-    Store.findById(id).populate("items").exec(function(err, store){
+    Store.findById(id).populate('items').exec(function(err, store){
     if (err) {return res.status(500).send(err);}
-    if (Store == null) {
+    if (store == null) {
         return res.status(404).json({"message": "Store not found"});
     }
     res.status(200).send(store.items);
@@ -100,15 +102,21 @@ router.get('/stores/:store_id/items', function(req, res){
 });
 
 //Add item to a store
-router.post("/stores/:store_id/items", function(req, res){
+router.post("/stores/:store_id/items", function(req, res, next){
     var id = req.params.store_id;
     Store.findById(id, function(err, store){
         if (err) {return res.status(500).send(err);}
-        if (Store == null) {
+        if (store == null) {
             return res.status(404).json({"message": "Store not found"});
         }
         var item = new Item(req.body);
-        item.save(function(err) {});
+
+        item.save(
+            function(err) { 
+            if (err) {return res.status(500)}
+            console.log(item);}
+        );
+        
         store.items.push(item);
         store.save();
         return res.status(201).json(store);

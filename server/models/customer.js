@@ -40,6 +40,6 @@ var customerSchema = new Schema (
     paymentInfo:[{
         type: Schema.Types.ObjectId, ref: "paymentInfos"
     }]
-}
+}, {toJSON: {virtuals: true}}
 )
 module.exports = mongoose.model("customers",customerSchema);
