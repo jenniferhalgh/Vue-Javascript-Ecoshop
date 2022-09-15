@@ -23,7 +23,18 @@ router.get('/items/:id', function(req, res){
     })
 });
 
-router.get("/items?category=:category", function (req, res, next) {
+// Filter by category
+router.get('/items?category=:category',function(req,res){
+  var filter = req.query.category;
+  if(filter){
+      res.json(item.filter(function(e){
+          return filter === e.category;
+      }));
+  }else{
+      res.json(item);
+  }
+});
+/*router.get("/items?category=:category", function (req, res, next) {
     console.log("finding");
     Item.find({ category: { $all: [req.params.category]}}).exec(
         function (err,item) {
@@ -33,7 +44,7 @@ router.get("/items?category=:category", function (req, res, next) {
       console.log("success");
       return res.status(200).json(item);
     });
-  });
+  });*/
 
 
 //Update partial info of an item
