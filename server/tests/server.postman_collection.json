@@ -446,7 +446,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/customers/63238d3b3bacafe20b7292ca/shoppingCarts",
+							"raw": "http://localhost:3000/customers/63238d3b3bacafe20b7292ca/shoppingCart",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -455,7 +455,7 @@
 							"path": [
 								"customers",
 								"63238d3b3bacafe20b7292ca",
-								"shoppingCarts"
+								"shoppingCart"
 							]
 						}
 					},
@@ -1263,7 +1263,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/customers/63238d3b3bacafe20b7292ca/shoppingCarts",
+							"raw": "http://localhost:3000/customers/63238d3b3bacafe20b7292ca/shoppingCart",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1272,7 +1272,7 @@
 							"path": [
 								"customers",
 								"63238d3b3bacafe20b7292ca",
-								"shoppingCarts"
+								"shoppingCart"
 							]
 						}
 					},
@@ -2146,7 +2146,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/customers/63238d3b3bacafe20b7292ca/shoppingCarts/63238ef01bd2346c7886a2b8",
+							"raw": "http://localhost:3000/customers/63238d3b3bacafe20b7292ca/shoppingCart/63238ef01bd2346c7886a2b8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2155,7 +2155,7 @@
 							"path": [
 								"customers",
 								"63238d3b3bacafe20b7292ca",
-								"shoppingCarts",
+								"shoppingCart",
 								"63238ef01bd2346c7886a2b8"
 							]
 						}
@@ -2330,14 +2330,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/shoppingCarts/63238e551bd2346c7886a2b0/items/63238ef01bd2346c7886a2b8",
+							"raw": "http://localhost:3000/shoppingCart/63238e551bd2346c7886a2b0/items/63238ef01bd2346c7886a2b8",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"shoppingCarts",
+								"shoppingCart",
 								"63238e551bd2346c7886a2b0",
 								"items",
 								"63238ef01bd2346c7886a2b8"
