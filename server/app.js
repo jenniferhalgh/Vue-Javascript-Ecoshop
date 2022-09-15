@@ -5,6 +5,7 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 
+//var shoppingCartController = require("./controllers/shoppingCarts");
 var customerController = require("./controllers/customers");
 var storeController = require("./controllers/stores");
 var itemController = require("./controllers/items");
@@ -46,7 +47,7 @@ app.use('/api/*', function (req, res) {
 app.use(customerController);
 app.use(storeController);
 app.use(itemController);
-
+//app.use(shoppingCartController);
 // Configuration for serving frontend in production mode
 // Support Vuejs HTML 5 history mode
 app.use(history());

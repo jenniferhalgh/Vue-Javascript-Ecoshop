@@ -58,9 +58,9 @@ router.patch("/stores/:id", (req, res) => {
 
 //Delete an item from a store
 router.delete('/stores/:store_id/items/:item_id', function(req, res) {
-    Item.findOneAndDelete({_id: req.params.item_id},function(err, store) {
+    Item.findOneAndDelete({_id: req.params.item_id},function(err, item) {
         if (err) { return res.status(500).send(err);}
-        if (store == null) {
+        if (item == null) {
             return res.status(404).json({"message": "Store not found"});
         }});
 
@@ -76,23 +76,21 @@ router.delete('/stores/:store_id/items/:item_id', function(req, res) {
 
 
 //List specific item from a specific store
-router.get('/stores/:store_id/items/:item_id', function(req, res){ 
+router.get('/stores/:store_id/items/:item_id', function(req, res){
     var id = req.params.store_id;
-    var ObjectId = require('mongoose').Types.ObjectId; 
-    Store.findById(id).populate({path: 'items', match: {_id: req.params.item_id} }).exec(function(err, store){
+    Store.findById(id).populate({path: "items", match: {_id: req.params.item_id} }).exec(function(err, store){
     if (err) {return res.status(500).send(err);}
     if (store == null) {
         return res.status(404).json({"message": "Store not found"});
     }
-    res.status(200).send(store);
-    
+    res.status(200).send(store.items);
     })
 });
 
 //Get all items from a specific store
 router.get('/stores/:store_id/items', function(req, res){
     var id = req.params.store_id;
-    Store.findById(id).populate('items').exec(function(err, store){
+    Store.findById(id).populate("items").exec(function(err, store){
     if (err) {return res.status(500).send(err);}
     if (store == null) {
         return res.status(404).json({"message": "Store not found"});
@@ -102,7 +100,7 @@ router.get('/stores/:store_id/items', function(req, res){
 });
 
 //Add item to a store
-router.post("/stores/:store_id/items", function(req, res, next){
+router.post("/stores/:store_id/items", function(req, res){
     var id = req.params.store_id;
     Store.findById(id, function(err, store){
         if (err) {return res.status(500).send(err);}

@@ -34,12 +34,12 @@ var customerSchema = new Schema (
     adress:{
         type:String  
     },
-    shoppingCart:[{
-        type: Schema.Types.ObjectId, ref: "items"
-    }],
+    shoppingCart:{
+        type: Schema.Types.ObjectId, ref: "shoppingCarts"
+    },
     paymentInfo:[{
         type: Schema.Types.ObjectId, ref: "paymentInfos"
     }]
-}, {toJSON: {virtuals: true}}
+}
 )
 module.exports = mongoose.model("customers",customerSchema);
