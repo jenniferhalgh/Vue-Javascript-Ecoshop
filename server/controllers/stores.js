@@ -61,7 +61,7 @@ router.delete('/stores/:store_id/items/:item_id', function(req, res) {
     Item.findOneAndDelete({_id: req.params.item_id},function(err, item) {
         if (err) { return res.status(500).send(err);}
         if (item == null) {
-            return res.status(404).json({"message": "Store not found"});
+            return res.status(404).json({"message": "Item not found"});
         }});
 
     Store.findByIdAndUpdate({ _id: req.params.store_id },{ $pull: { items: req.params.item_id  } }, 
