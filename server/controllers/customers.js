@@ -126,4 +126,16 @@ router.patch("/customers/:id/shoppingCart/:item_id", function(req, res){
     });
 })});
 
+//remove an item from shopping cart
+router.delete('/shoppingCart/:shoppingCart_id/items/:item_id', function(req, res) {
+
+    ShoppingCart.findByIdAndUpdate({ _id: req.params.shoppingCart_id },{ $pull: { items: req.params.item_id  } }, 
+        function(err, shoppingCart) {
+        if (err) { return res.status(500).send(err);}
+        if (shoppingCart == null) {
+            return res.status(404).json({"message": "No shopping cart"});
+        }
+        res.status(204).json(shoppingCart.items);
+    });
+});
 module.exports = router;
