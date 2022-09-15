@@ -13,9 +13,11 @@ var paymentInfoSchema = new Schema (
         cvv:{
             type:String, max:3
         }
-    }
+    },
+    customer : { type: Schema.Types.ObjectId, ref: "customers" }
 
-    //add customer here?
+
+
 }
 )
 
