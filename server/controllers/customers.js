@@ -3,6 +3,7 @@ const Customer = require("../models/customer");
 const PaymentInfo = require("../models/paymentInfo");
 const ShoppingCart = require("../models/shoppingCart");
 const Item = require("../models/item");
+const Order = require("../models/order");
 var router = express.Router();
 
 //List all customers
@@ -62,6 +63,11 @@ router.patch("/customers/:id", (req, res) => {
 //Delete a customer
 router.delete('/customers/:id', function(req, res) {
     var id = req.params.id;
+
+    ShoppingCart.remove({customer: id}).exec();
+    Order.remove({customers: id}).exec();
+    PaymentInfo.remove({customer: id}).exec();
+
     Customer.findOneAndDelete({_id: id}, function(err, customer) {
         if (err) { return res.status(500).send(err);}
         if (customer == null) {
@@ -69,6 +75,8 @@ router.delete('/customers/:id', function(req, res) {
         }
         res.status(204).json(customer);
     });
+    
+
 });
 
 
