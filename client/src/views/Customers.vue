@@ -1,0 +1,48 @@
+<template>
+  <div>
+    <p>All customers:</p>
+    <div v-for="customer in customers" v-bind:key="customer._id">
+    <p> {{customer.name.firstname}} {{customer.name.lastname}}</p>
+  </div>
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+import { Api } from '@/Api'
+
+export default {
+  name: 'customers',
+  mounted() {
+    Api.get('/customers').then(response => {
+      this.customers = response.data.customers
+      console.log(response.data.customers)
+    })
+      .catch(error => {
+        console.error(error)
+      })
+  },
+  data() {
+    return {
+      customers: []
+    }
+  },
+  methods: {
+    getMessage() {
+      Api.get('/')
+        .then(response => {
+          this.message = response.data.message
+        })
+        .catch(error => {
+          this.message = error
+        })
+    }
+  }
+}
+</script>
+
+<style>
+.btn_message {
+  margin-bottom: 1em;
+}
+</style>
