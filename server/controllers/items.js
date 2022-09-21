@@ -23,7 +23,7 @@ router.get('/items/:id', function(req, res){
     })
 });
 
-// Filter by category
+/*// Filter by category
 router.get('/items?category=:category',function(req,res){
   var filter = req.query.category;
   if(filter){
@@ -33,7 +33,7 @@ router.get('/items?category=:category',function(req,res){
   }else{
       res.json(item);
   }
-});
+});*/
 /*router.get("/items?category=:category", function (req, res, next) {
     console.log("finding");
     Item.find({ category: { $all: [req.params.category]}}).exec(
@@ -46,6 +46,17 @@ router.get('/items?category=:category',function(req,res){
     });
   });*/
 
+  //Get all animals of a certain species
+router.get('/items/category/:category', function(req, res, next){
+  var Species = req.params.species;
+  Item.find({category: req.params.category.toString() }, function(err, items) {
+      if(err) { res.status(500).send(err)}
+      if(items === null) {
+          return res.status(404).json({'Message': 'animal not found'});
+      }
+      res.status(200).json(items);
+  });
+});
 
 //Update partial info of an item
 router.patch("/items/:id", (req, res) => {

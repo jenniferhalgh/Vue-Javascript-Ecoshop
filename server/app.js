@@ -11,6 +11,7 @@ var storeController = require("./controllers/stores");
 var itemController = require("./controllers/items");
 var orderController = require("./controllers/orders");
 var paymentInfoController = require("./controllers/paymentInfos");
+var authController = require("./controllers/auth");
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://group20:group20@cluster0.uqdxdkk.mongodb.net/?retryWrites=true&w=majority';
@@ -52,6 +53,7 @@ app.use(storeController);
 app.use(itemController);
 app.use(orderController);
 app.use(paymentInfoController);
+app.use(authController);
 //app.use(shoppingCartController);
 // Configuration for serving frontend in production mode
 // Support Vuejs HTML 5 history mode

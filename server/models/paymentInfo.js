@@ -8,7 +8,7 @@ var paymentInfoSchema = new Schema (
             type:String
         },
         cardNum:{
-            type:String, max:16
+            type:String, max:16, min:13
         },
         cvv:{
             type:String, max:3
