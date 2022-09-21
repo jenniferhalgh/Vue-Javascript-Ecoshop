@@ -20,7 +20,10 @@ router.post("/customers", async (req, res) => {
         adress: req.body.adress,
         shoppingCart: null,
         orders: [],
-        paymentInfos: []})
+        paymentInfos: [],
+        id:req.body._id
+    })
+        
         
         console.log(newCustomer);
         newCustomer.save();
