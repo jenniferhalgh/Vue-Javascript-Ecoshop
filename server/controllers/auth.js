@@ -21,7 +21,7 @@ router.post("/customers", async (req, res) => {
         shoppingCart: null,
         orders: [],
         paymentInfos: [],
-        id:req.body._id
+        _id:req.body._id
     })
         
         
