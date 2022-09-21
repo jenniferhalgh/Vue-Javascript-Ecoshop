@@ -22,7 +22,7 @@ var customerSchema = new Schema (
     personalNumber:{
         type:String, max:12, min:10, unique:true
     },
-    contact: {
+    
         email: { 
             type: String,
             unique: true
@@ -30,7 +30,7 @@ var customerSchema = new Schema (
         phone: { 
             type: String 
         }
-    },
+    ,
     adress:{
         type:String  
     },

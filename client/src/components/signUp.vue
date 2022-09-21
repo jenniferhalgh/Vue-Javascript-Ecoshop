@@ -66,10 +66,8 @@ export default {
           username: this.username,
           password: this.password
         },
-        contact: {
-          email: this.email,
-          phone: this.phone
-        },
+        email: this.email,
+        phone: this.phone,
         personalNumber: this.personalNumber,
         adress: this.adress,
         shoppingCart: null,

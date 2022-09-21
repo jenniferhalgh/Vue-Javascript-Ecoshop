@@ -25,7 +25,7 @@ router.get('/customers/:id', function(req, res){
     })
 });
 
-//Create new customer
+/*//Create new customer
 router.post("/customers", function(req, res){
     var customer = new Customer(req.body);
     customer.save(function(err) {
@@ -33,7 +33,7 @@ router.post("/customers", function(req, res){
         res.status(201).json(customer);
         console.log(customer);
     });
-});
+});*/
 
 //Updates partial info of a specific customer
 router.patch("/customers/:id", (req, res) => {

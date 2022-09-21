@@ -3,7 +3,7 @@
     <b-button class="btn_1" variant="primary" v-on:click="signIn()" >Sign in</b-button>
     <b-button class="btn_2" variant="primary" v-on:click="signUp()" >Sign up</b-button>
     <div v-if="registeredUser">
-
+        <sign-in />
         </div>
     <div v-else>
         <sign-up />
@@ -14,10 +14,11 @@
 <script>
 
 import signUp from '../components/signUp.vue'
+import signIn from '../components/signIn.vue'
 
 export default {
   name: 'LogIn',
-  components: { signUp },
+  components: { signUp, signIn },
   data() {
     return {
       registeredUser: false
