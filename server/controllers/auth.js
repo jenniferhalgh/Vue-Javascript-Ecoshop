@@ -47,7 +47,7 @@ router.post('/customers/login', (req, res, next) => {
         res.status(400).send("All input is required");
       }
 
-    Customer.findOne({email: req.body.email }, function(err, customer){
+    Customer.findOne({email: req.body.email }, async function(err, customer){
       if (err) return res.status(500).send(err);
       if (customer==null) {
         return res.status(401).json({
@@ -57,7 +57,7 @@ router.post('/customers/login', (req, res, next) => {
       }
       
       //incorrect password
-      if (bcrypt.compare(req.body.password, customer.account.password)==false) {
+      if (await bcrypt.compare(req.body.password, customer.account.password)==false) {
         return res.status(401).json({
           title: 'Failed to login:',
           error: 'Invalid password'

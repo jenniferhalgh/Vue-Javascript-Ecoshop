@@ -51,7 +51,7 @@ export default {
           token: jwttoken.token
         }
       }).then((response) => {
-        this.$bvModal.msgBoxOk(response)
+        this.$bvModal.msgBoxOk(JSON.stringify(response))
       },
       (err) => {
         console.log(err.response)
