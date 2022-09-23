@@ -1,7 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="handleSubmit">
-        <h1> Sign in </h1>
+        <h6> Sign in </h6>
         <div>
         <input type="text" class="form-control" v-model="email" placeholder="Email" />
         </div>
@@ -24,6 +24,7 @@ export default {
       customerData: {
         email: ' ',
         password: ' ',
+        _id: '',
         error: ' '
       }
     }
@@ -36,7 +37,8 @@ export default {
       }
       Api.post('/customers/login', customer).then((res) => {
         console.log(res)
-        this.$bvModal.msgBoxOk('SignUp Successful', this.$router.go(0))
+        localStorage.setItem('token', res.data.token)
+        this.$bvModal.msgBoxOk('Successfully logged in')
       },
       (err) => {
         console.log(err.response)
@@ -51,5 +53,7 @@ export default {
 </script>
 
 <style>
-
+h6{
+  color: aqua;
+}
 </style>

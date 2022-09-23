@@ -40,18 +40,19 @@ export default {
   data() {
     return {
       customerData: {
-        firstname: ' ',
-        lastname: ' ',
-        username: ' ',
-        password: ' ',
-        personalNumber: ' ',
-        email: ' ',
-        phone: ' ',
-        adress: ' ',
+        firstname: '',
+        lastname: '',
+        username: '',
+        password: '',
+        personalNumber: '',
+        email: '',
+        phone: '',
+        adress: '',
         shoppingCart: null,
         paymentInfos: [],
         orders: [],
-        error: ' '
+        token: '',
+        error: ''
       }
     }
   },
@@ -70,18 +71,19 @@ export default {
         phone: this.phone,
         personalNumber: this.personalNumber,
         adress: this.adress,
-        shoppingCart: null,
+        shoppingCart: this.shoppingCart,
         paymentInfo: [],
-        orders: []
+        orders: [],
+        token: ''
       }
       Api.post('/customers', newCustomer).then((res) => {
-        console.log(res)
-        this.$bvModal.msgBoxOk('SignUp Successful', this.$router.go(0))
+        this.$router.push('')
+        localStorage.setItem('token', res.data.token)
       },
       (err) => {
         console.log(err.response)
         this.boxOne = ''
-        this.error = err.response.data.error
+        this.error = err.res.data.error
         this.$bvModal.msgBoxOk(this.error)
       }
       )

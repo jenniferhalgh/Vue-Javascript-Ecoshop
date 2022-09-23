@@ -93,7 +93,7 @@ router.get('/customers/:id/shoppingCart', function(req, res){
     });
 
 
-      //create shopping cart
+/*      //create shopping cart
 router.post("/customers/:id/shoppingCart", function(req, res){
     var id = req.params.id;
     Customer.findById(id, function(err, customer){
@@ -110,7 +110,7 @@ router.post("/customers/:id/shoppingCart", function(req, res){
         customer.save();
         return res.status(201).json(customer);
 });
-});
+});*/
 
 router.patch("/customers/:id/shoppingCart/:item_id", function(req, res){
     var id = req.params.id;

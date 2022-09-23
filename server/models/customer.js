@@ -34,6 +34,8 @@ var customerSchema = new Schema (
     adress:{
         type:String  
     },
+    token:{type: String},
+    
     shoppingCart:{
         type: Schema.Types.ObjectId, ref: "shoppingCarts"
     },
