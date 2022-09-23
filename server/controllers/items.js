@@ -46,7 +46,7 @@ router.get('/items?category=:category',function(req,res){
     });
   });*/
 
-  //Get all animals of a certain species
+
 router.get('/items/category/:category', function(req, res, next){
   var Species = req.params.species;
   Item.find({category: req.params.category.toString() }, function(err, items) {
