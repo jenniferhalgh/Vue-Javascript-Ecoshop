@@ -13,7 +13,7 @@ shoppingCart.save(function(err) {
   console.log(shoppingCart);
   
 });
-let jwttoken = jwt.sign({ customerId: req.body._id}, 'secretkey');
+let jwttoken = jwt.sign({ customerId: req.body._id}, 'token_key');
     const newCustomer = new Customer({
     
         name: {
@@ -46,20 +46,20 @@ router.post('/customers/login', (req, res, next) => {
       if (err) return res.status(500).send(err);
       if (customer==null) {
         return res.status(401).json({
-          title: 'user not found',
-          error: 'invalid credentials'
+          title: 'User not found',
+          error: 'Invalid email'
         })
       }
       //incorrect password
       if (!bcrypt.compare(req.body.password,customer.account.password)) {
         return res.status(401).json({
-          title: 'login failed',
-          error: 'invalid credentials'
+          title: 'Failed to login:',
+          error: 'Invalid password'
         })
       }
-      //IF ALL IS GOOD create a token and send to frontend
+      
       try {
-      let token = jwt.sign({ customerId: customer._id}, 'secretkey');
+      let token = jwt.sign({ customerId: customer._id}, 'token_key');
       return res.status(200).json({
         title: 'Log in success',
         token: token
@@ -67,14 +67,14 @@ router.post('/customers/login', (req, res, next) => {
     } 
     catch (err) {
       return res.status(400).json({
-        title: 'error',
+        title: 'Error',
         error: 'Unable To Login'
       })
     }
     })
   })
 
-  //grabbing user info
+  //getting the customer
   router.get('/customer', (req, res, next) => {
     let token = req.headers.token; //token
     console.log(token)
@@ -86,7 +86,7 @@ router.post('/customers/login', (req, res, next) => {
       if (err) return res.status(401).json({
         title: 'unauthorized'
       })
-      //token is valid
+      
       Customer.findById(decoded.customerId, function (err, customer){
         if (err) return console.log(err) 
         return res.status(200).send(customer)
