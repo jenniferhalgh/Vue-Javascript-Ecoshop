@@ -78,7 +78,7 @@ export default {
       }
       Api.post('/customers', newCustomer).then((res) => {
         this.$router.push('')
-        localStorage.setItem('token', res.data.token)
+        sessionStorage.setItem('token', res.data.token)
       },
       (err) => {
         console.log(err.response)

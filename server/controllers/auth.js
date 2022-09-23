@@ -42,6 +42,11 @@ let jwttoken = jwt.sign({ customerId: req.body._id}, 'token_key');
 )
 
 router.post('/customers/login', (req, res, next) => {
+
+      if (!(req.body.email && req.body.password)) {
+        res.status(400).send("All input is required");
+      }
+
     Customer.findOne({email: req.body.email }, function(err, customer){
       if (err) return res.status(500).send(err);
       if (customer==null) {
@@ -50,8 +55,9 @@ router.post('/customers/login', (req, res, next) => {
           error: 'Invalid email'
         })
       }
+      
       //incorrect password
-      if (!bcrypt.compare(req.body.password,customer.account.password)) {
+      if (bcrypt.compare(req.body.password, customer.account.password)==false) {
         return res.status(401).json({
           title: 'Failed to login:',
           error: 'Invalid password'
@@ -59,14 +65,17 @@ router.post('/customers/login', (req, res, next) => {
       }
       
       try {
-      let token = jwt.sign({ customerId: customer._id}, 'token_key');
+      let token = jwt.sign({ customer_Id: customer._id}, 'token_key', {
+        expiresIn: "2h",
+      });
+      customer.token = token
       return res.status(200).json({
         title: 'Log in success',
         token: token
       })
     } 
     catch (err) {
-      return res.status(400).json({
+      return res.status(400).send({
         title: 'Error',
         error: 'Unable To Login'
       })
@@ -76,19 +85,18 @@ router.post('/customers/login', (req, res, next) => {
 
   //getting the customer
   router.get('/customer', (req, res, next) => {
-    let token = req.headers.token; //token
-    console.log(token)
-    jwt.verify(token, 'secretkey', (err, decoded) => {
+    jwt.verify(req.headers.token, 'token_key', (err, decoded) => {
       console.log(decoded)
       console.log(token)
       console.log(err)
 
       if (err) return res.status(401).json({
-        title: 'unauthorized'
+        title: 'Unauthorized'
       })
       
-      Customer.findById(decoded.customerId, function (err, customer){
-        if (err) return console.log(err) 
+      Customer.findById(decoded.customer_Id, function (err, customer){
+        if (err) {return res.status(500).json({title: 'Error'})}
+        if(customer==null){return res.status(404).json({title: 'Customer not found'})}
         return res.status(200).send(customer)
       })
     })

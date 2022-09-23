@@ -37,7 +37,7 @@ export default {
       }
       Api.post('/customers/login', customer).then((res) => {
         console.log(res)
-        localStorage.setItem('token', res.data.token)
+        sessionStorage.setItem('token', res.data.token)
         this.$bvModal.msgBoxOk('Successfully logged in')
       },
       (err) => {
