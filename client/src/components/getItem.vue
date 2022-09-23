@@ -39,7 +39,7 @@ export default {
   methods: {
     addToCart() {
       const jwttoken = {
-        token: localStorage.getItem('token')
+        token: sessionStorage.getItem('token')
       }
       this.$bvModal.msgBoxOk(JSON.stringify(jwttoken))
       fetch('http://localhost:3000/customer', {
