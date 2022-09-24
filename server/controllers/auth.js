@@ -2,11 +2,32 @@ var express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs")
 const Customer = require("../models/customer")
+const ShoppingCart = require("../models/shoppingCart")
 const jwt = require('jsonwebtoken');
 
 router.post("/customers", async (req, res) => {
 
+  const registeredCustomer = await Customer.findOne({email: req.body.email}, function(err, regCustomer){
+    if(err){res.status.send(err)}
+     if (regCustomer) {
+      return res.status(409).json({
+        title: 'Cannot register',
+        error: 'This email is already linked to an account, please log in instead'
+      })
+    }
+    console.log(regCustomer)
+  });
+
+  if(!registeredCustomer){
+var shoppingCart = new ShoppingCart(req.body);
+shoppingCart.save(function(err) {
+  if (err) { return res.status(500).send(err);}
+  console.log(shoppingCart);
+})
+}
+let jwttoken = jwt.sign({ customerId: req.body._id}, 'token_key');
     const newCustomer = new Customer({
+    
         name: {
             firstname: req.body.name.firstname,
             lastname: req.body.name.lastname},
@@ -18,78 +39,80 @@ router.post("/customers", async (req, res) => {
         phone: req.body.phone,
         personalNumber: req.body.personalNumber,
         adress: req.body.adress,
-        shoppingCart: null,
+        shoppingCart: shoppingCart,
         orders: [],
         paymentInfos: [],
-        _id:req.body._id
+        _id:req.body._id,
+        token: jwttoken
     })
-        
-        
-        console.log(newCustomer);
-        newCustomer.save();
-return res.status(201).json(newCustomer);
+        newCustomer.save(function(err) {
+          if (err) { return res.status(500).send(err);}
+          console.log(newCustomer);
+        });
+      return res.status(201).json(newCustomer);
 }
 )
-   
-
-// Login
-router.post("/login", (req, res) => {
-});
 
 router.post('/customers/login', (req, res, next) => {
-    Customer.findOne({email: req.body.email }, function(err, customer){
+
+      if (!(req.body.email && req.body.password)) {
+        res.status(400).json({
+          title: 'Blank field(s)',
+          error: 'All input is required'
+        });
+      }
+
+    Customer.findOne({email: req.body.email }, async function(err, customer){
       if (err) return res.status(500).send(err);
       if (customer==null) {
         return res.status(401).json({
-          title: 'user not found',
-          error: 'invalid credentials'
+          title: 'User not found',
+          error: 'Invalid email'
         })
       }
+      
       //incorrect password
-      if (!bcrypt.compare(req.body.password,customer.account.password)) {
+      if (await bcrypt.compare(req.body.password, customer.account.password)==false) {
         return res.status(401).json({
-          title: 'login failed',
-          error: 'invalid credentials'
+          title: 'Failed to login:',
+          error: 'Invalid password'
         })
       }
-      //IF ALL IS GOOD create a token and send to frontend
+      
       try {
-      let token = jwt.sign({ customerId: customer._id}, 'secretkey');
+      let token = jwt.sign({ customer_Id: customer._id}, 'token_key', {
+        expiresIn: "2h",
+      });
+      customer.token = token
       return res.status(200).json({
-        title: 'login sucess',
+        title: 'Log in success',
         token: token
       })
     } 
     catch (err) {
-      return res.status(400).json({
-        title: 'error',
+      return res.status(400).send({
+        title: 'Error',
         error: 'Unable To Login'
       })
     }
     })
   })
 
-  //grabbing user info
+  //getting the customer
   router.get('/customer', (req, res, next) => {
-    let token = req.headers.token; //token
-    jwt.verify(token, 'secretkey', (err, decoded) => {
+    jwt.verify(req.headers.token, 'token_key', (err, decoded) => {
+      console.log(decoded)
+      console.log(req.headers.token)
+      console.log(err)
+
       if (err) return res.status(401).json({
-        title: 'unauthorized'
+        title: 'Unauthorized'
       })
-      //token is valid
-      user.findOne({ _id: decoded.userId }, (err, user) => {
-        if (err) return console.log(err)
-        return res.status(200).json({
-          title: 'user grabbed',
-          user: {
-            firstName: user.firstName,
-            lastName: user.lastName,
-            age: user.age,
-            location: user.location,
-            email: user.email,
-            id: user.id
-          }
-        })
+      
+      Customer.findById(decoded.customer_Id, function (err, customer){
+        if (err) {return res.status(500).json({title: 'Error'})}
+        if(customer==null){return res.status(404).json({title: 'Customer not found'})}
+        return res.status(200).json(customer)
       })
     })
 })

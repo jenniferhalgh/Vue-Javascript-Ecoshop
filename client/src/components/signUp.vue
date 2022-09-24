@@ -55,7 +55,12 @@ export default {
         personalNumber: '',
         email: '',
         phone: '',
-        adress: ''
+        adress: '',
+        shoppingCart: null,
+        paymentInfos: [],
+        orders: [],
+        token: '',
+        error: ''
       }
     }
   },

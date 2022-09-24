@@ -1,7 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="handleSubmit">
-        <h1> Sign in </h1>
+        <h6> Sign in </h6>
         <div>
         <input type="text" class="form-control" v-model="email" placeholder="Email" />
         </div>
@@ -24,9 +24,10 @@ export default {
   data() {
     return {
       customerData: {
-        email: '',
-        password: '',
-        error: ''
+        email: ' ',
+        password: ' ',
+        _id: '',
+        error: ' '
       }
     }
   },
