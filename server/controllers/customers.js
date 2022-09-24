@@ -92,7 +92,7 @@ router.get('/customers/:id/shoppingCart', function(req, res){
         })
     });
 
-
+/*
       //create shopping cart
 router.post("/customers/:id/shoppingCart", function(req, res){
     var id = req.params.id;
@@ -110,7 +110,7 @@ router.post("/customers/:id/shoppingCart", function(req, res){
         customer.save();
         return res.status(201).json(customer);
 });
-});
+});*/
 
 router.patch("/customers/:id/shoppingCart/:item_id", function(req, res){
     var id = req.params.id;
@@ -125,18 +125,15 @@ router.patch("/customers/:id/shoppingCart/:item_id", function(req, res){
         if (item == null) {
             return res.status(404).json({"message": "Item not found"});
         }
-        
     customer.shoppingCart.items.push(item);
     customer.shoppingCart.save();
     customer.save();
     return res.status(201).json(customer.shoppingCart);
-
     });
 })});
 
 //remove an item from shopping cart
 router.delete('/shoppingCart/:shoppingCart_id/items/:item_id', function(req, res) {
-
     ShoppingCart.findByIdAndUpdate({ _id: req.params.shoppingCart_id },{ $pull: { items: req.params.item_id  } }, 
         function(err, shoppingCart) {
         if (err) { return res.status(500).send(err);}

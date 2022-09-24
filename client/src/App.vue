@@ -1,21 +1,35 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/login">Log in</router-link>
-      <router-link to="/customers">Customers</router-link>
+    <div class="header">
+      <h1>ecoshop</h1>
     </div>
-    <!-- Render the content of the current page view -->
+    <div id="nav">
+      <router-link class= "links" to="/">Home </router-link>
+      <router-link class= "links" to="/login">  Log in </router-link>
+      <router-link class= "links" to="/customers">Customers </router-link>
     <router-view/>
+  </div>
   </div>
 </template>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.app {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: left;
+  color: #99ae71;
+  background-color: antiquewhite;
 }
+.header{
+  text-align: center;
+  color: #99ae71;
+  font-size: 50px;
+  background-color: rgb(251, 230, 203);
+}
+.links{
+  color: #888888;
+}
+.router-link-exact-active{
+  color: #000;
+}
+
 </style>

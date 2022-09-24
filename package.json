@@ -1,16 +1,32 @@
 {
-  "name": "backend-frontend",
+  "name": "client",
   "version": "0.1.0",
-  "description": "This collection package integrates the server and client for deployment.",
-  "main": "server/app.js",
+  "private": true,
   "scripts": {
-    "postinstall": "npm install --prefix server && npm install --prefix client && npm install --only=dev --prefix client && npm run build --prefix client"
-  },
-  "engines": {
-    "npm": "6.x",
-    "node": "14.x"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "mongoose": "^6.6.0"
+    "axios": "^0.21.1",
+    "bootstrap": "^4.0.0",
+    "bootstrap-vue": "^2.21.2",
+    "jquery": "^1.9.1",
+    "popper.js": "^1.16.1",
+    "vue": "^2.6.14",
+    "vue-router": "^3.5.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-eslint": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
+    "@vue/eslint-config-standard": "^6.1.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "eslint-plugin-vue": "^7.16.0",
+    "vue-template-compiler": "^2.6.14"
   }
 }

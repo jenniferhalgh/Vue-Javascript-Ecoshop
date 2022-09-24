@@ -46,13 +46,12 @@ router.get('/items?category=:category',function(req,res){
     });
   });*/
 
-  //Get all animals of a certain species
+  //Filter by category
 router.get('/items/category/:category', function(req, res, next){
-  var Species = req.params.species;
   Item.find({category: req.params.category.toString() }, function(err, items) {
       if(err) { res.status(500).send(err)}
       if(items === null) {
-          return res.status(404).json({'Message': 'animal not found'});
+          return res.status(404).json({'Message': 'Item not found'});
       }
       res.status(200).json(items);
   });
