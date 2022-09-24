@@ -1830,6 +1830,14 @@
 							"body": "{\n    \"name\": {\n        \"firstname\": \"Jennifer\",\n        \"lastname\": \"Hälgh\"\n    },\n    \"account\": {\n        \"username\": \"jenniferhalgh\",\n        \"password\": \"jennifer123\"\n    },\n    \"contact\": {\n        \"email\": \"jennife@gmail.com\",\n        \"phone\": \"0737628386\"\n    },\n    \"paymentInfo\": [],\n    \"orders\": [],\n    \"_id\": \"632355f08372959addef47ad\",\n    \"personalNumber\": \"200203011234\",\n    \"adress\": \"Nowhere Street 123\",\n    \"shoppingCart\": null,\n    \"__v\": 0\n}"
 						}
 					]
+				},
+				{
+					"name": "getItemsInSpecificCategory",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
 		},
@@ -2461,9 +2469,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test('Correct status code', function(){",
-									"    pm.response.to.have.status(204);",
-									"})"
+									""
 								],
 								"type": "text/javascript"
 							}
