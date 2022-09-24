@@ -1,5 +1,14 @@
 <template>
   <div>
+    <b-form-select
+          v-model="category"
+          :options="categoryList"
+          class="input"
+          placeholder="Category"
+          style="width: 10%"
+          size="sm"
+      >
+      </b-form-select>
     <div class="card-deck top-buffer ml-4">
     <div v-for="item in items" v-bind:key="item._id">
       <div class="card border-light mb-5" style="width:20rem;">
@@ -7,7 +16,7 @@
 <div class="card-body">
   <h4 class="card-title"><a>{{item.name}}</a></h4>
   <h4 class="card-title"><a>{{item.price}}kr</a></h4>
-  <a href="#" class="btn btn-dark" v-on:click="addToCart()">Add to cart</a>
+  <a href="#" class="btn btn-dark" v-on:click="addToCart(item)">Add to cart</a>
   </div>
 </div>
 </div>
@@ -32,16 +41,22 @@ export default {
   },
   data() {
     return {
+      category: null,
+      categoryList: [
+        { value: null, text: 'Filter' },
+        { value: 'Second Hand', text: 'Second Hand' },
+        { value: 'Vegan', text: 'Vegan' },
+        { value: 'Small Creator', text: 'Small Creator' }
+      ],
       items: [],
       customer: ''
     }
   },
   methods: {
-    addToCart() {
+    addToCart(item) {
       const jwttoken = {
         token: sessionStorage.getItem('token')
       }
-      this.$bvModal.msgBoxOk(JSON.stringify(jwttoken))
       fetch('http://localhost:3000/customer', {
         method: 'GET',
         mode: 'cors',
@@ -51,25 +66,23 @@ export default {
           token: jwttoken.token
         }
       }).then((response) => {
-        // this.$bvModal.msgBoxOk(JSON.parse(response))
         return response.json()
-      }).then((responseData) => { // responseData = undefined
+      }).then((responseData) => {
         this.customer = responseData._id
-        this.$bvModal.msgBoxOk(this.customer)
+        Api.patch(`/customers/${this.customer}/shoppingCart/${item._id}`).then((res) => {
+          this.$bvModal.msgBoxOk('Added to cart!')
+          console.log(res)
+        },
+        (err) => {
+          console.log(err.response)
+          this.boxOne = ''
+          this.error = err.response.data.error
+          this.$bvModal.msgBoxOk(this.error)
+        }
+        )
       }).catch(function (err) {
         console.log(err)
       })
-      Api.patch(`/customers/${this.customer}/shoppingCart/${this.item._id}`).then((res) => {
-        this.$bvModal.msgBoxOk('Added to cart!')
-        console.log(res)
-      },
-      (err) => {
-        console.log(err.response)
-        this.boxOne = ''
-        this.error = err.response.data.error
-        this.$bvModal.msgBoxOk(this.error)
-      }
-      )
     }
   }
 }
