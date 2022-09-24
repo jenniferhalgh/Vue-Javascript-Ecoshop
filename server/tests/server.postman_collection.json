@@ -7,10 +7,23 @@
 	},
 	"item": [
 		{
-			"name": "customers",
+			"name": "post",
 			"item": [
 				{
 					"name": "createCustomer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disabledSystemHeaders": {
 							"accept": true
@@ -27,7 +40,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"name\": {\"firstname\": \"Anasha\",\"lastname\":\"Sarker\"}, \"account\": {\"username\": \"jenniferhalgh\", \"password\": \"jennifer123\"},\n\"personalNumber\": \"200311281223\", \"contact\": {\"email\": \"anash@gmail.com\", \"phone\": \"0737628386\"},\n\"adress\": \"Nowhere Street 123\", \"shoppingCart\": null, \"paymentInfo\":[], \"orders\": [], \"_id\" : \"63238d3b3bacafe20b7292ca\"\n}\n",
+							"raw": "{\"name\": {\"firstname\": \"Jennifer\",\"lastname\":\"Hälgh\"}, \"account\": {\"username\": \"jenhal\", \"password\": \"jennifer123\"},\n\"personalNumber\": \"200202011265\", \"email\": \"jennifer@gmail.com\", \"phone\": \"0737628386\",\n\"adress\": \"Nowhere Street 123\", \"paymentInfo\":[], \"orders\": [], \"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjM5NzE0NTV9.yNABeb0DXSjDADh9Q3aw-G88GrN49v-A01a80_bmJPY\", \"_id\": \"632e307fbc0fec38f83f7d4a\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -126,6 +139,17 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -139,7 +163,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cardInfo\":{\n        \"nameOnCard\":\"Shahd Metwally\",\n        \"cardNum\":\"1234567890123456\",\n        \"cvv\":\"123\"\n    },\n    \"customer\" : \"63238d3b3bacafe20b7292ca\",\n    \"_id\": \"63238ebe1bd2346c7886a2b4\"\n    \n}",
+							"raw": "{\n    \"cardInfo\":{\n        \"nameOnCard\":\"Jennifer Hälgh\",\n        \"cardNum\":\"1234567890123456\",\n        \"cvv\":\"123\"\n    },\n    \"customer\" : \"632e307fbc0fec38f83f7d4a\",\n    \"_id\": \"63238ebe1bd2346c7886a2b4\"\n    \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -147,7 +171,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/paymentInfos",
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a/paymentInfos",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -155,7 +179,7 @@
 							"port": "3001",
 							"path": [
 								"customers",
-								"63238d3b3bacafe20b7292ca",
+								"632e307fbc0fec38f83f7d4a",
 								"paymentInfos"
 							]
 						}
@@ -239,6 +263,19 @@
 				},
 				{
 					"name": "createStore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -334,12 +371,25 @@
 				},
 				{
 					"name": "createAnItemInAStore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"t-shirt\",\n    \"price\": 150,\n    \"quantity\": 30,\n    \"store\": \"63238ef01bd2346c7886a2b8\",\n    \"category\": \"Default\",\n     \"_id\": \"63238ef01bd2346c7886a2b8\"\n}",
+							"raw": "{\n    \"name\": \"White shirt\",\n    \"price\": 200,\n    \"quantity\": 30,\n    \"store\": \"63238ef01bd2346c7886a2b8\",\n    \"category\": \"Default\",\n     \"_id\": \"63238ef01bd2346c7886a2b7\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -432,112 +482,26 @@
 					]
 				},
 				{
-					"name": "createShoppingCart",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"customer\":\"63238d3b3bacafe20b7292ca\",\"items\":[], \"_id\": \"63238e551bd2346c7886a2b0\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/shoppingCart",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"customers",
-								"63238d3b3bacafe20b7292ca",
-								"shoppingCart"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "createShoppingCart",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:3000/customers/632355eb8372959addef47ab/shoppingCart",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"customers",
-										"632355eb8372959addef47ab",
-										"shoppingCart"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "398"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"18e-rN7GhwDWchh00H+4WKYQMkfOepQ\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 15 Sep 2022 17:23:15 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"name\": {\n        \"firstname\": \"Jennifer\",\n        \"lastname\": \"Hälgh\"\n    },\n    \"account\": {\n        \"username\": \"jenniferhalgh\",\n        \"password\": \"jennifer123\"\n    },\n    \"contact\": {\n        \"email\": \"jennifer@gmail.com\",\n        \"phone\": \"0737628386\"\n    },\n    \"paymentInfo\": [\n        \"632356368372959addef47b8\"\n    ],\n    \"orders\": [],\n    \"_id\": \"632355eb8372959addef47ab\",\n    \"personalNumber\": \"200202011234\",\n    \"adress\": \"Nowhere Street 123\",\n    \"shoppingCart\": {\n        \"items\": [],\n        \"_id\": \"63235f836dde74a85b41f384\"\n    },\n    \"__v\": 1\n}"
-						}
-					]
-				},
-				{
 					"name": "postOrder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"items\": [\"63238ef01bd2346c7886a2b8\"],\n\"total_sum\": 100,\n\"customers\": \"63238d3b3bacafe20b7292ca\",\n\"_id\": \"6323906d3e80b7777268010c\"\n}",
+							"raw": "{\n\"items\": [\"63238ef01bd2346c7886a2b8\"],\n\"total_sum\": 100,\n\"customers\": \"632e307fbc0fec38f83f7d4a\",\n\"_id\": \"6323906d3e80b7777268010c\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -545,7 +509,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/orders",
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a/orders",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -553,7 +517,7 @@
 							"port": "3001",
 							"path": [
 								"customers",
-								"63238d3b3bacafe20b7292ca",
+								"632e307fbc0fec38f83f7d4a",
 								"orders"
 							]
 						}
@@ -623,10 +587,23 @@
 			]
 		},
 		{
-			"name": "stores",
+			"name": "get",
 			"item": [
 				{
 					"name": "getAllCustomers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -703,86 +680,20 @@
 					]
 				},
 				{
-					"name": "getACustomer",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"customers",
-								"63238d3b3bacafe20b7292ca"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "getACustomer",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:3000/customers/632355f08372959addef47ad",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"customers",
-										"632355f08372959addef47ad"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "330"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"14a-eoRoOXUe8NgifbMKHjAaHAPyKpc\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 15 Sep 2022 16:42:38 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"name\": {\n        \"firstname\": \"Jennifer\",\n        \"lastname\": \"Hälgh\"\n    },\n    \"account\": {\n        \"username\": \"jenniferhalgh\",\n        \"password\": \"jennifer123\"\n    },\n    \"contact\": {\n        \"email\": \"jennife@gmail.com\",\n        \"phone\": \"0737628386\"\n    },\n    \"paymentInfo\": [],\n    \"orders\": [],\n    \"_id\": \"632355f08372959addef47ad\",\n    \"personalNumber\": \"200203011234\",\n    \"adress\": \"Nowhere Street 123\",\n    \"shoppingCart\": null,\n    \"__v\": 0\n}"
-						}
-					]
-				},
-				{
 					"name": "getAStore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -862,6 +773,19 @@
 				},
 				{
 					"name": "getAllStores",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -939,11 +863,24 @@
 				},
 				{
 					"name": "getAnItemOfAStore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/stores/63238ef01bd2346c7886a2b8/items/63238ef01bd2346c7886a2b8",
+							"raw": "http://localhost:3001/stores/63238ef01bd2346c7886a2b8/items/63238ef01bd2346c7886a2b7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -953,7 +890,7 @@
 								"stores",
 								"63238ef01bd2346c7886a2b8",
 								"items",
-								"63238ef01bd2346c7886a2b8"
+								"63238ef01bd2346c7886a2b7"
 							]
 						}
 					},
@@ -1022,6 +959,19 @@
 				},
 				{
 					"name": "getAllItemsOfAStore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -1103,11 +1053,24 @@
 				},
 				{
 					"name": "getAnItem",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/items/63238ef01bd2346c7886a2b8",
+							"raw": "http://localhost:3001/items/63238ef01bd2346c7886a2b7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1115,7 +1078,7 @@
 							"port": "3001",
 							"path": [
 								"items",
-								"63238ef01bd2346c7886a2b8"
+								"63238ef01bd2346c7886a2b7"
 							]
 						}
 					},
@@ -1182,6 +1145,19 @@
 				},
 				{
 					"name": "getAllItems",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -1259,11 +1235,24 @@
 				},
 				{
 					"name": "getCustomerShoppingCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/shoppingCart",
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a/shoppingCart",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1271,7 +1260,7 @@
 							"port": "3001",
 							"path": [
 								"customers",
-								"63238d3b3bacafe20b7292ca",
+								"632e307fbc0fec38f83f7d4a",
 								"shoppingCart"
 							]
 						}
@@ -1340,11 +1329,24 @@
 				},
 				{
 					"name": "getASpecificCustomersOrder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/orders",
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a/orders",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1352,7 +1354,7 @@
 							"port": "3001",
 							"path": [
 								"customers",
-								"63238d3b3bacafe20b7292ca",
+								"632e307fbc0fec38f83f7d4a",
 								"orders"
 							]
 						}
@@ -1421,6 +1423,19 @@
 				},
 				{
 					"name": "getAllOrders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1519,11 +1534,24 @@
 				},
 				{
 					"name": "getPaymentInfos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/paymentInfos/63238ebe1bd2346c7886a2b4",
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a/paymentInfos/63238ebe1bd2346c7886a2b4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1531,7 +1559,7 @@
 							"port": "3001",
 							"path": [
 								"customers",
-								"63238d3b3bacafe20b7292ca",
+								"632e307fbc0fec38f83f7d4a",
 								"paymentInfos",
 								"63238ebe1bd2346c7886a2b4"
 							]
@@ -1602,6 +1630,19 @@
 				},
 				{
 					"name": "getAllPaymentInfos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1613,7 +1654,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/paymentInfos",
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a/paymentInfos",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1621,7 +1662,7 @@
 							"port": "3001",
 							"path": [
 								"customers",
-								"63238d3b3bacafe20b7292ca",
+								"632e307fbc0fec38f83f7d4a",
 								"paymentInfos"
 							]
 						}
@@ -1691,117 +1732,33 @@
 							"body": "[\n    {\n        \"cardInfo\": {\n            \"nameOnCard\": \"Shahd Metwally\",\n            \"cardNum\": \"1234567890123456\",\n            \"cvv\": \"123\"\n        },\n        \"_id\": \"632356448372959addef47bd\",\n        \"customer\": \"6321e0b1fa2ee8651c392f9d\",\n        \"__v\": 0\n    },\n    {\n        \"cardInfo\": {\n            \"nameOnCard\": \"Shahd Metwally\",\n            \"cardNum\": \"1234567890123456\",\n            \"cvv\": \"123\"\n        },\n        \"_id\": \"6323565a8372959addef47c4\",\n        \"customer\": \"6321e0b1fa2ee8651c392f9d\",\n        \"__v\": 0\n    },\n    {\n        \"cardInfo\": {\n            \"nameOnCard\": \"Shahd Metwally\",\n            \"cardNum\": \"1234567890123456\",\n            \"cvv\": \"123\"\n        },\n        \"_id\": \"6323565d8372959addef47c8\",\n        \"customer\": \"6321e0b1fa2ee8651c392f9d\",\n        \"__v\": 0\n    }\n]"
 						}
 					]
-				}
-			]
-		},
-		{
-			"name": "items",
-			"item": [
-				{
-					"name": "partialUpdateCustomer",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"personalNumber\": \"199910071234\"}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"customers",
-								"63238d3b3bacafe20b7292ca"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "partialUpdateCustomer",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\"personalNumber\": \"199910071234\"}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:3000/customers/632355f08372959addef47ad",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"customers",
-										"632355f08372959addef47ad"
-									]
-								}
-							},
-							"status": "No Content",
-							"code": 204,
-							"_postman_previewlanguage": "plain",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"14a-eoRoOXUe8NgifbMKHjAaHAPyKpc\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 15 Sep 2022 16:42:45 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": null
-						}
-					]
 				},
 				{
-					"name": "completeUpdateCustomer",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"name\": {\"firstname\": \"Jennifer\",\"lastname\":\"Hälgh\"}, \"account\": {\"username\": \"jenniferhalgh\", \"password\": \"jennifer123\"},\n\"personalNumber\": \"200212311234\", \"contact\": {\"email\": \"jennianr@gmail.com\", \"phone\": \"0737628386\"},\n\"adress\": \"Nowhere Street 123\", \"shoppingCart\": \"63238e551bd2346c7886a2b0\", \"paymentInfo\":[], \"orders\": [], \"_id\":\"63238d3b3bacafe20b7292ca\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
+					"name": "getACustomer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
 							}
-						},
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjM5NzE0NTV9.yNABeb0DXSjDADh9Q3aw-G88GrN49v-A01a80_bmJPY",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca",
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1809,25 +1766,16 @@
 							"port": "3001",
 							"path": [
 								"customers",
-								"63238d3b3bacafe20b7292ca"
+								"632e307fbc0fec38f83f7d4a"
 							]
 						}
 					},
 					"response": [
 						{
-							"name": "completeUpdateCustomer",
+							"name": "getACustomer",
 							"originalRequest": {
-								"method": "PUT",
+								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\"name\": {\"firstname\": \"Jennifer\",\"lastname\":\"Hälgh\"}, \"account\": {\"username\": \"jenniferhalgh\", \"password\": \"jennifer123\"},\n\"personalNumber\": \"200205011234\", \"contact\": {\"email\": \"jennir@gmail.com\", \"phone\": \"0737628386\"},\n\"adress\": \"Nowhere Street 123\", \"shoppingCart\": null, \"paymentInfo\":[], \"orders\": []\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "http://localhost:3000/customers/632355f08372959addef47ad",
 									"protocol": "http",
@@ -1863,11 +1811,11 @@
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"14a-ka51DQqXkUJTbwegyuZblLrfuIw\""
+									"value": "W/\"14a-eoRoOXUe8NgifbMKHjAaHAPyKpc\""
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 15 Sep 2022 16:43:10 GMT"
+									"value": "Thu, 15 Sep 2022 16:42:38 GMT"
 								},
 								{
 									"key": "Connection",
@@ -1879,260 +1827,30 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"name\": {\n        \"firstname\": \"Jennifer\",\n        \"lastname\": \"Hälgh\"\n    },\n    \"account\": {\n        \"username\": \"jenniferhalgh\",\n        \"password\": \"jennifer123\"\n    },\n    \"contact\": {\n        \"email\": \"jennife@gmail.com\",\n        \"phone\": \"0737628386\"\n    },\n    \"paymentInfo\": [],\n    \"orders\": [],\n    \"_id\": \"632355f08372959addef47ad\",\n    \"personalNumber\": \"199910071234\",\n    \"adress\": \"Nowhere Street 123\",\n    \"shoppingCart\": null,\n    \"__v\": 0\n}"
+							"body": "{\n    \"name\": {\n        \"firstname\": \"Jennifer\",\n        \"lastname\": \"Hälgh\"\n    },\n    \"account\": {\n        \"username\": \"jenniferhalgh\",\n        \"password\": \"jennifer123\"\n    },\n    \"contact\": {\n        \"email\": \"jennife@gmail.com\",\n        \"phone\": \"0737628386\"\n    },\n    \"paymentInfo\": [],\n    \"orders\": [],\n    \"_id\": \"632355f08372959addef47ad\",\n    \"personalNumber\": \"200203011234\",\n    \"adress\": \"Nowhere Street 123\",\n    \"shoppingCart\": null,\n    \"__v\": 0\n}"
 						}
 					]
-				},
-				{
-					"name": "partialUpdateStore",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"H&M\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3001/stores/63238ef01bd2346c7886a2b8",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"stores",
-								"63238ef01bd2346c7886a2b8"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "partialUpdateStore",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:3000/stores/63235e0416d34da75d67ffaf",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"stores",
-										"63235e0416d34da75d67ffaf"
-									]
-								}
-							},
-							"status": "No Content",
-							"code": 204,
-							"_postman_previewlanguage": "plain",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"63-MQ2ZhXTbU9pD0hIDeIBoBUP0hCg\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 15 Sep 2022 17:19:31 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": null
-						}
-					]
-				},
-				{
-					"name": "updatePartialInfoOfAnItem",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"price\": 200}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3001/items/63238ef01bd2346c7886a2b8",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"items",
-								"63238ef01bd2346c7886a2b8"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "updatePartialInfoOfAnItem",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:3000/items/63235f2c6dde74a85b41f37a",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"items",
-										"63235f2c6dde74a85b41f37a"
-									]
-								}
-							},
-							"status": "No Content",
-							"code": 204,
-							"_postman_previewlanguage": "plain",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"8b-PNMn/zDpRHf5CIG64sshI32j8yc\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 15 Sep 2022 17:22:16 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": null
-						}
-					]
-				},
-				{
-					"name": "replaceAnItem",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"pants\",\n    \"price\": 100,\n    \"quantity\": 30,\n    \"store\": \"63238ef01bd2346c7886a2b8\",\n    \"category\": \"Default\",\n     \"_id\": \"63238ef01bd2346c7886a2b8\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3001/items/63238ef01bd2346c7886a2b8",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"items",
-								"63238ef01bd2346c7886a2b8"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "replaceAnItem",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:3000/items/63235f2c6dde74a85b41f37a",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"items",
-										"63235f2c6dde74a85b41f37a"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "139"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"8b-PNMn/zDpRHf5CIG64sshI32j8yc\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 15 Sep 2022 17:22:27 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"_id\": \"63235f2c6dde74a85b41f37a\",\n    \"name\": \"hello\",\n    \"price\": 150,\n    \"quantity\": 30,\n    \"store\": \"63235e0416d34da75d67ffaf\",\n    \"category\": \"Default\",\n    \"__v\": 0\n}"
-						}
-					]
-				},
+				}
+			]
+		},
+		{
+			"name": "update",
+			"item": [
 				{
 					"name": "addItemInShoppingCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PATCH",
 						"header": [],
@@ -2146,17 +1864,17 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/shoppingCart/63238ef01bd2346c7886a2b8",
+							"raw": "http://localhost:3000/customers/632e307fbc0fec38f83f7d4a/shoppingCart/63238ef01bd2346c7886a2b7",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3001",
+							"port": "3000",
 							"path": [
 								"customers",
-								"63238d3b3bacafe20b7292ca",
+								"632e307fbc0fec38f83f7d4a",
 								"shoppingCart",
-								"63238ef01bd2346c7886a2b8"
+								"63238ef01bd2346c7886a2b7"
 							]
 						}
 					},
@@ -2231,14 +1949,622 @@
 							"body": "{\n    \"items\": [\n        {\n            \"_id\": \"63235f2c6dde74a85b41f37a\"\n        }\n    ],\n    \"_id\": \"63235f836dde74a85b41f384\",\n    \"__v\": 0\n}"
 						}
 					]
+				},
+				{
+					"name": "partialUpdateCustomer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(204);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"personalNumber\": \"199910071234\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/customers/632e307fbc0fec38f83f7d4a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"customers",
+								"632e307fbc0fec38f83f7d4a"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "partialUpdateCustomer",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"personalNumber\": \"199910071234\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/customers/632355f08372959addef47ad",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355f08372959addef47ad"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14a-eoRoOXUe8NgifbMKHjAaHAPyKpc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 16:42:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "completeUpdateCustomer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": {\"firstname\": \"Jennifer\",\"lastname\":\"Hälgh\"}, \"account\": {\"username\": \"jenhal\", \"password\": \"jennifer123\"},\n\"personalNumber\": \"200212311234\", \"email\": \"jennifer@gmail.com\", \"phone\": \"0737628386\",\n\"adress\": \"Nowhere Street 123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"632e307fbc0fec38f83f7d4a"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "completeUpdateCustomer",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\": {\"firstname\": \"Jennifer\",\"lastname\":\"Hälgh\"}, \"account\": {\"username\": \"jenniferhalgh\", \"password\": \"jennifer123\"},\n\"personalNumber\": \"200205011234\", \"contact\": {\"email\": \"jennir@gmail.com\", \"phone\": \"0737628386\"},\n\"adress\": \"Nowhere Street 123\", \"shoppingCart\": null, \"paymentInfo\":[], \"orders\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/customers/632355f08372959addef47ad",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"customers",
+										"632355f08372959addef47ad"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "330"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14a-ka51DQqXkUJTbwegyuZblLrfuIw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 16:43:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": {\n        \"firstname\": \"Jennifer\",\n        \"lastname\": \"Hälgh\"\n    },\n    \"account\": {\n        \"username\": \"jenniferhalgh\",\n        \"password\": \"jennifer123\"\n    },\n    \"contact\": {\n        \"email\": \"jennife@gmail.com\",\n        \"phone\": \"0737628386\"\n    },\n    \"paymentInfo\": [],\n    \"orders\": [],\n    \"_id\": \"632355f08372959addef47ad\",\n    \"personalNumber\": \"199910071234\",\n    \"adress\": \"Nowhere Street 123\",\n    \"shoppingCart\": null,\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "replaceAnItem",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"pants\",\n    \"price\": 100,\n    \"quantity\": 30,\n    \"store\": \"63238ef01bd2346c7886a2b8\",\n    \"category\": \"Default\",\n     \"_id\": \"63238ef01bd2346c7886a2b7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/items/63238ef01bd2346c7886a2b7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"items",
+								"63238ef01bd2346c7886a2b7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "replaceAnItem",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/items/63235f2c6dde74a85b41f37a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items",
+										"63235f2c6dde74a85b41f37a"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "139"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8b-PNMn/zDpRHf5CIG64sshI32j8yc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:22:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"63235f2c6dde74a85b41f37a\",\n    \"name\": \"hello\",\n    \"price\": 150,\n    \"quantity\": 30,\n    \"store\": \"63235e0416d34da75d67ffaf\",\n    \"category\": \"Default\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "partialUpdateStore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(204);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"H&M\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/stores/63238ef01bd2346c7886a2b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"stores",
+								"63238ef01bd2346c7886a2b8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "partialUpdateStore",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/stores/63235e0416d34da75d67ffaf",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stores",
+										"63235e0416d34da75d67ffaf"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"63-MQ2ZhXTbU9pD0hIDeIBoBUP0hCg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:19:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "updatePartialInfoOfAnItem",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(204);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"price\": 200}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/items/63238ef01bd2346c7886a2b7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"items",
+								"63238ef01bd2346c7886a2b7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "updatePartialInfoOfAnItem",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/items/63235f2c6dde74a85b41f37a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items",
+										"63235f2c6dde74a85b41f37a"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8b-PNMn/zDpRHf5CIG64sshI32j8yc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:22:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
 				}
 			]
 		},
 		{
-			"name": "orders",
+			"name": "delete",
 			"item": [
 				{
+					"name": "removeItemFromCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(204);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a/shoppingcart/63238ef01bd2346c7886a2b7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"632e307fbc0fec38f83f7d4a",
+								"shoppingcart",
+								"63238ef01bd2346c7886a2b7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "removeItemFromCart",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:3000/shoppingCart/63235f836dde74a85b41f384/items/63235f2c6dde74a85b41f37a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"shoppingCart",
+										"63235f836dde74a85b41f384",
+										"items",
+										"63235f2c6dde74a85b41f37a"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c-DfIlrn+BGo3PfIqtAqJrlOk3Lnw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 17:25:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
 					"name": "deleteSpecificPaymentInfo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(204);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -2247,7 +2573,7 @@
 							"raw": "{\n    \"cardInfo\":{\n        \"nameOnCard\":\"Shahd Metwally\",\n        \"cardNum\":\"1234567890123456\",\n        \"cvv\":\"123\"\n    }\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/paymentInfos/63238ebe1bd2346c7886a2b4",
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a/paymentInfos/63238ebe1bd2346c7886a2b4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2255,7 +2581,7 @@
 							"port": "3001",
 							"path": [
 								"customers",
-								"63238d3b3bacafe20b7292ca",
+								"632e307fbc0fec38f83f7d4a",
 								"paymentInfos",
 								"63238ebe1bd2346c7886a2b4"
 							]
@@ -2321,95 +2647,25 @@
 					]
 				},
 				{
-					"name": "removeItemFromCart",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:3001/shoppingCart/63238e551bd2346c7886a2b0/items/63238ef01bd2346c7886a2b8",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"shoppingCart",
-								"63238e551bd2346c7886a2b0",
-								"items",
-								"63238ef01bd2346c7886a2b8"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "removeItemFromCart",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:3000/shoppingCart/63235f836dde74a85b41f384/items/63235f2c6dde74a85b41f37a",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"shoppingCart",
-										"63235f836dde74a85b41f384",
-										"items",
-										"63235f2c6dde74a85b41f37a"
-									]
-								}
-							},
-							"status": "No Content",
-							"code": 204,
-							"_postman_previewlanguage": "plain",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"1c-DfIlrn+BGo3PfIqtAqJrlOk3Lnw\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 15 Sep 2022 17:25:04 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": null
-						}
-					]
-				},
-				{
 					"name": "deleteAnItemFromAStore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(204);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/stores/63238ef01bd2346c7886a2b8/items/63238ef01bd2346c7886a2b8",
+							"raw": "http://localhost:3001/stores/63238ef01bd2346c7886a2b8/items/63238ef01bd2346c7886a2b7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2419,7 +2675,7 @@
 								"stores",
 								"63238ef01bd2346c7886a2b8",
 								"items",
-								"63238ef01bd2346c7886a2b8"
+								"63238ef01bd2346c7886a2b7"
 							]
 						}
 					},
@@ -2480,6 +2736,19 @@
 				},
 				{
 					"name": "deleteAllPaymentInfosOfACustomer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(204);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -2488,7 +2757,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca/paymentInfos",
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a/paymentInfos",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2496,7 +2765,7 @@
 							"port": "3001",
 							"path": [
 								"customers",
-								"63238d3b3bacafe20b7292ca",
+								"632e307fbc0fec38f83f7d4a",
 								"paymentInfos"
 							]
 						}
@@ -2561,6 +2830,19 @@
 				},
 				{
 					"name": "deleteAllItemsInAStore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(204);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -2634,11 +2916,24 @@
 				},
 				{
 					"name": "deleteACustomer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(204);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/customers/63238d3b3bacafe20b7292ca",
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2646,7 +2941,7 @@
 							"port": "3001",
 							"path": [
 								"customers",
-								"63238d3b3bacafe20b7292ca"
+								"632e307fbc0fec38f83f7d4a"
 							]
 						}
 					},
@@ -2705,6 +3000,19 @@
 				},
 				{
 					"name": "deleteAStore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(204);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],

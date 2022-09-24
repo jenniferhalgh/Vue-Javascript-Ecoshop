@@ -51,15 +51,14 @@ export default {
           token: jwttoken.token
         }
       }).then((response) => {
-        this.$bvModal.msgBoxOk(JSON.stringify(response))
-      },
-      (err) => {
-        console.log(err.response)
-        this.boxOne = ''
-        this.error = err.response.data.error
-        this.$bvModal.msgBoxOk(this.error)
-      }
-      )
+        // this.$bvModal.msgBoxOk(JSON.parse(response))
+        return response.json()
+      }).then((responseData) => { // responseData = undefined
+        this.customer = responseData._id
+        this.$bvModal.msgBoxOk(this.customer)
+      }).catch(function (err) {
+        console.log(err)
+      })
       Api.patch(`/customers/${this.customer}/shoppingCart/${this.item._id}`).then((res) => {
         this.$bvModal.msgBoxOk('Added to cart!')
         console.log(res)

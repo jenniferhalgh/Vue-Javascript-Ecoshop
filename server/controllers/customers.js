@@ -26,16 +26,6 @@ router.get('/customers/:id', function(req, res){
     })
 });
 
-/*//Create new customer
-router.post("/customers", function(req, res){
-    var customer = new Customer(req.body);
-    customer.save(function(err) {
-        if (err) { return res.status(500).send(err);}
-        res.status(201).json(customer);
-        console.log(customer);
-    });
-});*/
-
 //Updates partial info of a specific customer
 router.patch("/customers/:id", (req, res) => {
     Customer.findByIdAndUpdate(req.params.id, req.body, function(err, customer){
@@ -50,7 +40,33 @@ router.patch("/customers/:id", (req, res) => {
   //Replace all info of a specific customer
   router.put('/customers/:id', function(req, res) {
     var id = req.params.id;
-    Customer.findOneAndReplace({_id: id}, req.body, {option: true}, function(err, customer){
+
+    Customer.findById(id, function(err, customer){
+            if (err) {return res.status(500).send(err);}
+            if (customer == null) {
+                return res.status(404).json({"message": "Customer not found"});
+            }
+        const newInfo = {
+            name: {
+              firstname: req.body.name.firstname,
+              lastname: req.body.name.lastname
+            },
+            account: {
+              username: req.body.account.username,
+              password: req.body.account.password
+            },
+            email: req.body.email,
+            phone: req.body.phone,
+            personalNumber: req.body.personalNumber,
+            adress: req.body.adress,
+            shoppingCart: customer.shoppingCart,
+            paymentInfo: customer.paymentInfo,
+            orders: customer.paymentInfo,
+            token: customer.token,
+            _id: customer._id
+    
+        }
+    Customer.findOneAndReplace({_id: id}, newInfo, {option: true}, function(err, customer){
         if (err) { return res.status(500).send(err);}
         if (customer == null) {
             return res.status(404).json({"message": "Customer not found"});
@@ -59,6 +75,7 @@ router.patch("/customers/:id", (req, res) => {
         res.status(200).json(customer);
     });
 });
+  })
 
 //Delete a customer
 router.delete('/customers/:id', function(req, res) {
@@ -79,7 +96,6 @@ router.delete('/customers/:id', function(req, res) {
 
 });
 
-
 //Get shopping cart
 router.get('/customers/:id/shoppingCart', function(req, res){
         var id = req.params.id;
@@ -92,28 +108,8 @@ router.get('/customers/:id/shoppingCart', function(req, res){
         })
     });
 
-
-/*      //create shopping cart
-router.post("/customers/:id/shoppingCart", function(req, res){
-    var id = req.params.id;
-    Customer.findById(id, function(err, customer){
-        if (err) {return res.status(500).send(err);}
-        if (customer == null) {
-            return res.status(404).json({"message": "Customer not found"});
-        }
-    var shoppingCart = new ShoppingCart(req.body);
-    shoppingCart.save(function(err) {
-        if (err) { return res.status(500).send(err);}
-        console.log(shoppingCart);
-    });
-    customer.shoppingCart = shoppingCart;
-        customer.save();
-        return res.status(201).json(customer);
-});
-});*/
-
-router.patch("/customers/:id/shoppingCart/:item_id", function(req, res){
-    var id = req.params.id;
+router.patch("/customers/:customer_id/shoppingCart/:item_id", function(req, res){
+    var id = req.params.customer_id;
     Customer.findById(id).populate('shoppingCart').exec(function(err, customer) {
         if (err) {return res.status(500).send(err);}
         if (customer == null) {
@@ -135,15 +131,22 @@ router.patch("/customers/:id/shoppingCart/:item_id", function(req, res){
 })});
 
 //remove an item from shopping cart
-router.delete('/shoppingCart/:shoppingCart_id/items/:item_id', function(req, res) {
-
-    ShoppingCart.findByIdAndUpdate({ _id: req.params.shoppingCart_id },{ $pull: { items: req.params.item_id  } }, 
+router.delete('/customers/:customer_id/shoppingcart/:item_id', function(req, res) {
+    Customer.findById(req.params.customer_id, function(err, customer) {
+        if (err) {return res.status(500).send(err);}
+        if (customer == null) {
+            return res.status(404).json({"message": "Customer not found"});
+        }
+    ShoppingCart.findByIdAndUpdate({ _id: customer.shoppingCart},{ $pull: { items: req.params.item_id  } }, 
         function(err, shoppingCart) {
         if (err) { return res.status(500).send(err);}
         if (shoppingCart == null) {
             return res.status(404).json({"message": "No shopping cart"});
         }
-        res.status(204).json(shoppingCart.items);
+    shoppingCart.save();
+    customer.save();
+    return res.status(204).json(customer.shoppingCart);
     });
 });
+})
 module.exports = router;

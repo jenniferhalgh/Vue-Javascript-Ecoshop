@@ -7,12 +7,24 @@ const jwt = require('jsonwebtoken');
 
 router.post("/customers", async (req, res) => {
 
+  const registeredCustomer = await Customer.findOne({email: req.body.email}, function(err, regCustomer){
+    if(err){res.status.send(err)}
+     if (regCustomer) {
+      return res.status(409).json({
+        title: 'Cannot register',
+        error: 'This email is already linked to an account, please log in instead'
+      })
+    }
+    console.log(regCustomer)
+  });
+
+  if(!registeredCustomer){
 var shoppingCart = new ShoppingCart(req.body);
 shoppingCart.save(function(err) {
   if (err) { return res.status(500).send(err);}
   console.log(shoppingCart);
-  
-});
+})
+}
 let jwttoken = jwt.sign({ customerId: req.body._id}, 'token_key');
     const newCustomer = new Customer({
     
@@ -44,7 +56,10 @@ let jwttoken = jwt.sign({ customerId: req.body._id}, 'token_key');
 router.post('/customers/login', (req, res, next) => {
 
       if (!(req.body.email && req.body.password)) {
-        res.status(400).send("All input is required");
+        res.status(400).json({
+          title: 'Blank field(s)',
+          error: 'All input is required'
+        });
       }
 
     Customer.findOne({email: req.body.email }, async function(err, customer){
@@ -87,7 +102,7 @@ router.post('/customers/login', (req, res, next) => {
   router.get('/customer', (req, res, next) => {
     jwt.verify(req.headers.token, 'token_key', (err, decoded) => {
       console.log(decoded)
-      console.log(token)
+      console.log(req.headers.token)
       console.log(err)
 
       if (err) return res.status(401).json({
@@ -97,7 +112,7 @@ router.post('/customers/login', (req, res, next) => {
       Customer.findById(decoded.customer_Id, function (err, customer){
         if (err) {return res.status(500).json({title: 'Error'})}
         if(customer==null){return res.status(404).json({title: 'Customer not found'})}
-        return res.status(200).send(customer)
+        return res.status(200).json(customer)
       })
     })
 })
