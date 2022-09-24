@@ -121,12 +121,10 @@ router.patch("/customers/:customer_id/shoppingCart/:item_id", function(req, res)
         if (item == null) {
             return res.status(404).json({"message": "Item not found"});
         }
-        
     customer.shoppingCart.items.push(item);
     customer.shoppingCart.save();
     customer.save();
     return res.status(201).json(customer.shoppingCart);
-
     });
 })});
 

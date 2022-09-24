@@ -16,7 +16,7 @@ var customerSchema = new Schema (
             type:String
         },
         password:{
-            type:String
+            type: String
         } 
     },
     personalNumber:{
@@ -34,8 +34,9 @@ var customerSchema = new Schema (
     adress:{
         type:String  
     },
-    token:{type: String},
-    
+    token:{
+        type:String
+    },
     shoppingCart:{
         type: Schema.Types.ObjectId, ref: "shoppingCarts"
     },

@@ -5,9 +5,11 @@
         <div>
         <input type="text" class="form-control" v-model="email" placeholder="Email" />
         </div>
+        <br>
         <div>
         <input type="text" class="form-control" v-model="password" placeholder="Password" />
         </div>
+        <br>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
@@ -36,7 +38,7 @@ export default {
         password: this.password
       }
       Api.post('/customers/login', customer).then((res) => {
-        console.log(res)
+        this.$router.push('/')
         sessionStorage.setItem('token', res.data.token)
         this.$bvModal.msgBoxOk('Successfully logged in')
       },
@@ -53,7 +55,11 @@ export default {
 </script>
 
 <style>
-h6{
-  color: aqua;
+button{
+  background: #99ae71 !important;
+  border: none !important;
+}
+h1{
+  text-align: center;
 }
 </style>

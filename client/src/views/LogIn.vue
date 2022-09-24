@@ -38,20 +38,18 @@ export default {
 <style>
 .btn_1 {
   color: white;
-  background-color: #248c86;
-  padding: 5px 32px;
+  background-color: #000000;
   text-align: center;
   margin: auto;
-  border: none;
+  border: none !important;
   float: left;
 }
 .btn_2 {
   color: white;
-  background-color: #35a6be;
-  padding: 5px 32px;
+  background-color: #000000;
   text-align: center;
   margin: auto;
-  border: none;
+  border: none !important;
   float: right;
 }
 </style>

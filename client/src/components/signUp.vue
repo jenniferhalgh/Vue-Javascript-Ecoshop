@@ -5,27 +5,35 @@
         <div>
         <input type="text" class="form-control" v-model="firstname" placeholder="First name" />
         </div>
+        <br>
         <div>
         <input type="text" class="form-control" v-model="lastname" placeholder="Last name" />
         </div>
+        <br>
         <div>
         <input type="text" class="form-control" v-model="username" placeholder="Username" />
         </div>
+        <br>
         <div>
         <input type="text" class="form-control" v-model="password" placeholder="Password" />
         </div>
+        <br>
         <div>
         <input type="text" class="form-control" v-model="personalNumber" placeholder="Personal number" />
         </div>
+        <br>
         <div>
         <input type="text" class="form-control" v-model="email" placeholder="Email" />
         </div>
+        <br>
         <div>
         <input type="text" class="form-control" v-model="phone" placeholder="Phone number" />
         </div>
+        <br>
         <div>
         <input type="text" class="form-control" v-model="adress" placeholder="Adress" />
         </div>
+        <br>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
@@ -77,7 +85,8 @@ export default {
         token: ''
       }
       Api.post('/customers', newCustomer).then((res) => {
-        this.$router.push('')
+        console.log(res)
+        this.$router.push('/')
         sessionStorage.setItem('token', res.data.token)
         this.$bvModal.msgBoxOk('Account created.')
       },
@@ -94,5 +103,11 @@ export default {
 </script>
 
 <style>
-
+b-button{
+  background: #99ae71 !important;
+  border: none !important;
+}
+h1{
+  text-align: center;
+}
 </style>
