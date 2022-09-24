@@ -16,17 +16,16 @@
           style="width: 10%"
           size="sm"
       ></b-form-select>
-      <li>
-        <a href="#">
-          <i class="shopping-cart" aria-hidden="true"></i> Shopping Cart
-        <span class="badge"></span>
-        </a>
-      </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> User Management <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      </ul>
-                </li>
+      <div class="dropdown">
+        <div class="dropdown">
+        <b-button class="shopingcart-dropdown"></b-button>
+        <div class="shoppingcart-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
+      </div>
     </div>
   </div>
 </template>
