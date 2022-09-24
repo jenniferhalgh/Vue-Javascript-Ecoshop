@@ -3,11 +3,11 @@
     <form @submit.prevent="handleSubmit">
         <h1> Sign in </h1>
         <div>
-        <input type="text" class="form-control" v-model="email" placeholder="Email" />
+        <input type="email" class="form-control" v-model="email" placeholder="Email" />
         </div>
         <br>
         <div>
-        <input type="text" class="form-control" v-model="password" placeholder="Password" />
+        <input type="password" class="form-control" v-model="password" placeholder="Password" />
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Submit</button>

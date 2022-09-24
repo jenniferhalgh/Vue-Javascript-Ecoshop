@@ -4,7 +4,9 @@ var Schema = mongoose.Schema;
 var shoppingCartSchema = new Schema (
 {
     customer: {type: Schema.Types.ObjectId, ref: "customers"},
-    items:[{type: Schema.Types.ObjectId, ref: "items"}]
+    items:[{type: Schema.Types.ObjectId, ref: "items"}],
+    totalPrice:{type: Number},
+    quantitiyOfItems:{type: Number}
 });
 
 

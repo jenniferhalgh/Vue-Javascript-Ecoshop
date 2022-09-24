@@ -11,11 +11,11 @@
         </div>
         <br>
         <div>
-        <input type="text" class="form-control" v-model="username" placeholder="Username" />
+        <input type="username" class="form-control" v-model="username" placeholder="Username" />
         </div>
         <br>
         <div>
-        <input type="text" class="form-control" v-model="password" placeholder="Password" />
+        <input type="password" class="form-control" v-model="password" placeholder="Password" />
         </div>
         <br>
         <div>
@@ -23,7 +23,7 @@
         </div>
         <br>
         <div>
-        <input type="text" class="form-control" v-model="email" placeholder="Email" />
+        <input type="email" class="form-control" v-model="email" placeholder="Email" />
         </div>
         <br>
         <div>
@@ -31,7 +31,7 @@
         </div>
         <br>
         <div>
-        <input type="text" class="form-control" v-model="adress" placeholder="Adress" />
+        <input type="text" class="form-control" v-model="address" placeholder="Address" />
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Submit</button>
