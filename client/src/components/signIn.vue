@@ -1,7 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="handleSubmit">
-        <h6> Sign in </h6>
+        <h1> Sign in </h1>
         <div>
         <input type="text" class="form-control" v-model="email" placeholder="Email" />
         </div>

@@ -7,6 +7,7 @@
       <router-link class= "links" to="/">Home </router-link>
       <router-link class= "links" to="/login">  Log in </router-link>
       <router-link class= "links" to="/customers">Customers </router-link>
+      <router-link class= "links" to="/catalogue"> Catalogue</router-link>
     <router-view/>
   </div>
   </div>
