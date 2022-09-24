@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import LogIn from './views/LogIn.vue'
 import Customer from './views/Customers.vue'
+import Catalogue from './views/Catalogue.vue'
 
 Vue.use(Router)
 
@@ -22,6 +23,10 @@ export default new Router({
       path: '/customers',
       name: 'customers',
       component: Customer
+    }, {
+      path: '/catalogue',
+      name: 'catalogue',
+      component: Catalogue
     }
   ]
 })

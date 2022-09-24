@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link>
       <router-link to="/login">Log in</router-link>
       <router-link to="/customers">Customers</router-link>
+      <router-link to="/catalogue">Catalogue</router-link>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
