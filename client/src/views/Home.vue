@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-link class="link" to="/LogIn"></router-link>
     <router-link class="link" to="/shoppingCart">
         <div class="dropdown">
         <b-button class="shopingcart-dropdown"> Shopping Cart</b-button>

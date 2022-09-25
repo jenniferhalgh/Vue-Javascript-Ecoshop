@@ -7,26 +7,10 @@
             <div class="row">
                 <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
                     <ul class="list-group">
-                        <div v-for="item in shoppingCart" v-bind:key="item._id">
-                            <li class="list-groun-item">
-                                <span class="badge"> {{this.quantitiyOfItems}}</span>
-                                <strong> {{this.item.name}}</strong>
-                                <span class="label label-sucess"> {{this.item.price}}</span>
-                                <div class="btn-group">
-                                    <button class="btn btn-primary btn-xs dropdown-toggle" type="button">Action <span class="caret"></span> </button>
-                                    <ul class="dropdown-menu">
-                                        <li> <a href="#">Reduce by 1</a></li>
-                                        <li> <a href="#">Remove all</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                        <div v-for="shoppingCart in shoppingCart" v-bind:key="shoppingCart._id">
+                            <p> {{shoppingCart}}</p>
                         </div>
                     </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                    <strong>{{this.totalPrice}} </strong>
                 </div>
             </div>
             <hr>
@@ -45,14 +29,45 @@
 </template>
 
 <script>
+// @ is an alias to /src
+import { Api } from '@/Api'
 
 export default {
   name: 'Shopping Cart',
   components: { },
   mounted() {
+    const jwttoken = {
+      token: sessionStorage.getItem('token')
+    }
+    fetch('http://localhost:3000/customer', {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Host: '',
+        token: jwttoken.token
+      }
+    }).then((response) => {
+      return response.json()
+    }).then((responseData) => {
+      this.customer = responseData._id
+      Api.get(`/customers/${this.customer}/shoppingCart`).then(response => {
+        this.shoppingCart = response.data.items
+        console.log(response.data)
+        if (this.shoppingCart == null) {
+          this.itemsInCart = false
+        } else {
+          this.itemsInCart = true
+        }
+      })
+    }).catch(function (err) {
+      console.log(err)
+    })
   },
   data() {
     return {
+      shoppingCart: [],
+      itemsInCart: false
     }
   },
   methods: {
