@@ -1,14 +1,26 @@
 <template>
   <div>
-    <b-form-select
+    <router-link class="link" to="/shoppingCart">
+        <div class="dropdown">
+        <b-button class="shopingcart-dropdown"> Shopping Cart</b-button>
+        <div class="shoppingcart-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+        </div>
+      </router-link>
+      <div class="search-wrapper">
+    <b-form-input type="text" v-model="input" placeholder="Search For Items" style="width: 50%"></b-form-input>
+    </div>
+      <b-form-select
           v-model="category"
           :options="categoryList"
           class="input"
           placeholder="Category"
           style="width: 10%"
           size="sm"
-      >
-      </b-form-select>
+      ></b-form-select>
     <div class="card-deck top-buffer ml-4">
     <div v-for="item in items" v-bind:key="item._id">
       <div class="card border-light mb-5" style="width:20rem;">
@@ -49,7 +61,15 @@ export default {
         { value: 'Small Creator', text: 'Small Creator' }
       ],
       items: [],
-      customer: ''
+      customer: '',
+      input: ''
+    }
+  },
+  computed: {
+    filteredList() {
+      return this.items.filter(item => {
+        return item.title.toLowerCase().includes(this.search.toLowerCase())
+      })
     }
   },
   methods: {
@@ -105,5 +125,4 @@ export default {
 .ml-1{
   margin-left:100px
 }
-
 </style>
