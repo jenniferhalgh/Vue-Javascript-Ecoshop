@@ -13,10 +13,10 @@
       <div class="search-wrapper">
     <b-form-input type="text" v-model="input" placeholder="Search For Items" style="width: 50%"></b-form-input>
     </div>
-      <b-form-select
+    <b-form-select
           v-model="category"
           :options="categoryList"
-          class="input"
+          class="input ml-5 filter"
           placeholder="Category"
           style="width: 10%"
           size="sm"
@@ -24,12 +24,17 @@
       >
       </b-form-select>
     <div class="card-deck top-buffer ml-4">
-    <div v-for="item in items" v-bind:key="item._id">
+    <div v-for="(item, index) in items" v-bind:key="item._id">
       <div class="card border-light mb-5" style="width:20rem;">
     <img class="card-img-top" src="@/assets/white_shirt.jpeg" alt="Card image top">
 <div class="card-body">
-  <h4 class="card-title"><a>{{item.name}}</a></h4>
-  <h4 class="card-title"><a>{{item.price}}kr</a></h4>
+  <div v-if="item.category!='Default'">
+<a href="#" class="badge badge-secondary">{{item.category}}</a>
+  </div>
+  <div v-else><span class="badge default">Default</span></div>
+  <h6 class="card-subtitle mb-2 text-muted"> {{itemStoreNames[index]}}</h6>
+  <p class="lead">{{item.name}}</p>
+  <p class="lead">{{item.price}} kr</p>
   <a href="#" class="btn" v-on:click="addToCart(item)">Add to cart</a>
   </div>
 </div>
@@ -44,18 +49,30 @@ import { Api } from '@/Api'
 
 export default {
   name: 'items',
-  mounted() {
+  async mounted() {
     Api.get('/items').then(response => {
-      this.items = response.data.items
+      // this.items = response.data.items
       console.log(response.data.items)
-    })
-      .catch(error => {
-        console.error(error)
+      this.items = response.data.items
+      const vm = this
+      response.data.items.forEach(function (item) {
+        Api.get(`/items/${item._id}`).then(response => {
+          console.log(response.data.store.name)
+          vm.itemStoreNames.push(response.data.store.name)
+          console.log(this.itemStoreNames)
+        })
+          .catch(error => {
+            console.error(error)
+          })
       })
+    }).catch(error => {
+      console.error(error)
+    })
+    console.log(this.itemStoreNames)
   },
   data() {
     return {
-      category: ' ',
+      category: '',
       categoryList: [
         { value: 'Filter', text: 'Filter' },
         { value: 'Second Hand', text: 'Second Hand' },
@@ -64,6 +81,7 @@ export default {
       ],
       items: [],
       customer: '',
+      itemStoreNames: [],
       input: ''
     }
   },
@@ -174,6 +192,24 @@ export default {
 .btn{
 background: #99ae71 !important;
 color: #ffffff;
+}
+
+.filter{
+  margin-top:70px;
+}
+
+.badge{
+  margin-bottom:10px;
+}
+
+.badge.default{
+  margin-bottom:10px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+}
+
+.lead{
+  margin-bottom:0px;
 }
 
 </style>
