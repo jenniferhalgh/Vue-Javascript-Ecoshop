@@ -8,7 +8,6 @@
         <router-link class= "links" to="/">Home </router-link>
         <router-link class= "links" to="/customers">Customers </router-link>
         <router-link class= "links" to="/catalogue">Catalogue </router-link>
-        <router-link class="links" to="/profile"> Profile</router-link>
         <b-navbar-nav class="ml-auto">
           Profile
           <b-nav-item class="nav-item" @click="logout">Logout</b-nav-item>
@@ -18,7 +17,6 @@
     <div v-else>
       <router-link class= "links" to="/login"> </router-link>
     </div>
->>>>>>> client/src/App.vue
     <router-view/>
   </div>
 </template>
