@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import LogIn from './views/LogIn.vue'
 import Customer from './views/Customers.vue'
 import Catalogue from './views/Catalogue.vue'
+import Profile from './views/Profile.vue'
 
 Vue.use(Router)
 
@@ -27,6 +28,10 @@ export default new Router({
       path: '/catalogue',
       name: 'catalogue',
       component: Catalogue
+    }, {
+      path: '/Profile',
+      name: 'profile',
+      component: Profile
     }
   ]
 })
