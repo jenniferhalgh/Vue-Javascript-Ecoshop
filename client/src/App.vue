@@ -28,7 +28,8 @@ import { Api } from '@/Api'
 export default {
   data() {
     return {
-      isLoggedIn: false
+      isLoggedIn: false,
+      customer: {}
     }
   },
   mounted() {
@@ -38,6 +39,7 @@ export default {
     } else {
       this.isLoggedIn = true
       this.getCustomer()
+      this.$router.push('/shoppingCart')
     }
   },
   methods: {
@@ -55,9 +57,6 @@ export default {
         this.customer = res.data.customer
         console.log(res.data.customer)
       })
-    },
-    home() {
-      this.$router.push('/')
     }
   }
 }

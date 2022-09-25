@@ -85,13 +85,6 @@ export default {
       input: ''
     }
   },
-  computed: {
-    filteredList() {
-      return this.items.filter(item => {
-        return item.title.toLowerCase().includes(this.search.toLowerCase())
-      })
-    }
-  },
   methods: {
     addToCart(item) {
       const jwttoken = {
