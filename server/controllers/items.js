@@ -14,7 +14,7 @@ router.get('/items', function(req, res){
 //List a item with a specific id
 router.get('/items/:id', function(req, res){
     var id = req.params.id;
-    Item.findById(id).populate("stores").exec(function(err, item){
+    Item.findById(id).populate("store").exec(function(err, item){
     if (err) {return res.status(500).send(err);}
     if (item == null) {
         return res.status(404).json({"message": "Item not found"});
