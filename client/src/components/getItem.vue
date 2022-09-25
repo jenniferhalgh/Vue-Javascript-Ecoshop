@@ -81,6 +81,7 @@ export default {
       ],
       items: [],
       customer: '',
+      itemStoreNames: [],
       input: ''
     }
   },
