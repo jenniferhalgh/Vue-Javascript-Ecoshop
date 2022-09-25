@@ -20,7 +20,9 @@
           placeholder="Category"
           style="width: 10%"
           size="sm"
-      ></b-form-select>
+          v-on:change="getSelectedCategory(category)"
+      >
+      </b-form-select>
     <div class="card-deck top-buffer ml-4">
     <div v-for="item in items" v-bind:key="item._id">
       <div class="card border-light mb-5" style="width:20rem;">
@@ -28,7 +30,7 @@
 <div class="card-body">
   <h4 class="card-title"><a>{{item.name}}</a></h4>
   <h4 class="card-title"><a>{{item.price}}kr</a></h4>
-  <a href="#" class="btn btn-dark" v-on:click="addToCart(item)">Add to cart</a>
+  <a href="#" class="btn" v-on:click="addToCart(item)">Add to cart</a>
   </div>
 </div>
 </div>
@@ -53,9 +55,9 @@ export default {
   },
   data() {
     return {
-      category: null,
+      category: ' ',
       categoryList: [
-        { value: null, text: 'Filter' },
+        { value: 'Filter', text: 'Filter' },
         { value: 'Second Hand', text: 'Second Hand' },
         { value: 'Vegan', text: 'Vegan' },
         { value: 'Small Creator', text: 'Small Creator' }
@@ -91,7 +93,6 @@ export default {
         this.customer = responseData._id
         Api.patch(`/customers/${this.customer}/shoppingCart/${item._id}`).then((res) => {
           this.$bvModal.msgBoxOk('Added to cart!')
-          console.log(res)
         },
         (err) => {
           console.log(err.response)
@@ -103,6 +104,50 @@ export default {
       }).catch(function (err) {
         console.log(err)
       })
+    },
+    getSelectedCategory(category) {
+      if (category === 'Second Hand') {
+        Api.get(`/items/category/${category}`).then((res) => {
+          this.items = res.data
+        },
+        (err) => {
+          console.log(err.response)
+          this.boxOne = ''
+          this.error = err.response.data.error
+          this.$bvModal.msgBoxOk(this.error)
+        }
+        )
+      } else if (category === 'Vegan') {
+        Api.get(`/items/category/${category}`).then((res) => {
+          this.items = res.data
+        },
+        (err) => {
+          console.log(err.response)
+          this.boxOne = ''
+          this.error = err.response.data.error
+          this.$bvModal.msgBoxOk(this.error)
+        }
+        )
+      } else if (category === 'Small Creator') {
+        Api.get(`/items/category/${category}`).then((res) => {
+          this.items = res.data
+        },
+        (err) => {
+          console.log(err.response)
+          this.boxOne = ''
+          this.error = err.response.data.error
+          this.$bvModal.msgBoxOk(this.error)
+        }
+        )
+      } else if (category === 'Filter') {
+        Api.get('/items').then(response => {
+          this.items = response.data.items
+          console.log(response.data.items)
+        })
+          .catch(error => {
+            console.error(error)
+          })
+      }
     }
   }
 }
@@ -125,4 +170,10 @@ export default {
 .ml-1{
   margin-left:100px
 }
+
+.btn{
+background: #99ae71 !important;
+color: #ffffff;
+}
+
 </style>
