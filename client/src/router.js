@@ -5,7 +5,6 @@ import LogIn from './views/LogIn.vue'
 import Customer from './views/Customers.vue'
 import Catalogue from './views/Catalogue.vue'
 import ShoppingCart from './views/shoppingCart.vue'
-import LogOut from './views/LogOut.vue'
 
 Vue.use(Router)
 
@@ -33,11 +32,6 @@ export default new Router({
       path: '/shoppingCart',
       name: 'shoppingCart',
       component: ShoppingCart
-    },
-    {
-      path: '/loggedOut',
-      name: 'logout',
-      component: LogOut
     }
   ]
 })
