@@ -39,7 +39,6 @@ export default {
     } else {
       this.isLoggedIn = true
       this.getCustomer()
-      this.$router.push('/shoppingCart')
     }
   },
   methods: {

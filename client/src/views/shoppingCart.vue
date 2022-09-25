@@ -8,7 +8,7 @@
               <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
                   <ul class="list-group">
                       <div v-for="shoppingCart in shoppingCart" v-bind:key="shoppingCart._id">
-                          <p> {{shoppingCart}}</p>
+                          <p> {{itemNames}}</p>
                           <a href="#" class="btn btn-light" v-on:click="removeFromCart(item)">Remove From Cart</a>
                       </div>
                   </ul>
@@ -36,7 +36,7 @@ import { Api } from '@/Api'
 export default {
   name: 'Shopping Cart',
   components: { },
-  mounted() {
+  async mounted() {
     const jwttoken = {
       token: sessionStorage.getItem('token')
     }
@@ -53,22 +53,35 @@ export default {
     }).then((responseData) => {
       this.customer = responseData._id
       Api.get(`/customers/${this.customer}/shoppingCart`).then(response => {
-        this.shoppingCart = response.data.items
         console.log(response.data)
-        if (this.shoppingCart == null) {
-          this.itemsInCart = false
-        } else {
-          this.itemsInCart = true
-        }
+        this.shoppingCart = response.data.items
+        const vm = this
+        response.data.items.forEach(function (item) {
+          Api.get(`/items/${item._id}`).then(response => {
+            console.log(response.data.item.name)
+            vm.itemNames.push(response.data.item.name)
+            console.log(this.itemNames)
+          })
+            .catch(error => {
+              console.error(error)
+            })
+        })
       })
-    }).catch(function (err) {
-      console.log(err)
+      if (this.shoppingCart == null) {
+        this.itemsInCart = false
+      } else {
+        this.itemsInCart = true
+      }
+    }).catch(error => {
+      console.error(error)
     })
+    console.log(this.itemNames)
   },
   data() {
     return {
       shoppingCart: [],
-      itemsInCart: false
+      itemsInCart: false,
+      itemNames: []
     }
   },
   methods: {
