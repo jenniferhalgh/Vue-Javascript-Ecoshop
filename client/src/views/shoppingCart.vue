@@ -1,28 +1,28 @@
 <template>
   <div>
-      <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-          <p style="color:#99ae71; font-size: 40px">SHOPPING CART </p>
+    <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+      <p style="color:#99ae71; font-size: 40px">SHOPPING CART </p>
+    </div>
+    <div v-if="itemsInCart">
+      <div v-for="(item, index) in shoppingCart" v-bind:key="item._id">
+        <p>{{itemNames[index]}}</p>
+        <a href="#" class="btn btn-light" v-on:click="removeFromCart(item)">Remove From Cart</a>
       </div>
-      <div v-if="itemsInCart">
-        <div v-for="(item, index) in shoppingCart" v-bind:key="item._id">
-          <p>{{itemNames[index].name}}</p>
-            <a href="#" class="btn btn-light" v-on:click="removeFromCart(item)">Remove From Cart</a>
-        </div>
-        <hr>
-        <button type="button" class="btn btn-successs">Checkout</button>
-      </div>
-      <div v-else>
-        <p>No Items in Cart</p>
-      </div>
+      <hr>
+      <button type="button" class="btn btn-successs">Checkout</button>
+    </div>
+    <div v-else>
+      <p>No Items in Cart</p>
+    </div>
   </div>
-</template>
+  </template>
 
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
 
 export default {
-  name: 'Shopping Cart',
+  name: 'shoppingCart',
   components: { },
   mounted() {
     const jwttoken = {
@@ -40,14 +40,13 @@ export default {
       return response.json()
     }).then((responseData) => {
       this.customer = responseData._id
+      const vm = this
       Api.get(`/customers/${this.customer}/shoppingCart`).then(response => {
         console.log(response.data)
-        const vm = this
-        this.shoppingCart = response.data.items
-        response.data.items.forEach(function (item, index) {
+        vm.shoppingCart = response.data.items
+        response.data.items.forEach(function (item) {
           Api.get(`/items/${item}`).then(response => {
-            console.log(response.data)
-            vm.itemNames[index] = response.data
+            vm.itemNames.push(response.data.name)
           })
             .catch(error => {
               console.error(error)
@@ -74,7 +73,6 @@ export default {
   methods: {
     removeFromCart(item) {
       Api.delete(`/customers/${this.customer}/shoppingCart/${item._id}`).then((res) => {
-        this.$router.push('/shoppingCart')
         this.$bvModal.msgBoxOk('Removed from cart!')
         console.log(res)
       },
@@ -90,11 +88,11 @@ export default {
 }
 </script>
 
-<style>
-.p{
+  <style>
+  .p{
   text-align: right;
-}
-.a{
-background: #99ae71 !important;
-}
-</style>
+  }
+  .a{
+  background: #99ae71 !important;
+  }
+  </style>
