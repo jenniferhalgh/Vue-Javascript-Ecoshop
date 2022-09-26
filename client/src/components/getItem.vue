@@ -25,6 +25,8 @@
       </b-form-select>
     <div class="card-deck top-buffer ml-4">
     <div v-for="(item, index) in items" v-bind:key="item._id">
+      <div class="wrapper">
+   <div class="card" v-for="item in filteredList()" v-bind:key="item.name">
       <div class="card border-light mb-5" style="width:20rem;">
     <img class="card-img-top" src="@/assets/white_shirt.jpeg" alt="Card image top">
 <div class="card-body">
@@ -37,6 +39,8 @@
   <p class="lead">{{item.price}} kr</p>
   <a href="#" class="btn" v-on:click="addToCart(item)">Add to cart</a>
   </div>
+      </div>
+   </div>
 </div>
 </div>
 </div>
@@ -159,6 +163,11 @@ export default {
             console.error(error)
           })
       }
+    },
+    filteredList() {
+      return this.items.filter(items => {
+        return items.name.toLowerCase().includes(this.input.toLowerCase())
+      })
     }
   }
 }
