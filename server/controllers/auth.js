@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 router.post("/customers", async (req, res) => {
 
   const registeredCustomer = await Customer.findOne({email: req.body.email}, function(err, regCustomer){
-    if(err){res.status.send(err)}
+    if(err){res.status(500).send(err)}
      if (regCustomer) {
       return res.status(409).json({
         title: 'Cannot register',
@@ -20,10 +20,6 @@ router.post("/customers", async (req, res) => {
 
   if(!registeredCustomer){
 var shoppingCart = new ShoppingCart(req.body);
-shoppingCart.save(function(err) {
-  if (err) { return res.status(500).send(err);}
-  console.log(shoppingCart);
-})
 }
 let jwttoken = jwt.sign({ customerId: req.body._id}, 'token_key');
     const newCustomer = new Customer({
@@ -49,7 +45,11 @@ let jwttoken = jwt.sign({ customerId: req.body._id}, 'token_key');
           if (err) { return res.status(500).send(err);}
           console.log(newCustomer);
         });
-      return res.status(201).json(newCustomer);
+        shoppingCart.save(function(err) {
+          if (err) { return res.status(500).send(err);}
+          console.log(shoppingCart);
+        })
+      return res.status(201).send(newCustomer);
 }
 )
 
