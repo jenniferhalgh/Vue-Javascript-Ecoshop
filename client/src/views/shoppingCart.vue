@@ -4,27 +4,15 @@
           <p style="color:#99ae71; font-size: 40px">SHOPPING CART </p>
       </div>
       <div v-if="itemsInCart">
-          <div class="row">
-              <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                  <ul class="list-group">
-                      <div v-for="shoppingCart in shoppingCart" v-bind:key="shoppingCart._id">
-                          <p> {{itemNames}}</p>
-                          <a href="#" class="btn btn-light" v-on:click="removeFromCart(item)">Remove From Cart</a>
-                      </div>
-                  </ul>
-              </div>
-          </div>
-          <hr>
-          <div class="row">
-              <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                  <button type="button" class="btn btn-successs">Checkout</button>
-              </div>
-          </div>
+        <div v-for="(item, index) in shoppingCart" v-bind:key="item._id">
+          <p>{{itemNames[index].name}}</p>
+            <a href="#" class="btn btn-light" v-on:click="removeFromCart(item)">Remove From Cart</a>
+        </div>
+        <hr>
+        <button type="button" class="btn btn-successs">Checkout</button>
       </div>
       <div v-else>
-          <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-              <p>No Items in Cart</p>
-          </div>
+        <p>No Items in Cart</p>
       </div>
   </div>
 </template>
@@ -36,7 +24,7 @@ import { Api } from '@/Api'
 export default {
   name: 'Shopping Cart',
   components: { },
-  async mounted() {
+  mounted() {
     const jwttoken = {
       token: sessionStorage.getItem('token')
     }
@@ -54,13 +42,12 @@ export default {
       this.customer = responseData._id
       Api.get(`/customers/${this.customer}/shoppingCart`).then(response => {
         console.log(response.data)
-        this.shoppingCart = response.data.items
         const vm = this
-        response.data.items.forEach(function (item) {
-          Api.get(`/items/${item._id}`).then(response => {
-            console.log(response.data.item.name)
-            vm.itemNames.push(response.data.item.name)
-            console.log(this.itemNames)
+        this.shoppingCart = response.data.items
+        response.data.items.forEach(function (item, index) {
+          Api.get(`/items/${item}`).then(response => {
+            console.log(response.data)
+            vm.itemNames[index] = response.data
           })
             .catch(error => {
               console.error(error)
@@ -75,57 +62,30 @@ export default {
     }).catch(error => {
       console.error(error)
     })
-    console.log(this.itemNames)
   },
   data() {
     return {
+      customer: '',
+      itemNames: [],
       shoppingCart: [],
-      itemsInCart: false,
-      itemNames: []
+      itemsInCart: false
     }
   },
   methods: {
     removeFromCart(item) {
-      const jwttoken = {
-        token: sessionStorage.getItem('token')
+      Api.delete(`/customers/${this.customer}/shoppingCart/${item._id}`).then((res) => {
+        this.$router.push('/shoppingCart')
+        this.$bvModal.msgBoxOk('Removed from cart!')
+        console.log(res)
+      },
+      (err) => {
+        console.log(err.response)
+        this.boxOne = ''
+        this.error = err.response.data.error
+        this.$bvModal.msgBoxOk(this.error)
       }
-      fetch('http://localhost:3000/customer', {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-          Host: '',
-          token: jwttoken.token
-        }
-      }).then((response) => {
-        return response.json()
-      }).then((responseData) => {
-        this.customer = responseData._id
-        Api.delete(`/customers/${this.customer}/shoppingCart/${item._id}`).then((res) => {
-          this.$router.push('/shoppingCart')
-          this.$bvModal.msgBoxOk('Removed from cart!')
-          console.log(res)
-        },
-        (err) => {
-          console.log(err.response)
-          this.boxOne = ''
-          this.error = err.response.data.error
-          this.$bvModal.msgBoxOk(this.error)
-        }
-        )
-      }).catch(function (err) {
-        console.log(err)
-      })
+      )
     }
-  },
-  getItems() {
-    Api.get('/items').then(response => {
-      this.items = response.data.items
-      console.log(response.data.items)
-    })
-      .catch(error => {
-        console.error(error)
-      })
   }
 }
 </script>
