@@ -1,7 +1,7 @@
 <template>
   <div>
-    <router-link class="link" to="/LogIn"></router-link>
-    <router-link class="link" to="/shoppingCart">
+    <router-link class="links ml-5" to="/LogIn"></router-link>
+    <router-link class="links ml-5" to="/shoppingCart">
         <div class="dropdown">
         <b-button class="shopingcart-dropdown"> Shopping Cart</b-button>
         <div class="shoppingcart-content">

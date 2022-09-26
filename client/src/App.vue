@@ -10,7 +10,7 @@
         <router-link class= "links ml-5" to="/catalogue">Catalogue </router-link>
         <b-navbar-nav class="ml-auto">
           <router-link class="links ml-5" to="/profile"> Profile</router-link>
-          <b-nav-item class="nav-item" @click="logout">Logout</b-nav-item>
+          <b-nav-item class="links ml-5" @click="logout">Logout</b-nav-item>
         </b-navbar-nav>
       </b-navbar>
     </div>

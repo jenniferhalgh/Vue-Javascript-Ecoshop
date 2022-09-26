@@ -9,7 +9,9 @@
         <a href="#" class="btn btn-light" v-on:click="removeFromCart(item)">Remove From Cart</a>
       </div>
       <hr>
+      <router-link class="links ml-5" to="/checkout">
       <button type="button" class="btn btn-successs">Checkout</button>
+    </router-link>
     </div>
     <div v-else>
       <p>No Items in Cart</p>
