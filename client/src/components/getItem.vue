@@ -30,7 +30,7 @@
           v-on:change="getSelectedStore(store)">
       </b-form-select>
     <div class="card-deck top-buffer ml-4">
-    <div v-for="(item, index) in items" v-bind:key="item._id">
+      <div v-for="(item, index) in filteredList()" v-bind:key="item.name">
       <div class="wrapper">
       <div class="card border-light mb-5" style="width:20rem;">
     <img class="card-img-top" src="@/assets/white_shirt.jpeg" alt="Card image top">
@@ -44,8 +44,8 @@
   <p class="lead">{{item.price}} kr</p>
   <a href="#" class="btn" v-on:click="addToCart(item)">Add to cart</a>
   </div>
-   </div>
 </div>
+   </div>
 </div>
 </div>
 </div>
