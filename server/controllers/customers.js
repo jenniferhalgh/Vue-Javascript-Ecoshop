@@ -99,7 +99,7 @@ router.delete('/customers/:id', function(req, res) {
 //Get shopping cart
 router.get('/customers/:id/shoppingCart', function(req, res){
         var id = req.params.id;
-        Customer.findById(id).populate("shoppingCart").exec(function(err, customer){
+        Customer.findById(id).populate("shoppingCart").populate("item").exec(function(err, customer){
         if (err) {return res.status(500).send(err);}
         if (customer == null) {
             return res.status(404).json({"message": "Customer not found"});

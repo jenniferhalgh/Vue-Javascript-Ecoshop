@@ -8,9 +8,8 @@
         <router-link class= "links" to="/">Home </router-link>
         <router-link class= "links" to="/customers">Customers </router-link>
         <router-link class= "links" to="/catalogue">Catalogue </router-link>
-        <router-link class="links" to="/profile"> Profile</router-link>
         <b-navbar-nav class="ml-auto">
-          Profile
+          <router-link class="links" to="/profile"> Profile</router-link>
           <b-nav-item class="nav-item" @click="logout">Logout</b-nav-item>
         </b-navbar-nav>
       </b-navbar>
@@ -82,5 +81,8 @@ export default {
 }
 .navbar{
   background-color: antiquewhite;
+}
+.nav-item{
+  color: #888888 !important;
 }
 </style>
