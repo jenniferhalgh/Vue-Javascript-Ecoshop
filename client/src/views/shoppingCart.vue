@@ -74,17 +74,34 @@ export default {
   },
   methods: {
     removeFromCart(item) {
-      Api.delete(`/customers/${this.customer}/shoppingCart/${item._id}`).then((res) => {
-        this.$bvModal.msgBoxOk('Removed from cart!')
-        console.log(res)
-      },
-      (err) => {
-        console.log(err.response)
-        this.boxOne = ''
-        this.error = err.response.data.error
-        this.$bvModal.msgBoxOk(this.error)
+      const jwttoken = {
+        token: sessionStorage.getItem('token')
       }
-      )
+      fetch('http://localhost:3000/customer', {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          Host: '',
+          token: jwttoken.token
+        }
+      }).then((response) => {
+        return response.json()
+      }).then((responseData) => {
+        this.customer = responseData._id
+        Api.delete(`/customers/${this.customer}/shoppingCart/${item}`).then((res) => {
+          this.$bvModal.msgBoxOk('Removed from cart!')
+        },
+        (err) => {
+          console.log(err.response)
+          this.boxOne = ''
+          this.error = err.response.data.error
+          this.$bvModal.msgBoxOk(this.error)
+        }
+        )
+      }).catch(function (err) {
+        console.log(err)
+      })
     }
   }
 }
