@@ -4,8 +4,13 @@ var morgan = require('morgan');
 var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
+const hateoas = require('express-hateoas-yml');
+const hateoasOptions = {
+    linksFile: path.join(__dirname, '/hateoasLinks.yml')
+};
 
 //var shoppingCartController = require("./controllers/shoppingCarts");
+
 var customerController = require("./controllers/customers");
 var storeController = require("./controllers/stores");
 var itemController = require("./controllers/items");
@@ -26,12 +31,13 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, 
     }
     console.log(`Connected to MongoDB with URI: ${mongoURI}`);
 });
-
 // Create Express app
 var app = express();
+app.use('*', (req, res, next) => hateoas(req, res, next, hateoasOptions));
 // Parse requests of content-type 'application/json'
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 // HTTP request logger
 app.use(morgan('dev'));
 // Enable cross-origin resource sharing for frontend must be registered before api
