@@ -6,6 +6,7 @@ import Customer from './views/Customers.vue'
 import Catalogue from './views/Catalogue.vue'
 import ShoppingCart from './views/shoppingCart.vue'
 import Profile from './views/Profile.vue'
+import Checkout from './views/CheckOut.vue'
 
 Vue.use(Router)
 
@@ -37,6 +38,10 @@ export default new Router({
       path: '/Profile',
       name: 'profile',
       component: Profile
+    }, {
+      path: '/checkout',
+      name: 'checkout',
+      component: Checkout
     }
   ]
 })

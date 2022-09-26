@@ -5,12 +5,12 @@
     </div>
     <div v-if="isLoggedIn">
       <b-navbar type="navbar" class="navigation">
-        <router-link class= "links" to="/">Home </router-link>
-        <router-link class= "links" to="/customers">Customers </router-link>
-        <router-link class= "links" to="/catalogue">Catalogue </router-link>
-        <router-link class="links" to="/profile"> Profile</router-link>
+        <router-link class= "links ml-5" to="/">Home</router-link>
+        <router-link class= "links ml-5" to="/customers">Customers</router-link>
+        <router-link class= "links ml-5" to="/catalogue">Catalogue</router-link>
+        <router-link class= "links ml-5" to="/profile">Profile</router-link>
+        <router-link class= "links ml-5" to="/checkout">Checkout</router-link>
         <b-navbar-nav class="ml-auto">
-          Profile
           <b-nav-item class="nav-item" @click="logout">Logout</b-nav-item>
         </b-navbar-nav>
       </b-navbar>
@@ -61,6 +61,7 @@ export default {
   }
 }
 </script>
+
 <style>
 .app {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -81,6 +82,7 @@ export default {
   color: #000;
 }
 .navbar{
-  background-color: antiquewhite;
+  background-color: rgb(255, 232, 201);
+  margin-top: -10px;
 }
 </style>
