@@ -17,16 +17,21 @@
           v-model="category"
           :options="categoryList"
           class="input ml-5 filter"
-          placeholder="Category"
-          style="width: 10%"
+          style="width: 15%"
           size="sm"
-          v-on:change="getSelectedCategory(category)"
-      >
+          v-on:change="getSelectedCategory(category)">
+      </b-form-select>
+      <b-form-select
+          v-model="store"
+          :options="stores"
+          class="input ml-5 filter"
+          style="width: 15%"
+          size="sm"
+          v-on:change="getSelectedStore(store)">
       </b-form-select>
     <div class="card-deck top-buffer ml-4">
     <div v-for="(item, index) in items" v-bind:key="item._id">
       <div class="wrapper">
-   <div v-for="item in filteredList()" v-bind:key="item.name">
       <div class="card border-light mb-5" style="width:20rem;">
     <img class="card-img-top" src="@/assets/white_shirt.jpeg" alt="Card image top">
 <div class="card-body">
@@ -39,7 +44,6 @@
   <p class="lead">{{item.price}} kr</p>
   <a href="#" class="btn" v-on:click="addToCart(item)">Add to cart</a>
   </div>
-      </div>
    </div>
 </div>
 </div>
@@ -55,7 +59,6 @@ export default {
   name: 'items',
   async mounted() {
     Api.get('/items').then(response => {
-      // this.items = response.data.items
       console.log(response.data.items)
       this.items = response.data.items
       const vm = this
@@ -63,7 +66,7 @@ export default {
         Api.get(`/items/${item._id}`).then(response => {
           console.log(response.data.store.name)
           vm.itemStoreNames.push(response.data.store.name)
-          console.log(this.itemStoreNames)
+          console.log(vm.itemStoreNames)
         })
           .catch(error => {
             console.error(error)
@@ -73,12 +76,22 @@ export default {
       console.error(error)
     })
     console.log(this.itemStoreNames)
+    const vm = this
+    // put store names in stores array for filter
+    Api.get('/stores').then(response => {
+      response.data.stores.forEach(function (store) {
+        vm.stores.push({ value: store.name, text: store.name })
+        console.log(vm.stores)
+      })
+    }).catch(error => {
+      console.error(error)
+    })
   },
   data() {
     return {
       category: '',
       categoryList: [
-        { value: 'Filter', text: 'Filter' },
+        { value: '', text: '--Select category--' },
         { value: 'Second Hand', text: 'Second Hand' },
         { value: 'Vegan', text: 'Vegan' },
         { value: 'Small Creator', text: 'Small Creator' }
@@ -86,7 +99,9 @@ export default {
       items: [],
       customer: '',
       itemStoreNames: [],
-      input: ''
+      input: '',
+      stores: [{ value: '', text: '--Select store--' }],
+      store: ''
     }
   },
   methods: {
@@ -121,52 +136,81 @@ export default {
       })
     },
     getSelectedCategory(category) {
-      if (category === 'Second Hand') {
-        Api.get(`/items/category/${category}`).then((res) => {
-          this.items = res.data
-        },
-        (err) => {
-          console.log(err.response)
-          this.boxOne = ''
-          this.error = err.response.data.error
-          this.$bvModal.msgBoxOk(this.error)
-        }
-        )
-      } else if (category === 'Vegan') {
-        Api.get(`/items/category/${category}`).then((res) => {
-          this.items = res.data
-        },
-        (err) => {
-          console.log(err.response)
-          this.boxOne = ''
-          this.error = err.response.data.error
-          this.$bvModal.msgBoxOk(this.error)
-        }
-        )
-      } else if (category === 'Small Creator') {
-        Api.get(`/items/category/${category}`).then((res) => {
-          this.items = res.data
-        },
-        (err) => {
-          console.log(err.response)
-          this.boxOne = ''
-          this.error = err.response.data.error
-          this.$bvModal.msgBoxOk(this.error)
-        }
-        )
-      } else if (category === 'Filter') {
-        Api.get('/items').then(response => {
-          this.items = response.data.items
-          console.log(response.data.items)
-        })
-          .catch(error => {
-            console.error(error)
+      if (category === '') {
+        const vm = this
+        vm.itemStoreNames = []
+        Api.get('/items').then((res) => {
+          this.items = res.data.items
+          res.data.items.forEach(function (item) {
+            Api.get(`/items/${item._id}`).then(response => {
+              console.log(response.data.store.name)
+              vm.itemStoreNames.push(response.data.store.name)
+              console.log(vm.itemStoreNames)
+            })
+              .catch(error => {
+                console.error(error)
+              })
           })
+        },
+        (err) => {
+          console.log(err.response)
+          this.boxOne = ''
+          this.error = err.response.data.error
+          this.$bvModal.msgBoxOk(this.error)
+        }
+        )
+      } else {
+        const vm = this
+        vm.itemStoreNames = []
+        Api.get(`/items/category/${category}`).then((res) => {
+          this.items = res.data
+          res.data.forEach(function (item) {
+            Api.get(`/items/${item._id}`).then(response => {
+              console.log(response.data.store.name)
+              vm.itemStoreNames.push(response.data.store.name)
+              console.log(vm.itemStoreNames)
+            })
+              .catch(error => {
+                console.error(error)
+              })
+          },
+          (err) => {
+            console.log(err.response)
+            this.boxOne = ''
+            this.error = err.response.data.error
+            this.$bvModal.msgBoxOk(this.error)
+          }
+          )
+        })
       }
     },
     filteredList() {
       return this.items.filter(items => {
         return items.name.toLowerCase().includes(this.input.toLowerCase())
+      })
+    },
+    getSelectedStore(store) {
+      const vm = this
+      const storeFilterList = []
+      vm.itemStoreNames = []
+      Api.get('/stores').then(response => {
+        response.data.stores.forEach(function (shop) {
+          if (shop.name === store) {
+            shop.items.forEach(function (itemId) {
+              Api.get(`/items/${itemId}`).then(response => {
+                storeFilterList.push(response.data)
+                vm.itemStoreNames.push(shop.name)
+              }).catch(error => {
+                console.error(error)
+              })
+            })
+            vm.items = storeFilterList
+            console.log(vm.items)
+            console.log(storeFilterList)
+          }
+        })
+      }).catch(error => {
+        console.error(error)
       })
     }
   }
