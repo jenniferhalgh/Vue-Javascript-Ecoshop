@@ -35,6 +35,7 @@ router.post("/stores", function(req, res){
 
 //Delete a store
 router.delete('/stores/:id', function(req, res) {
+    Item.remove({store: id}).exec();
     var id = req.params.id;
     Store.findOneAndDelete({_id: id}, function(err, store) {
         if (err) { return res.status(500).send(err);}
@@ -44,6 +45,22 @@ router.delete('/stores/:id', function(req, res) {
         res.status(204).json(store);
     });
 });
+
+//Delete all stores
+router.delete("/stores", function (req, res) {
+    Item.deleteMany(function (err, item) {
+        if (err) {
+          return res.status(500).send(err);
+        }
+        res.status(200).json(item);
+      });
+    Store.deleteMany(function (err, store) {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      res.status(200).json(store);
+    });
+  });
 
 //Update partial info of a specific store
 router.patch("/stores/:id", (req, res) => {

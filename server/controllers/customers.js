@@ -97,6 +97,16 @@ router.delete('/customers/:id', function(req, res) {
 
 });
 
+//Delete all customers
+router.delete("/customers", function (req, res) {
+    Customer.deleteMany(function (err, customer) {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      res.status(200).json(customer);
+    });
+  });
+
 //Get shopping cart
 router.get('/customers/:id/shoppingCart', function(req, res){
         var id = req.params.id;
