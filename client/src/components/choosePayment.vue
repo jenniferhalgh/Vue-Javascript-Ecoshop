@@ -1,29 +1,62 @@
 <template>
+
   <div>
+    <!-- MY INFORMATION -->
     <ul class="list-group my-info mt-5 ml-5">
-  <h4 class="list-group-item">My information</h4>
-  <li class="list-group-item">First name: {{customer.name.firstname}}</li>
-  <li class="list-group-item">Last name: {{customer.name.lastname}}</li>
-  <li class="list-group-item">Personal number: {{customer.personalNumber}}</li>
-  <li class="list-group-item">Phone number: {{customer.phone}}</li>
-</ul>
-<h4 class= "ml-5 mt-5">Payment options</h4>
-<div class="card-deck mt-4 ml-1">
-    <div v-for="payment in paymentInfos" v-bind:key="payment._id">
-    <div class="card ml-5" style="width: 18rem;">
-  <div class="card-header">
-    Card
-  </div>
-  <ul class="list-group payment list-group-flush">
-    <div>
-      <li class="list-group-item">Name on card: {{payment.cardInfo.nameOnCard}}</li>
-      <li class="list-group-item">Card number: {{payment.cardInfo.cardNum}}</li>
-      <li class="list-group-item">cvv: {{payment.cardInfo.cvv}}</li>
-      <a href="#" class="btn choose btn-primary">Choose</a>
-      </div>
-  </ul>
+      <h4 class="list-group-item">My information</h4>
+      <li class="list-group-item">First name: {{customer.name.firstname}}</li>
+      <li class="list-group-item">Last name: {{customer.name.lastname}}</li>
+      <li class="list-group-item">Personal number: {{customer.personalNumber}}</li>
+      <li class="list-group-item">Phone number: {{customer.phone}}</li>
+    </ul>
+
+    <!-- PAYMENT OPTIONS -->
+  <h4 class= "ml-5 mt-5">Payment options </h4>
+  <div class="card-deck mt-4 ml-1">
+
+    <!-- BUTTON CARD -->
+    <div v-if="!hasChosen">
+      <div class="card addPayment ml-5 border-0" style="width: 18rem;">
+      <button class="btn addPayment btn-primary" :pressed="false" variant="success" v-on:click="addNewPayment=true">ADD NEW CARD</button>
 </div>
+    </div>
+
+<!-- ALL CARDS -->
+        <div v-for="payment in paymentInfos" v-bind:key="payment._id">
+    <div class="card ml-5 mb-5" style="width: 18rem;">
+      <div class="card-header">Card</div>
+      <ul class="list-group payment list-group-flush">
+        <div>
+          <li class="list-group-item">Name on card: {{payment.cardInfo.nameOnCard}}</li>
+          <li class="list-group-item">Card number: {{payment.cardInfo.cardNum}}</li>
+          <li class="list-group-item">cvv: {{payment.cardInfo.cvv}}</li>
+      <div v-if="!hasChosen">
+          <b-button href="#" class="btn choose btn-primary" :pressed="false" variant="success" v-on:click="chosenOption(payment) ">Choose</b-button>
+      </div>
+      <div v-else>
+        <div class="card-header">CHOSEN</div>
+      </div>
+          </div>
+      </ul>
   </div>
+  </div>
+
+  <!--ADD NEW CARD INPUTS-->
+  </div>
+  <div v-if="addNewPayment">
+    <h6 class="ml-5"> Add new card: </h6>
+<form class="ml-5 form mt-4" @submit.prevent="addPayment">
+        <div>
+        <input type="text" class="form-control" v-model="nameOnCard" placeholder="Name on card" />
+        </div>
+        <div>
+        <input type="text" class="form-control" v-model="cardNum" placeholder="Card number" />
+        </div>
+        <div>
+        <input type="text" class="form-control" v-model="cvv" placeholder="cvv" />
+        </div>
+        <button type="submit" class="btn btn-primary" v-on:click="addNewPayment=false, addPayment()">Add</button>
+    </form>
   </div>
   </div>
 
@@ -64,9 +97,14 @@ export default {
   data() {
     return {
       customer: {},
-      itemNames: [],
       paymentInfos: [],
-      itemsInCart: false
+      chosenPayment: [],
+      hasChosen: false,
+      addNewPayment: false,
+      nameOnCard: '',
+      cardNum: '',
+      cvv: '',
+      error: ''
     }
   },
   methods: {
@@ -99,6 +137,59 @@ export default {
       }).catch(function (err) {
         console.log(err)
       })
+    },
+    chosenOption(payment) {
+      this.hasChosen = true
+      Api.get(`/customers/${this.customer._id}/paymentInfos/${payment._id}`).then((res) => {
+        this.paymentInfos = []
+        this.paymentInfos.push(res.data[0])
+        console.log(this.paymentInfos)
+      },
+      (err) => {
+        console.log(err.response)
+        this.boxOne = ''
+        this.error = err.response.data.error
+        this.$bvModal.msgBoxOk(this.error)
+      }
+      )
+    },
+    addPayment() {
+      const jwttoken = {
+        token: sessionStorage.getItem('token')
+      }
+      fetch('http://localhost:3000/customer', {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          Host: '',
+          token: jwttoken.token
+        }
+      }).then((response) => {
+        return response.json()
+      }).then((responseData) => {
+        this.customer = responseData
+        const newCard = {
+          cardInfo: {
+            nameOnCard: this.nameOnCard,
+            cardNum: this.cardNum,
+            cvv: this.cvv
+          },
+          customer: this.customer._id
+        }
+        Api.post(`/customers/${this.customer._id}/paymentInfos`, newCard).then(response => {
+          console.log(response.data)
+          this.paymentInfos = []
+          this.paymentInfos.push(newCard)
+          this.hasChosen = true
+          this.$bvModal.msgBoxOk('New card added')
+        })
+      }).catch(error => {
+        this.error = error.response.data.error
+        console.error(error)
+        console.log(this.error)
+        this.$bvModal.msgBoxOk(this.error)
+      })
     }
   }
 }
@@ -124,4 +215,15 @@ export default {
       width: 100%;
     }
 
+    .card-header{
+      justify-content: center;
+    }
+.addPayment{
+  height: 100%;
+  margin-bottom: 17%;
+}
+
+.form{
+  width: 50%;
+}
     </style>

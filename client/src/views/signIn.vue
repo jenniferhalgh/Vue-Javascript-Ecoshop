@@ -48,7 +48,6 @@ export default {
       },
       (err) => {
         console.log(err.response)
-        this.boxOne = ''
         this.error = err.response.data.error
         this.$bvModal.msgBoxOk(this.error)
       })
