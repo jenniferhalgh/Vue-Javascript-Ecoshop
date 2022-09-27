@@ -33,14 +33,6 @@ export default {
       Api.get(`/customers/${this.customer}/orders`).then(response => {
         this.orders = response.data
         console.log(response.data)
-        this.items = response.data.items
-        let i = 0
-        while (i < this.items.length) {
-          this.item = console.log(this.items[i])
-          Api.get(`/items/${this.item}`)
-          this.oItem = response.data
-          i++
-        }
       }).catch(function (err) {
         console.log(err)
       })

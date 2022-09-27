@@ -5,6 +5,7 @@ const ShoppingCart = require("../models/shoppingCart");
 const Item = require("../models/item");
 const Order = require("../models/order");
 var router = express.Router();
+const bcrypt = require("bcryptjs")
 
 //List all customers
 router.get('/customers', function(req, res){
@@ -53,7 +54,7 @@ router.patch("/customers/:id", (req, res) => {
             },
             account: {
               username: req.body.account.username,
-              password: req.body.account.password
+              password: bcrypt.hashSync(req.body.account.password, 10)
             },
             email: req.body.email,
             phone: req.body.phone,
