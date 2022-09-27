@@ -1,20 +1,22 @@
 <template>
     <div>
       <getDropdownCart/>
-<h1>Profile</h1>
-<img src="@/assets/whiteshirt.jpeg" alt="Profile pic">
+<h1>Profile:</h1>
 <display/>
 <router-link class="links" to="/editProfile">
 <button class="link; button" to="/editProfile">Edit Profile</button>
 </router-link>
+<button class="link; button" variant="primary" v-on:click="deleteCustomer()">Delete Account</button>
 <get-order/>
 </div>
 </template>
+
 <script>
+// @ is an alias to /src
 import Display from '../components/display.vue'
 import GetOrder from '../components/getOrder.vue'
 import getDropdownCart from '../components/getDropdownCart.vue'
-// @ is an alias to /src
+import { Api } from '@/Api'
 
 export default {
   name: 'profile',
@@ -43,8 +45,22 @@ export default {
     return {
       customer: {}
     }
+  },
+  methods: {
+    deleteCustomer() {
+      if (confirm('Do you really want to delete your account ?')) {
+        Api.delete(`/customers/${this.customer._id}`)
+          .then((res) => {
+            localStorage.clear()
+            console.log(res)
+            this.$bvModal.msgBoxOk('Account deleted ')
+          }).catch((error) => {
+            console.log(error)
+          })
+        this.$router.push('/Login')
+      }
+    }
   }
-
 }
 </script>
 
