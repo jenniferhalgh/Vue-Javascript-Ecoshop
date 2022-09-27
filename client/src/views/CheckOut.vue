@@ -22,15 +22,6 @@ export default {
   },
   data() {
     return {
-      category: null,
-      categoryList: [
-        { value: null, text: 'Filter' },
-        { value: 'Second Hand', text: 'Second Hand' },
-        { value: 'Vegan', text: 'Vegan' },
-        { value: 'Small Creator', text: 'Small Creator' }
-      ],
-      items: [],
-      shoppingCart: []
     }
   },
   methods: {

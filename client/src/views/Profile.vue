@@ -1,5 +1,6 @@
 <template>
     <div>
+      <getDropdownCart/>
 <h1>Profile</h1>
 <img src="@/assets/whiteshirt.jpeg" alt="Profile pic">
 <button class="button button">Edit Profile</button>
@@ -10,6 +11,7 @@
 <script>
 import Display from '../components/display.vue'
 import GetOrder from '../components/getOrder.vue'
+import getDropdownCart from '../components/getDropdownCart.vue'
 // @ is an alias to /src
 
 export default {
@@ -34,7 +36,7 @@ export default {
       console.log(err)
     })
   },
-  components: { Display, GetOrder },
+  components: { Display, GetOrder, getDropdownCart },
   data() {
     return {
       customer: {}
