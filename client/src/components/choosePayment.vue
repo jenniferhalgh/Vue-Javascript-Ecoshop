@@ -17,7 +17,7 @@
     <!-- BUTTON CARD -->
     <div v-if="!hasChosen">
       <div class="card addPayment ml-5 border-0" style="width: 18rem;">
-      <button class="btn addPayment btn-primary" :pressed="false" variant="success" v-on:click="hasChosen=true, addNewPayment=true">ADD NEW CARD</button>
+      <button class="btn addPayment btn-primary" :pressed="false" variant="success" v-on:click="addNewPayment=true">ADD NEW CARD</button>
 </div>
     </div>
 
@@ -42,9 +42,10 @@
   </div>
 
   <!--ADD NEW CARD INPUTS-->
+  </div>
   <div v-if="addNewPayment">
     <h6 class="ml-5"> Add new card: </h6>
-<form class="ml-5 form" @submit.prevent="addPayment">
+<form class="ml-5 form mt-4" @submit.prevent="addPayment">
         <div>
         <input type="text" class="form-control" v-model="nameOnCard" placeholder="Name on card" />
         </div>
@@ -56,7 +57,6 @@
         </div>
         <button type="submit" class="btn btn-primary" v-on:click="addNewPayment=false, addPayment()">Add</button>
     </form>
-  </div>
   </div>
   </div>
 
@@ -185,7 +185,9 @@ export default {
           this.$bvModal.msgBoxOk('New card added')
         })
       }).catch(error => {
+        this.error = error.response.data.error
         console.error(error)
+        console.log(this.error)
         this.$bvModal.msgBoxOk(this.error)
       })
     }

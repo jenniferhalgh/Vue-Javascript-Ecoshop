@@ -6,6 +6,10 @@ var PaymentInfo = require("../models/paymentInfo");
 
 //create customer's payment information
 router.post("/customers/:id/paymentInfos", function(req, res){
+
+    if(req.body.cardInfo.nameOnCard  == ''||req.body.cardInfo.cardNum  == ''||req.body.cardInfo.cvv == ''){
+        return res.status(400).json({title: 'Empty fields', error: 'All inputs required!'})
+    } else {
             var id = req.params.id;
             Customer.findById(id, function(err, customer){
                 if (err) {return res.status(500).send(err);}
@@ -22,7 +26,7 @@ router.post("/customers/:id/paymentInfos", function(req, res){
                 customer.save();
                 return res.status(201).json(customer.paymentInfo);
             });
-        });
+        }});
 
 //get all of a customer's payment information
 router.get('/customers/:id/paymentInfos', function(req, res){
