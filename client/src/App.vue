@@ -16,7 +16,7 @@
       </b-navbar>
     </div>
     <div v-else>
-      <router-link class= "links" to="/login"> </router-link>
+      <router-link class= "links" to="/signIn"> </router-link>
     </div>
     <router-view/>
   </div>
@@ -30,13 +30,15 @@ export default {
   data() {
     return {
       isLoggedIn: false,
-      customer: {}
+      customer: {},
+      isAdmin: false
     }
   },
+  components: { },
   mounted() {
     if (sessionStorage.getItem('token') === null) {
       this.isLoggedIn = false
-      this.$router.push('/login')
+      this.$router.push('/signIn')
     } else {
       this.isLoggedIn = true
       this.getCustomer()
@@ -48,19 +50,43 @@ export default {
       this.isLoggedIn = false
       this.customer = {}
       sessionStorage.clear()
-      this.$router.push('/login')
+      this.$router.push('/signUp')
       location.reload()
     },
     getCustomer() {
-      Api.get('/customer', {
-        headers: { token: sessionStorage.getItem('token') }
-      }).then((res) => {
-        this.customer = res.data.customer
-        console.log(res.data.customer)
+      const jwttoken = {
+        token: sessionStorage.getItem('token')
+      }
+      fetch('http://localhost:3000/customer', {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          Host: '',
+          token: jwttoken.token
+        }
+      }).then((response) => {
+        return response.json()
+      }).then((responseData) => {
+        this.customer = responseData
+      }).catch(function (err) {
+        console.log(err)
+      })
+    },
+    deleteCustomers() {
+      Api.delete('/customers').then((res) => {
+        this.$bvModal.msgBoxOk('All Customers Are Deleted')
+      },
+      (err) => {
+        console.log(err.response)
+        this.boxOne = ''
+        this.error = err.response.data.error
+        this.$bvModal.msgBoxOk(this.error)
       })
     }
   }
 }
+
 </script>
 
 <style>

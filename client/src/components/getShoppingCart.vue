@@ -1,16 +1,17 @@
 <template>
-    <div>
-      <div v-if="itemsInCart">
-        <div v-for="(item, index) in shoppingCart" v-bind:key="item._id">
+  <div>
+    <div v-if="itemsInCart">
+      <div v-for="(item, index) in shoppingCart" v-bind:key="item._id">
           <p>{{itemNames[index]}}</p>
+          <p>{{itemPrice[index]}} kr</p>
           <a href="#" class="btn btn-light" v-on:click="removeFromCart(item)">Remove From Cart</a>
-        </div>
-      </div>
-      <div v-else>
-        <p>No Items in Cart</p>
       </div>
     </div>
-    </template>
+    <div v-else>
+      <p>No Items in Cart</p>
+    </div>
+  </div>
+</template>
 
 <script>
 // @ is an alias to /src
@@ -42,6 +43,8 @@ export default {
         response.data.items.forEach(function (item) {
           Api.get(`/items/${item}`).then(response => {
             vm.itemNames.push(response.data.name)
+            vm.itemPrice.push(response.data.price)
+            vm.itemQuantity.push(response.data.quantity)
           })
             .catch(error => {
               console.error(error)
@@ -62,7 +65,9 @@ export default {
       customer: '',
       itemNames: [],
       shoppingCart: [],
-      itemsInCart: false
+      itemsInCart: false,
+      itemPrice: [],
+      itemQuantity: []
     }
   },
   methods: {
@@ -100,11 +105,11 @@ export default {
 }
 </script>
 
-    <style>
-    .p{
-    text-align: right;
-    }
-    .a{
-    background: #99ae71 !important;
-    }
-    </style>
+  <style>
+  .p{
+  text-align: right;
+  }
+  .a{
+  background: #99ae71 !important;
+  }
+  </style>

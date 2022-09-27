@@ -2,6 +2,9 @@
   <div>
     <form @submit.prevent="handleSubmit">
         <h1> Sign up </h1>
+        <router-link class="links ml-5" to="/signIn">
+        <button type="button" class="btn">Sign In</button>
+      </router-link>
         <div>
         <input type="text" class="form-control" v-model="firstname" placeholder="First name" />
         </div>
@@ -45,6 +48,7 @@ import { Api } from '@/Api'
 
 export default {
   name: 'signUp',
+  components: { },
   data() {
     return {
       customerData: {
@@ -86,8 +90,7 @@ export default {
       }
       Api.post('/customers', newCustomer).then((res) => {
         console.log(res)
-        this.$bvModal.msgBoxOk('Account created.')
-        this.$router.push('/')
+        this.$router.push('/signIn')
         sessionStorage.setItem('token', res.data.token)
       },
       (err) => {

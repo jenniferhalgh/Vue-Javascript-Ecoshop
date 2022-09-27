@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-cloak>
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
       <p style="color:#99ae71; font-size: 40px">SHOPPING CART </p>
     </div>
@@ -34,5 +34,8 @@ export default {
   }
   .a{
   background: #99ae71 !important;
+  }
+  [v-cloak]{
+    display: none;
   }
   </style>
