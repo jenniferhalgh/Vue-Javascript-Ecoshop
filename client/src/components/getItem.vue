@@ -190,6 +190,30 @@ export default {
       })
     },
     getSelectedStore(store) {
+      if (store === '') {
+        const vm = this
+        vm.itemStoreNames = []
+        Api.get('/items').then((res) => {
+          this.items = res.data.items
+          res.data.items.forEach(function (item) {
+            Api.get(`/items/${item._id}`).then(response => {
+              console.log(response.data.store.name)
+              vm.itemStoreNames.push(response.data.store.name)
+              console.log(vm.itemStoreNames)
+            })
+              .catch(error => {
+                console.error(error)
+              })
+          })
+        },
+        (err) => {
+          console.log(err.response)
+          this.boxOne = ''
+          this.error = err.response.data.error
+          this.$bvModal.msgBoxOk(this.error)
+        }
+        )
+      }
       const vm = this
       const storeFilterList = []
       vm.itemStoreNames = []
