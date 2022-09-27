@@ -38,9 +38,10 @@ export default {
         password: this.password
       }
       Api.post('/customers/login', customer).then((res) => {
-        this.$router.push('/')
         sessionStorage.setItem('token', res.data.token)
         this.$bvModal.msgBoxOk('Successfully logged in')
+        this.$router.push('/')
+        location.reload()
       },
       (err) => {
         console.log(err.response)

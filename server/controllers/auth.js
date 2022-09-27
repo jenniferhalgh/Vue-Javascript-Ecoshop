@@ -20,8 +20,11 @@ router.post("/customers", async (req, res) => {
 
   if(!registeredCustomer){
 var shoppingCart = new ShoppingCart(req.body);
-}
-let jwttoken = jwt.sign({ customerId: req.body._id}, 'token_key');
+
+let jwttoken = jwt.sign({ customer_Id: req.body._id}, 'token_key', {
+  expiresIn: "2h"
+});
+
     const newCustomer = new Customer({
     
         name: {
@@ -50,6 +53,7 @@ let jwttoken = jwt.sign({ customerId: req.body._id}, 'token_key');
           console.log(shoppingCart);
         })
       return res.status(201).send(newCustomer);
+  }
 }
 )
 

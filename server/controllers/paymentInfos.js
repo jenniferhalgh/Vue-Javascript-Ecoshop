@@ -52,8 +52,9 @@ router.delete('/customers/:customer_id/paymentInfos/:paymentInfos_id', function(
     PaymentInfo.findOneAndDelete({_id: req.params.paymentInfos_id},function(err, paymentInfo) {
         if (err) { return res.status(500).send(err);}
         if (paymentInfo == null) {
-            return res.status(404).json({"message": "Payment Information not found"});
-        }});
+            return res.status(404).json({"message": "Payment Information not found"});   
+        }
+    
     Customer.findByIdAndUpdate({ _id: req.params.customer_id },{ $pull: { PaymentInfo: req.params.paymentInfos_id  } }, 
         function(err, customer) {
         if (err) { return res.status(500).send(err);}
@@ -62,6 +63,9 @@ router.delete('/customers/:customer_id/paymentInfos/:paymentInfos_id', function(
         }
         res.status(204).json(customer.paymentInfo);
     });
+    });
+
+    
 });
 //delete all payment information of a customer
 router.delete("/customers/:customer_id/paymentInfos", function (req, res) {

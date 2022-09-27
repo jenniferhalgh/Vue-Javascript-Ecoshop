@@ -86,14 +86,14 @@ export default {
       }
       Api.post('/customers', newCustomer).then((res) => {
         console.log(res)
+        this.$bvModal.msgBoxOk('Account created.')
         this.$router.push('/')
         sessionStorage.setItem('token', res.data.token)
-        this.$bvModal.msgBoxOk('Account created.')
       },
       (err) => {
         console.log(err.response)
         this.boxOne = ''
-        this.error = err.res.data.error
+        this.error = err.response.data.error
         this.$bvModal.msgBoxOk(this.error)
       }
       )
