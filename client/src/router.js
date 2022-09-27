@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import LogIn from './views/LogIn.vue'
+import signIn from './views/signIn.vue'
+import signUp from './views/signUp.vue'
 import Customer from './views/Customers.vue'
 import Catalogue from './views/Catalogue.vue'
 import ShoppingCart from './views/shoppingCart.vue'
@@ -20,9 +21,13 @@ export default new Router({
       name: 'home',
       component: Home
     }, {
-      path: '/LogIn',
-      name: 'logIn',
-      component: LogIn
+      path: '/signIn',
+      name: 'signIn',
+      component: signIn
+    }, {
+      path: '/signUp',
+      name: 'signUp',
+      component: signUp
     }, {
       path: '/customers',
       name: 'customers',
