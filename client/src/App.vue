@@ -5,11 +5,12 @@
     </div>
     <div v-if="isLoggedIn">
       <b-navbar type="navbar" class="navigation">
-        <router-link class= "links ml-5" to="/">Home </router-link>
-        <router-link class= "links ml-5" to="/customers">Customers </router-link>
-        <router-link class= "links ml-5" to="/catalogue">Catalogue </router-link>
+        <router-link class= "links ml-5" to="/" @click="location.reload()">Home </router-link>
+        <router-link class= "links ml-5" to="/customers" @click="location.reload()">Customers </router-link>
+        <router-link class= "links ml-5" to="/catalogue" @click="location.reload()">Catalogue </router-link>
+        <router-link class= "links ml-5" to="/checkout" @click="location.reload()">Checkout </router-link>
         <b-navbar-nav class="ml-auto">
-          <router-link class="links ml-5" to="/profile"> Profile</router-link>
+          <router-link class="links ml-5" to="/profile" @click="location.reload()">Profile</router-link>
           <b-nav-item class="links ml-5" @click="logout">Logout</b-nav-item>
         </b-navbar-nav>
       </b-navbar>
@@ -48,6 +49,7 @@ export default {
       this.customer = {}
       sessionStorage.clear()
       this.$router.push('/login')
+      location.reload()
     },
     getCustomer() {
       Api.get('/customer', {
