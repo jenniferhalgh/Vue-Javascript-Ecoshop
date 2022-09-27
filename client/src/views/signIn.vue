@@ -2,6 +2,9 @@
   <div>
     <form @submit.prevent="handleSubmit">
         <h1> Sign in </h1>
+        <router-link class="links ml-5" to="/signUp">
+        <button type="button" class="btn">Sign Up</button>
+      </router-link>
         <div>
         <input type="email" class="form-control" v-model="email" placeholder="Email" />
         </div>
