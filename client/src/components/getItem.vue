@@ -1,15 +1,6 @@
 <template>
   <div>
-    <router-link class="link" to="/shoppingCart">
-        <div class="dropdown">
-        <b-button class="shopingcart-dropdown"> Shopping Cart</b-button>
-        <div class="shoppingcart-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
-        </div>
-        </div>
-      </router-link>
+    <getDropdownCart/>
       <div class="search-wrapper">
     <b-form-input type="text" v-model="input" placeholder="Search For Items" style="width: 50%"></b-form-input>
     </div>
@@ -54,9 +45,11 @@
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
+import getDropdownCart from '../components/getDropdownCart.vue'
 
 export default {
   name: 'items',
+  components: { getDropdownCart },
   async mounted() {
     Api.get('/items').then(response => {
       console.log(response.data.items)
