@@ -1,9 +1,9 @@
 <template>
     <div>
     <h1>Order History</h1>
-    <p>{{orders}}</p>
-    <div v-for="order in orders" v-bind:key="order._id">
-    <p>hello</p>
+    <div class="block" v-for="order in orders" v-bind:key="order._id">
+        <h6> id:{{order._id}}</h6>
+        <p> Total cost: {{order.total_sum}} kr</p>
     </div>
 </div>
 </template>
@@ -30,10 +30,17 @@ export default {
       return response.json()
     }).then((responseData) => {
       this.customer = responseData._id
-      const vm = this
       Api.get(`/customers/${this.customer}/orders`).then(response => {
-        vm.orders = response.data
+        this.orders = response.data
         console.log(response.data)
+        this.items = response.data.items
+        let i = 0
+        while (i < this.items.length) {
+          this.item = console.log(this.items[i])
+          Api.get(`/items/${this.item}`)
+          this.oItem = response.data
+          i++
+        }
       }).catch(function (err) {
         console.log(err)
       })
@@ -44,9 +51,23 @@ export default {
   data() {
     return {
       customer: '',
-      orders: {}
+      orders: {},
+      oItem: {}
     }
   }
 
 }
 </script>
+
+<style scoped>
+.green-text{
+    color:#99ae71;
+    text-align: center;
+    font-size:160%
+}
+.block{
+    background-color:#cad7b3;
+    border-block: solid;
+writing-mode: horizontal-tb;
+}
+</style>

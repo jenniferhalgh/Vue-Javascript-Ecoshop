@@ -1,11 +1,9 @@
 <template>
     <div class="text">
-          <div style="display: flex">
-            <p class="attribute">First Name:</p>
-            <p>{{ customer.name.firstname }}</p>
+          <div style="text-align:center">
+            <h3> {{customer.name.firstname}} {{customer.name.lastname}}</h3>
           </div>
-          <div style="display: flex">
-            <p class="attribute">Email:</p>
+          <div class="green-text">
             <p>{{ customer.email }}</p>
           </div>
           </div>
@@ -44,3 +42,9 @@ export default {
 
 }
 </script>
+<style scoped>
+    .green-text{
+        text-align: center;
+        font-weight: 100;
+    }
+    </style>
