@@ -1,9 +1,10 @@
 <template>
     <div>
-<h1>Profile</h1>
 <img src="@/assets/whiteshirt.jpeg" alt="Profile pic">
-<button class="button button">Edit Profile</button>
 <display/>
+<router-link class="links" to="/editProfile">
+<button class="link; button" to="/editProfile">Edit Profile</button>
+</router-link>
 <get-order/>
 </div>
 </template>
@@ -50,6 +51,8 @@ border-radius: 50%;
 display: block;
 margin-left: auto;
 margin-right: auto;
+width:150px;
+height:150px;
 }
 .button {
 background-color: #99ae71;

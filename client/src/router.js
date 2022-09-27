@@ -6,6 +6,7 @@ import Customer from './views/Customers.vue'
 import Catalogue from './views/Catalogue.vue'
 import ShoppingCart from './views/shoppingCart.vue'
 import Profile from './views/Profile.vue'
+import EditProfile from '@/views/EditProfile.vue'
 
 Vue.use(Router)
 
@@ -37,6 +38,10 @@ export default new Router({
       path: '/Profile',
       name: 'profile',
       component: Profile
+    }, {
+      path: '/editProfile',
+      name: 'editProfile',
+      component: EditProfile
     }
   ]
 })
