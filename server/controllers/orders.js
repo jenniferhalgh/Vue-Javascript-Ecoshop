@@ -46,6 +46,20 @@ router.get('/customers/:customers_id/orders', function(req, res){
     if (customer == null) {
         return res.status(404).json({"message": "Customer not found"});
     }
+
+
+    res.status(200).send(customer.orders);
+    })
+});
+
+//get customer's specific order
+router.get('/customers/:customers_id/orders/:order_id', function(req, res){
+    var id = req.params.customers_id;
+    Customer.findById(id).populate({path: "orders", match: {_id: req.params.order_id} }).exec(function(err, customer){
+    if (err) {return res.status(500).send(err);}
+    if (customer == null) {
+        return res.status(404).json({"message": "Customer not found"});
+    }
     res.status(200).send(customer.orders);
     })
 });
