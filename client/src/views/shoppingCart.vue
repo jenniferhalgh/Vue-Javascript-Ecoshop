@@ -18,6 +18,12 @@ import getShoppingCart from '../components/getShoppingCart.vue'
 export default {
   name: 'shopping-cart',
   components: { getShoppingCart },
+  created() {
+    if (sessionStorage.getItem('token') == null) {
+      this.$bvModal.msgBoxOk('Unauthorized: Please log in')
+      this.$router.push('/login')
+    }
+  },
   methods: {
   },
   data() {

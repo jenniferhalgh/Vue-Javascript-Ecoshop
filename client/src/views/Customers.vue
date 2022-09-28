@@ -28,6 +28,12 @@ export default {
         console.error(error)
       })
   },
+  created() {
+    if (sessionStorage.getItem('token') == null) {
+      this.$bvModal.msgBoxOk('Unauthorized: Please log in')
+      this.$router.push('/login')
+    }
+  },
   data() {
     return {
       customers: []
