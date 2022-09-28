@@ -4,6 +4,7 @@ const Item = require("../models/item");
 const Customer = require("../models/customer");
 var Order = require("../models/order");
 const Store = require("../models/store");
+const ShoppingCart = require("../models/shoppingCart");
 
 
 //create customer's order
@@ -21,6 +22,17 @@ router.post("/customers/:id/orders", function(req, res){
             if (err) {return res.status(500)}
             console.log(order);}
         );
+        ShoppingCart.findById({ _id: customer.shoppingCart}, function(err, shoppingCart) {
+            if (err) { return res.status(500).send(err);}
+            if (shoppingCart == null) {
+                return res.status(404).json({"message": "No shopping cart"});
+            }
+            while(shoppingCart.items.length > 0) {
+                shoppingCart.items.pop();
+            }
+            shoppingCart.save()
+        })
+        
         customer.orders.push(order);
         customer.save();
         return res.status(201).json(customer.orders);
