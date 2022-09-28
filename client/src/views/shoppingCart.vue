@@ -9,7 +9,7 @@
         <button type="button" class="btn btn-successs">Checkout</button>
       </router-link>
   </div>
-  </template>
+</template>
 
 <script>
 // @ is an alias to /src
