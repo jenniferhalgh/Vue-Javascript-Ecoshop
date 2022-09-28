@@ -8,7 +8,6 @@ import Catalogue from './views/Catalogue.vue'
 import ShoppingCart from './views/shoppingCart.vue'
 import Profile from './views/Profile.vue'
 import EditProfile from '@/views/EditProfile.vue'
-import Checkout from './views/CheckOut.vue'
 import CreateStore from './views/createStore.vue'
 import PaymentMethod from './views/choosePayment.vue'
 import ShoppingCartCheckOut from './components/getShoppingCart.vue'
@@ -52,10 +51,6 @@ export default new Router({
       path: '/editProfile',
       name: 'editProfile',
       component: EditProfile
-    }, {
-      path: '/checkout',
-      name: 'checkout',
-      component: Checkout
     },
     {
       path: '/createStore',
