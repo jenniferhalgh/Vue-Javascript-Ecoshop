@@ -52,8 +52,9 @@ router.get('/customers/:customers_id/paymentInfos/:paymentInfos_id', function(re
     })
 });
 //delete customer's payment information
-router.delete('/customers/:customer_id/paymentInfos/:paymentInfos_id', function(req, res) {
-    PaymentInfo.findOneAndDelete({_id: req.params.paymentInfos_id},function(err, paymentInfo) {
+router.delete('/customers/:customer_id/paymentInfos/:paymentInfos_id', async function(req, res) {
+    
+     await PaymentInfo.findOneAndDelete({_id: req.params.paymentInfos_id}, function(err, paymentInfo) {
         if (err) { return res.status(500).send(err);}
         if (paymentInfo == null) {
             return res.status(404).json({"message": "Payment Information not found"});   
