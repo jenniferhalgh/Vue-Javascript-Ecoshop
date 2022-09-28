@@ -10,6 +10,12 @@ import items from '../components/getItem.vue'
 export default {
   name: 'catalogue',
   components: { items },
+  created() {
+    if (sessionStorage.getItem('token') == null) {
+      this.$bvModal.msgBoxOk('Unauthorized: Please log in')
+      this.$router.push('/login')
+    }
+  },
   data() {
   },
   methods: {

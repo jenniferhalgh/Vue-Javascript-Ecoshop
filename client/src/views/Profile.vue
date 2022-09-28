@@ -20,6 +20,7 @@ import { Api } from '@/Api'
 
 export default {
   name: 'profile',
+  components: { Display, GetOrder, getDropdownCart },
   mounted() {
     const jwttoken = {
       token: sessionStorage.getItem('token')
@@ -40,7 +41,12 @@ export default {
       console.log(err)
     })
   },
-  components: { Display, GetOrder, getDropdownCart },
+  created() {
+    if (sessionStorage.getItem('token') == null) {
+      this.$bvModal.msgBoxOk('Unauthorized: Please log in')
+      this.$router.push('/login')
+    }
+  },
   data() {
     return {
       customer: {}
