@@ -5,15 +5,14 @@
     </div>
     <div v-if="isLoggedIn">
       <b-navbar type="navbar" class="navigation">
-        <router-link class= "links ml-5" to="/" @click="location.reload()">Home </router-link>
+        <router-link class= "links ml-5 mb-2" to="/" @click="location.reload()">Home </router-link>
         <div v-if="customer.email === 'admin@gmail.com'">
         <router-link class= "links ml-5" to="/admin" @click="location.reload()">Admin Page </router-link>
       </div>
-        <router-link class= "links ml-5" to="/catalogue" @click="location.reload()">Catalogue </router-link>
-        <router-link class= "links ml-5" to="/checkout" @click="location.reload()">Checkout </router-link>
+        <router-link class= "links ml-5 mb-2" to="/catalogue" @click="location.reload()">Catalogue </router-link>
         <b-navbar-nav class="ml-auto">
-          <router-link class="links ml-5" to="/profile" @click="location.reload()">Profile</router-link>
-          <b-nav-item class="links ml-5" @click="logout">Logout</b-nav-item>
+          <router-link class="links ml-5 profile" to="/profile" @click="location.reload()">Profile</router-link>
+          <b-nav-item class="links ml-5 mb-2" @click="logout">Logout</b-nav-item>
         </b-navbar-nav>
       </b-navbar>
     </div>
@@ -117,4 +116,9 @@ export default {
 .nav-item{
   color: #888888 !important;
 }
+
+.profile{
+  margin-top: 20px !important;
+}
+
 </style>
