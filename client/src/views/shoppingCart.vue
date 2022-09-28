@@ -1,5 +1,6 @@
 <template>
   <div v-cloak>
+    <checkout />
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
       <p style="color:#99ae71; font-size: 40px">SHOPPING CART </p>
     </div>
@@ -14,10 +15,11 @@
 <script>
 // @ is an alias to /src
 import getShoppingCart from '@/components/getShoppingCart.vue'
+import checkout from '../components/CheckOut.vue'
 
 export default {
   name: 'shopping-cart',
-  components: { getShoppingCart },
+  components: { getShoppingCart, checkout },
   created() {
     if (sessionStorage.getItem('token') == null) {
       this.$bvModal.msgBoxOk('Unauthorized: Please log in')

@@ -1,5 +1,6 @@
 <template>
     <div>
+      <checkout />
         <h1>Order Summary</h1>
         <div v-for="(item, index) in shoppingCart" v-bind:key="item._id">
           <p>{{itemNames[index]}}</p>
@@ -12,9 +13,11 @@
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
+import checkout from '../components/CheckOut.vue'
 
 export default {
   name: 'order',
+  components: { checkout },
   mounted() {
     const jwttoken = {
       token: sessionStorage.getItem('token')

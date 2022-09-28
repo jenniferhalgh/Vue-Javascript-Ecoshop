@@ -19,7 +19,7 @@ import { Api } from '@/Api'
 
 export default {
   name: 'shopping-cart',
-  components: { },
+  components: {},
   mounted() {
     const jwttoken = {
       token: sessionStorage.getItem('token')

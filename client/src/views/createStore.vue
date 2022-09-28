@@ -9,7 +9,7 @@
           <button type="submit" class="btn btn-primary">Create New Store</button>
       </form>
     </div>
-  </template>
+</template>
 <script>
 import { Api } from '@/Api'
 export default {

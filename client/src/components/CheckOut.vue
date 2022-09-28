@@ -10,29 +10,15 @@
   <router-link class="links" to="/checkout/order">
   <button type="button" class="btn btn-secondary btn-arrow-right ml-1">Order summary</button>
   </router-link>
-
-    </div>
-    <div v-if="showCartPage">
-        <get-shopping-cart />
-    </div>
-    <div v-if="showPaymentPage">
-        <payment />
-    </div>
-    <div v-if="showOrderSummary">
-        <order/>
-    </div>
+</div>
 </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
-import getShoppingCart from '@/components/getShoppingCart.vue'
-import payment from '@/views/choosePayment.vue'
-import order from '@/components/orderSummary.vue'
 
 export default {
-  components: { getShoppingCart, payment, order },
   name: 'checkout',
   mounted() {
     Api.get('/items').then(response => {

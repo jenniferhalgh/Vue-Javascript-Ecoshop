@@ -8,11 +8,11 @@ import Catalogue from './views/Catalogue.vue'
 import ShoppingCart from './views/shoppingCart.vue'
 import Profile from './views/Profile.vue'
 import EditProfile from '@/views/EditProfile.vue'
-import Checkout from './views/CheckOut.vue'
+import Checkout from './components/CheckOut.vue'
 import CreateStore from './views/createStore.vue'
 import PaymentMethod from './views/choosePayment.vue'
 import ShoppingCartCheckOut from './components/getShoppingCart.vue'
-import OrderSummary from './components/orderSummary.vue'
+import OrderSummary from './views/orderSummary.vue'
 
 Vue.use(Router)
 
