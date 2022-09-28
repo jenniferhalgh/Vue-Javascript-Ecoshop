@@ -101,6 +101,7 @@ export default {
           console.log(res)
           this.$router.push('/profile')
           this.$bvModal.msgBoxOk('Account updated.')
+          location.reload()
         },
         (err) => {
           console.log(err.response)

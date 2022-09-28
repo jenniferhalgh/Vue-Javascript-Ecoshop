@@ -22,6 +22,7 @@ export default {
     if (sessionStorage.getItem('token') == null) {
       this.$bvModal.msgBoxOk('Unauthorized: Please log in')
       this.$router.push('/login')
+      location.reload()
     }
   },
   methods: {

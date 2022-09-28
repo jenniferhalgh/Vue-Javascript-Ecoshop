@@ -9,7 +9,7 @@
           </div>
         </router-link>
     </div>
-  </template>
+</template>
 <script>
 // @ is an alias to /src
 import getShoppingCart from '../components/getShoppingCart.vue'
@@ -27,7 +27,7 @@ export default {
 }
 </script>
 
-    <style>
+<style>
     .shopingcart-dropdown {
       background-color: none;
       color: white;
@@ -58,4 +58,4 @@ export default {
     }
     .shoppingcart-content a:hover {background-color: #ddd;}
     .dropdown:hover .shoppingcart-content {display: block;}
-    </style>
+</style>
