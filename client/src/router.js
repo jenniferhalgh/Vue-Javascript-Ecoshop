@@ -11,7 +11,7 @@ import EditProfile from '@/views/EditProfile.vue'
 import CreateStore from './views/createStore.vue'
 import PaymentMethod from './views/choosePayment.vue'
 import ShoppingCartCheckOut from './components/getShoppingCart.vue'
-import OrderSummary from './components/orderSummary.vue'
+import OrderSummary from './views/orderSummary.vue'
 
 Vue.use(Router)
 

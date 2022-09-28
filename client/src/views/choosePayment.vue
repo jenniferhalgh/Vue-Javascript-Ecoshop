@@ -1,6 +1,7 @@
 <template>
 
   <div>
+  <checkout />
     <!-- MY INFORMATION -->
     <ul class="list-group my-info mt-5 ml-5">
       <h4 class="list-group-item">My information</h4>
@@ -100,10 +101,11 @@
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
+import checkout from '../components/CheckOut.vue'
 
 export default {
   name: 'payment',
-  components: { },
+  components: { checkout },
   mounted() {
     const jwttoken = {
       token: sessionStorage.getItem('token')
