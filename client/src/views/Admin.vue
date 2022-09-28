@@ -42,7 +42,8 @@
           <br>
           <button type="submit" class="btn btn-primary">Create New Item</button>
       </form>
-  </div>
+  <b-button variant="danger" class="delete-button" @click="deleteItems(store)"> Delete All Items </b-button>
+</div>
 </div>
 </template>
 
@@ -88,12 +89,14 @@ export default {
   },
   methods: {
     deleteStores() {
-      Api.delete('/stores').then((res) => {
-        this.$bvModal.msgBoxOk('All Stores Are Deleted')
-      })
-        .catch(error => {
-          console.error(error)
+      if (confirm('Are you certain that you want to delete all stores? This action cannot be undone.')) {
+        Api.delete('/stores').then((res) => {
+          this.$bvModal.msgBoxOk('All Stores Are Deleted')
         })
+          .catch(error => {
+            console.error(error)
+          })
+      }
     },
     updateStore(store) {
       Api.get(`/stores/${store._id}`).then(response => {
@@ -142,6 +145,18 @@ export default {
       }).catch(error => {
         console.error(error)
       })
+    },
+    deleteItems(store) {
+      if (confirm('Are you certain that you want to delete all items? This action cannot be undone.')) {
+        Api.delete(`/stores/${store._id}/items`).then((res) => {
+          this.$bvModal.msgBoxOk('All Items in this Store Are Deleted')
+          this.$router.push('/admin')
+          location.reload()
+        })
+          .catch(error => {
+            console.error(error)
+          })
+      }
     }
   }
 }
