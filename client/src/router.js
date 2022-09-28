@@ -12,6 +12,7 @@ import Checkout from './views/CheckOut.vue'
 import CreateStore from './views/createStore.vue'
 import PaymentMethod from './views/choosePayment.vue'
 import ShoppingCartCheckOut from './components/getShoppingCart.vue'
+import OrderSummary from './components/orderSummary.vue'
 
 Vue.use(Router)
 
@@ -75,6 +76,11 @@ export default new Router({
       path: '/checkout/shoppingCart',
       name: 'shoppingCartCheckout',
       component: ShoppingCartCheckOut
+    },
+    {
+      path: '/checkout/order',
+      name: 'order',
+      component: OrderSummary
     }
   ]
 })

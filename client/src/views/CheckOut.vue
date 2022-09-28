@@ -7,7 +7,7 @@
   <router-link class="links" to="/checkout/paymentMethod">
   <button type="button" class="btn btn-secondary btn-arrow-right ml-1">Payment method</button>
   </router-link>
-  <router-link class="links" to="/checkout/orderSummary">
+  <router-link class="links" to="/checkout/order">
   <button type="button" class="btn btn-secondary btn-arrow-right ml-1">Order summary</button>
   </router-link>
 
@@ -19,7 +19,7 @@
         <payment />
     </div>
     <div v-if="showOrderSummary">
-        <p>order</p>
+        <order/>
     </div>
 </div>
 </template>
@@ -29,9 +29,10 @@
 import { Api } from '@/Api'
 import getShoppingCart from '@/components/getShoppingCart.vue'
 import payment from '@/views/choosePayment.vue'
+import order from '@/components/orderSummary.vue'
 
 export default {
-  components: { getShoppingCart, payment },
+  components: { getShoppingCart, payment, order },
   name: 'checkout',
   mounted() {
     Api.get('/items').then(response => {
