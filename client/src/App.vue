@@ -7,7 +7,7 @@
       <b-navbar type="navbar" class="navigation">
         <router-link class= "links ml-5" to="/" @click="location.reload()">Home </router-link>
         <div v-if="customer.email === 'admin@gmail.com'">
-        <router-link class= "links ml-5" to="/customers" @click="location.reload()">Customers </router-link>
+        <router-link class= "links ml-5" to="/admin" @click="location.reload()">Admin Page </router-link>
       </div>
         <router-link class= "links ml-5" to="/catalogue" @click="location.reload()">Catalogue </router-link>
         <router-link class= "links ml-5" to="/checkout" @click="location.reload()">Checkout </router-link>

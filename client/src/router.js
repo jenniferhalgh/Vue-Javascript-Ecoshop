@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import signIn from './views/signIn.vue'
 import signUp from './views/signUp.vue'
-import Customer from './views/Customers.vue'
+import Admin from './views/Admin.vue'
 import Catalogue from './views/Catalogue.vue'
 import ShoppingCart from './views/shoppingCart.vue'
 import Profile from './views/Profile.vue'
@@ -30,9 +30,9 @@ export default new Router({
       name: 'signUp',
       component: signUp
     }, {
-      path: '/customers',
-      name: 'customers',
-      component: Customer
+      path: '/admin',
+      name: 'admin',
+      component: Admin
     }, {
       path: '/catalogue',
       name: 'catalogue',
