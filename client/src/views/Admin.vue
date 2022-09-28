@@ -1,15 +1,15 @@
 <template>
   <div>
-    <p>All customers:</p>
-    <div v-for="customer in customers" v-bind:key="customer._id">
-    <p> {{customer.name.firstname}} {{customer.name.lastname}}</p>
+    <h1> STORES: </h1>
     <button
       class="delete-button"
-      v-if="customer.email === 'admin@gmail.com'"
       @click="deleteStores()">
       Delete All Stores
     </button>
-  </div>
+    <br>
+    <router-link class="links ml-5" to="/createStore">
+        <button class="create-button"> Create A Store </button>
+      </router-link>
   </div>
 </template>
 
@@ -20,13 +20,6 @@ import { Api } from '@/Api'
 export default {
   name: 'customers',
   mounted() {
-    Api.get('/customers').then(response => {
-      this.customers = response.data.customers
-      console.log(response.data.customers)
-    })
-      .catch(error => {
-        console.error(error)
-      })
   },
   created() {
     if (sessionStorage.getItem('token') == null) {
@@ -36,19 +29,12 @@ export default {
   },
   data() {
     return {
-      customers: []
+      storeData: {
+        name: ''
+      }
     }
   },
   methods: {
-    getMessage() {
-      Api.get('/')
-        .then(response => {
-          this.message = response.data.message
-        })
-        .catch(error => {
-          this.message = error
-        })
-    },
     deleteStores() {
       Api.delete('/stores').then((res) => {
         this.$bvModal.msgBoxOk('All Stores Are Deleted')

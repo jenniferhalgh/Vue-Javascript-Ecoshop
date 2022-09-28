@@ -2,8 +2,8 @@
   <div>
     <getDropdownCart/>
       <div class="search-wrapper">
-    <b-form-input type="text" v-model="input" placeholder="Search For Items" style="width: 50%"></b-form-input>
-    </div>
+      <b-form-input type="text" v-model="input" placeholder="Search For Items" style="width: 50%"></b-form-input>
+      </div>
     <b-form-select
           v-model="category"
           :options="categoryList"
@@ -277,6 +277,12 @@ color: #ffffff;
 
 .lead{
   margin-bottom:0px;
+}
+.search-wrapper{
+  margin-left: 50px;
+}
+.ml-5{
+  margin-top: 10px;
 }
 
 </style>

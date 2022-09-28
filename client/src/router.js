@@ -3,12 +3,13 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import signIn from './views/signIn.vue'
 import signUp from './views/signUp.vue'
-import Customer from './views/Customers.vue'
+import Admin from './views/Admin.vue'
 import Catalogue from './views/Catalogue.vue'
 import ShoppingCart from './views/shoppingCart.vue'
 import Profile from './views/Profile.vue'
 import EditProfile from '@/views/EditProfile.vue'
 import Checkout from './views/CheckOut.vue'
+import CreateStore from './views/createStore.vue'
 
 Vue.use(Router)
 
@@ -29,9 +30,9 @@ export default new Router({
       name: 'signUp',
       component: signUp
     }, {
-      path: '/customers',
-      name: 'customers',
-      component: Customer
+      path: '/admin',
+      name: 'admin',
+      component: Admin
     }, {
       path: '/catalogue',
       name: 'catalogue',
@@ -52,6 +53,11 @@ export default new Router({
       path: '/checkout',
       name: 'checkout',
       component: Checkout
+    },
+    {
+      path: '/createStore',
+      name: 'createStore',
+      component: CreateStore
     }
   ]
 })
