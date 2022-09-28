@@ -8,8 +8,6 @@ var itemSchema = new Schema(
 
     price :  { type: Number },
 
-    quantity :  { type: Number },
-
     store : { type: Schema.Types.ObjectId, ref: "stores" },
 
     category:{

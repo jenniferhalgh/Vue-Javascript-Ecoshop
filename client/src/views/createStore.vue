@@ -6,7 +6,7 @@
           <input type="text" class="form-control" v-model="name" placeholder="Name" />
           </div>
           <br>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">Create New Store</button>
       </form>
     </div>
   </template>
@@ -29,9 +29,11 @@ export default {
         name: this.name
       }
       Api.post('/stores', newStore).then((res) => {
-        sessionStorage.setItem('token', res.data.token)
-        this.$bvModal.msgBoxOk('Added a new store!')
-        this.$router.push('/')
+        console.log(res.data)
+        this.stores = []
+        this.stores.push(newStore)
+        this.$router.push('/admin')
+        this.$bvModal.msgBoxOk('New item added')
         location.reload()
       },
       (err) => {
