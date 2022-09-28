@@ -2,8 +2,8 @@
 <div>
     <div class="btn-groupd-flex" role="group" aria-label="Basic example">
   <button type="button" class="btn btn-secondary btn-arrow-right ml-1" v-on:click="showCartPage=true, showPaymentPage=false, showOrderSummary=false">Shopping cart overview</button>
-  <button type="button" class="btn btn-secondary btn-arrow-right ml-1" v-on:click="showOrderSummary=false, showCartPage=false, showPaymentPage=false">Order summary</button>
   <button type="button" class="btn btn-secondary btn-arrow-right ml-1" v-on:click="showPaymentPage=true, showCartPage=false, showOrderSummary=false">Payment method</button>
+  <button type="button" class="btn btn-secondary btn-arrow-right ml-1" v-on:click="showOrderSummary=true, showCartPage=false, showPaymentPage=false">Order summary</button>
     </div>
     <div v-if="showCartPage">
         <get-shopping-cart />
