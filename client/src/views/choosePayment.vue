@@ -18,14 +18,18 @@
     <!-- BUTTON CARD -->
     <div v-if="!hasChosen">
       <div class="card addPayment ml-5 border-0" style="width: 18rem;">
-      <button class="btn addPayment btn-primary" :pressed="false" variant="success" v-on:click="addNewPayment=true">ADD NEW CARD</button>
+      <button class="btn addPayment btn-primary" :pressed="false" variant="success" onclick="document.getElementById('id1').style.display='block'">ADD NEW CARD</button>
 </div>
     </div>
 
 <!-- ALL CARDS -->
         <div v-for="payment in paymentInfos" v-bind:key="payment._id">
     <div class="card ml-5 mb-5" style="width: 18rem;">
-      <div class="card-header">Card <button class="button-update" onclick="document.getElementById('id2').style.display='block'" v-on:click="paymentId=payment._id" style="width: auto">Edit</button></div>
+      <div class="card-header">Card
+        <!-- EDIT + DELETE BUTTON -->
+        <button class="button-delete btn-primary ml-1" v-on:click="removeCard(payment)" style="width: auto">Delete</button>
+        <button class="button-update btn-primary" onclick="document.getElementById('id2').style.display='block'" v-on:click="paymentId=payment._id" style="width: auto">Edit</button>
+      </div>
       <ul class="list-group payment list-group-flush">
         <div>
           <li class="list-group-item">Name on card: {{payment.cardInfo.nameOnCard}}</li>
@@ -41,24 +45,23 @@
       </ul>
   </div>
   </div>
+  </div>
 
   <!--ADD NEW CARD INPUTS-->
-  </div>
-  <div v-if="addNewPayment">
-    <h6 class="ml-5"> Add new card: </h6>
-<form class="ml-5 form mt-4" @submit.prevent="addPayment">
-        <div>
-        <input type="text" class="form-control" v-model="nameOnCard" placeholder="Name on card" />
+<div id="id1" class="modal">
+      <form class="modal-contents" @submit.prevent="addPayment()">
+        <div class="container">
+          <div class="form-update">
+            <span
+              onclick="document.getElementById('id1').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <input type="text" class="form-control" v-model="nameOnCard" placeholder="Name on card" />
+            <input type="text" class="form-control" v-model="cardNum" placeholder="Card number" />
+            <input type="text" class="form-control" v-model="cvv" placeholder="cvv" />
+            <button class="btn btn-primary btn-block">Add</button>
+          </div>
         </div>
-        <div>
-        <input type="text" class="form-control" v-model="cardNum" placeholder="Card number" />
-        </div>
-        <div>
-        <input type="text" class="form-control" v-model="cvv" placeholder="cvv" />
-        </div>
-        <button type="submit" class="btn btn-primary" v-on:click="addNewPayment=false, addPayment()">Add</button>
-    </form>
-  </div>
+      </form>
+    </div>
 
   <div id="id2" class="modal">
       <form class="modal-contents" @submit.prevent="edit()">
@@ -93,7 +96,6 @@
         </div>
       </form>
     </div>
-
   </div>
 
 </template>
@@ -172,10 +174,8 @@ export default {
       }
       Api.post(`/customers/${this.customer._id}/paymentInfos`, newCard).then(response => {
         console.log(response.data)
-        this.paymentInfos = []
         this.paymentInfos.push(newCard)
-        this.hasChosen = true
-        this.$bvModal.msgBoxOk('New card added')
+        location.reload()
       }).catch(error => {
         this.error = error.response.data.error
         console.error(error)
@@ -212,6 +212,14 @@ export default {
       }).catch(error => {
         console.error(error)
       })
+    },
+    removeCard(payment) {
+      Api.delete(`/customers/${this.customer._id}/paymentInfos/${payment._id}`).then(response => {
+        console.log(response)
+      }).catch(error => {
+        console.error(error)
+      })
+      location.reload()
     }
   }
 }
@@ -247,5 +255,13 @@ export default {
 
 .form{
   width: 50%;
+}
+
+.button-update{
+  float: right;
+}
+
+.button-delete{
+  float: right;
 }
     </style>
