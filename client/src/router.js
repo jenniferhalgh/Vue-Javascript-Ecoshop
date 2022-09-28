@@ -10,6 +10,8 @@ import Profile from './views/Profile.vue'
 import EditProfile from '@/views/EditProfile.vue'
 import Checkout from './views/CheckOut.vue'
 import CreateStore from './views/createStore.vue'
+import PaymentMethod from './views/choosePayment.vue'
+import ShoppingCartCheckOut from './components/getShoppingCart.vue'
 
 Vue.use(Router)
 
@@ -58,6 +60,21 @@ export default new Router({
       path: '/createStore',
       name: 'createStore',
       component: CreateStore
+    },
+    {
+      path: '/checkout/paymentMethod',
+      name: 'paymentMethod',
+      component: PaymentMethod
+    },
+    {
+      path: '/checkout/shoppingCart',
+      name: 'shoppingCart',
+      component: ShoppingCart
+    },
+    {
+      path: '/checkout/shoppingCart',
+      name: 'shoppingCartCheckout',
+      component: ShoppingCartCheckOut
     }
   ]
 })

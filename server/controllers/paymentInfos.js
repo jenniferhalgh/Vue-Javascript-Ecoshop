@@ -89,25 +89,24 @@ router.delete("/customers/:customer_id/paymentInfos", function (req, res) {
 
   });
 //update customer's payment information
-
-/*router.put("/customers/:customer_id/paymentInfos/:paymentInfos_id", function(req, res){
-    var id = req.params.id;
+router.put("/customers/:customer_id/paymentInfos/:paymentInfos_id", function(req, res){
+    var id = req.params.customer_id;
     Customer.findById(id).populate('paymentInfo').exec(function(err, customer) {
         if (err) {return res.status(500).send(err);}
         if (customer == null) {
             return res.status(404).json({"message": "Customer not found"});
         }
-    PaymentInfo.findByIdAndUpdate(req.params.paymentInfos_id, function(err, paymentInfo){
+    PaymentInfo.findOneAndReplace({_id: req.params.paymentInfos_id}, req.body, {option: true}, function(err, paymentInfo){
 
         if (err) {return res.status(500).send(err);}
         if (paymentInfo == null) {
             return res.status(404).json({"message": "Payment Information not found"});
         }
-    customer.paymentInfo.push(paymentInfo);
-    customer.paymentInfo.save();
+    paymentInfo.save();
     customer.save();
     return res.status(201).json(customer.paymentInfo);
     });
-})});*/
+})});
+
 
 module.exports = router;

@@ -34,18 +34,18 @@ export default {
         token: jwttoken.token
       }
     }).then((response) => {
-      return response.json()
+      if (response.status === 401) {
+        this.$bvModal.msgBoxOk('Unauthorized. Please log in again')
+        sessionStorage.setItem('token', null)
+        this.$router.push('/signIn')
+      } else {
+        return response.json()
+      }
     }).then((responseData) => {
       this.customer = responseData
     }).catch(function (err) {
       console.log(err)
     })
-  },
-  created() {
-    if (sessionStorage.getItem('token') == null) {
-      this.$bvModal.msgBoxOk('Unauthorized: Please log in')
-      this.$router.push('/login')
-    }
   },
   data() {
     return {

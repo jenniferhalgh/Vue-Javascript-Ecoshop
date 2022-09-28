@@ -27,7 +27,13 @@ export default {
         token: jwttoken.token
       }
     }).then((response) => {
-      return response.json()
+      if (response.status === 401) {
+        this.$bvModal.msgBoxOk('Unauthorized. Please log in again')
+        sessionStorage.setItem('token', null)
+        this.$router.push('/signIn')
+      } else {
+        return response.json()
+      }
     }).then((responseData) => {
       this.customer = responseData._id
       Api.get(`/customers/${this.customer}/orders`).then(response => {
