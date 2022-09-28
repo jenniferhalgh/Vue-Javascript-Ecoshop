@@ -18,12 +18,6 @@ export default {
   mounted() {
 
   },
-  created() {
-    if (sessionStorage.getItem('token') == null) {
-      this.$bvModal.msgBoxOk('Unauthorized: Please log in')
-      this.$router.push('/login')
-    }
-  },
   data() {
     return {
 
