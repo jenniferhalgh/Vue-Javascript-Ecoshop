@@ -9,6 +9,7 @@ import ShoppingCart from './views/shoppingCart.vue'
 import Profile from './views/Profile.vue'
 import EditProfile from '@/views/EditProfile.vue'
 import Checkout from './views/CheckOut.vue'
+import CreateStore from './views/createStore.vue'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/checkout',
       name: 'checkout',
       component: Checkout
+    },
+    {
+      path: '/createStore',
+      name: 'createStore',
+      component: CreateStore
     }
   ]
 })

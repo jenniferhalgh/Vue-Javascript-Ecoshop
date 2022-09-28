@@ -1,15 +1,18 @@
 <template>
   <div>
-    <p>All customers:</p>
+    <h1> STORES: </h1>
     <div v-for="customer in customers" v-bind:key="customer._id">
-    <p> {{customer.name.firstname}} {{customer.name.lastname}}</p>
     <button
       class="delete-button"
       v-if="customer.email === 'admin@gmail.com'"
       @click="deleteStores()">
       Delete All Stores
     </button>
-  </div>
+    </div>
+    <br>
+    <router-link class="links ml-5" to="/createStore">
+        <button class="create-button"> Create A Store </button>
+      </router-link>
   </div>
 </template>
 
@@ -30,19 +33,13 @@ export default {
   },
   data() {
     return {
-      customers: []
+      customers: [],
+      storeData: {
+        name: ''
+      }
     }
   },
   methods: {
-    getMessage() {
-      Api.get('/')
-        .then(response => {
-          this.message = response.data.message
-        })
-        .catch(error => {
-          this.message = error
-        })
-    },
     deleteStores() {
       Api.delete('/stores').then((res) => {
         this.$bvModal.msgBoxOk('All Stores Are Deleted')
