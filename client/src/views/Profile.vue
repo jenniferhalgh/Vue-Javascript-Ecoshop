@@ -54,12 +54,12 @@ export default {
   },
   methods: {
     deleteCustomer() {
-      if (confirm('Do you really want to delete your account ?')) {
+      if (confirm('Are you certain that you want to delete your account? This action cannot be undone.')) {
         Api.delete(`/customers/${this.customer._id}`)
           .then((res) => {
-            localStorage.clear()
+            sessionStorage.clear()
             console.log(res)
-            this.$bvModal.msgBoxOk('Account deleted ')
+            this.$bvModal.msgBoxOk('Account deleted')
           }).catch((error) => {
             console.log(error)
           })
