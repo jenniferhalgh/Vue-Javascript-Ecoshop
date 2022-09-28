@@ -1,9 +1,16 @@
 <template>
 <div>
     <div class="btn-groupd-flex" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-secondary btn-arrow-right ml-1" v-on:click="showCartPage=true, showPaymentPage=false, showOrderSummary=false">Shopping cart overview</button>
-  <button type="button" class="btn btn-secondary btn-arrow-right ml-1" v-on:click="showOrderSummary=false, showCartPage=false, showPaymentPage=false">Order summary</button>
-  <button type="button" class="btn btn-secondary btn-arrow-right ml-1" v-on:click="showPaymentPage=true, showCartPage=false, showOrderSummary=false">Payment method</button>
+   <router-link class="links" to="/checkout/shoppingCart">
+  <button type="button" class="btn btn-secondary btn-arrow-right ml-1">Shopping cart</button>
+  </router-link>
+  <router-link class="links" to="/checkout/paymentMethod">
+  <button type="button" class="btn btn-secondary btn-arrow-right ml-1">Payment method</button>
+  </router-link>
+  <router-link class="links" to="/checkout/orderSummary">
+  <button type="button" class="btn btn-secondary btn-arrow-right ml-1">Order summary</button>
+  </router-link>
+
     </div>
     <div v-if="showCartPage">
         <get-shopping-cart />
@@ -20,8 +27,8 @@
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
-import getShoppingCart from '../components/getShoppingCart.vue'
-import payment from '../components/choosePayment.vue'
+import getShoppingCart from '@/components/getShoppingCart.vue'
+import payment from '@/views/choosePayment.vue'
 
 export default {
   components: { getShoppingCart, payment },

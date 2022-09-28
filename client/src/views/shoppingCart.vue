@@ -13,7 +13,7 @@
 
 <script>
 // @ is an alias to /src
-import getShoppingCart from '../components/getShoppingCart.vue'
+import getShoppingCart from '@/components/getShoppingCart.vue'
 
 export default {
   name: 'shopping-cart',
