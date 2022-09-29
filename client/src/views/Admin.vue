@@ -59,6 +59,10 @@
         <input type="Number" class="form-control" v-model="price" placeholder="Item price" />
         </div>
         <br>
+        <div>
+          <input type="text" class="form-control" v-model="image" placeholder="Image path" />
+          </div>
+          <br>
         <label for="category-select">Choose a category:</label>
           <b-form-select
             v-model="category"
