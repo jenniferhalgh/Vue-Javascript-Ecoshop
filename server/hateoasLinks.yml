@@ -10,15 +10,12 @@
     - rel: "self"
       method: "GET"
       href: "/customers/:1"
-    - rel
 
 /customers/:oid:
   GET:
     - rel: "self"
       method: "GET"
       href: "/customers/:1"
-
-
 
 /stores:
  GET:
