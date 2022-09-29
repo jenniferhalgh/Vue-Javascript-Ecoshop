@@ -9,7 +9,9 @@
         <div v-if="customer.email === 'admin@gmail.com'">
         <router-link class= "links ml-5" to="/admin" @click="location.reload()">Admin Page </router-link>
       </div>
+      <div v-if="customer.email != 'admin@gmail.com'">
         <router-link class= "links ml-5 mb-2" to="/catalogue" @click="location.reload()">Catalogue </router-link>
+        </div>
         <b-navbar-nav class="ml-auto">
           <router-link class="links ml-5 profile" to="/profile" @click="location.reload()">Profile</router-link>
           <b-nav-item class="links ml-5 mb-2" @click="logout">Logout</b-nav-item>
@@ -115,6 +117,7 @@ export default {
 }
 .nav-item{
   color: #888888 !important;
+  float: right;
 }
 
 .profile{
