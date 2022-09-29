@@ -4,21 +4,29 @@
     <div>
       <profileNav/>
     </div>
-            <div class="col ml-5 text">
-          <div style="text-align:center">
-            <h3> {{customer.name.firstname}} {{customer.name.lastname}}</h3>
-            <router-link class="links" to="/editProfile">
-<button class="link; button" to="/editProfile">Edit Profile</button>
-<button class="link; button" variant="primary" v-on:click="deleteCustomer()">Delete Account</button>
-</router-link>
-          </div>
-          <div class="green-text">
+            <div class="ml-5 mt-2 text">
+                <div class="green-text">
+                    <h4>{{ customer.email }}</h4>
             <p>{{ customer.email }}</p>
           </div>
-          </div>
+            <router-link class="links" to="/editProfile">
+                <button class="button" to="/editProfile">Edit Profile</button>
+            </router-link>
+            <button class="link; button" variant="primary" v-on:click="deleteCustomer()">Delete Account</button>
+            <!-- MY INFORMATION -->
+    <ul class="list-group my-info mt-5 ml-5 left">
+      <h4 class="list-group-item">My information</h4>
+      <h6 class="list-group-item">Name: {{customer.name.firstname}} {{customer.name.lastname}}</h6>
+      <h6 class="list-group-item">Email: {{customer.email}}</h6>
+      <h6 class="list-group-item">Personal number: {{customer.personalNumber}}</h6>
+      <h6 class="list-group-item">Phone number: {{customer.phone}}</h6>
+      <h6 class="list-group-item">Address: {{customer.adress}}</h6>
+    </ul>
 
+    </div>
+          </div>
   </div>
-</div>
+
 </template>
 
 <script>
@@ -80,7 +88,6 @@ export default {
 
 <style>
 .green-text{
-        text-align: center;
         font-weight: 100;
     }
 
@@ -98,6 +105,14 @@ border-radius: 12px;
 display: block;
 margin-left: auto;
 margin-right: auto;
+}
+
+.text{
+align-items: center;
+}
+
+.my-info{
+    width: 1000px;
 }
 
 </style>
