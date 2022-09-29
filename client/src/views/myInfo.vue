@@ -1,26 +1,34 @@
 <template>
+  <div class="container-fluid">
+  <div class="row">
     <div>
-      <getDropdownCart/>
-<h1>Profile:</h1>
-<display/>
-<router-link class="links" to="/editProfile">
+      <profileNav/>
+    </div>
+            <div class="col ml-5 text">
+          <div style="text-align:center">
+            <h3> {{customer.name.firstname}} {{customer.name.lastname}}</h3>
+            <router-link class="links" to="/editProfile">
 <button class="link; button" to="/editProfile">Edit Profile</button>
-</router-link>
 <button class="link; button" variant="primary" v-on:click="deleteCustomer()">Delete Account</button>
-<get-order/>
+</router-link>
+          </div>
+          <div class="green-text">
+            <p>{{ customer.email }}</p>
+          </div>
+          </div>
+
+  </div>
 </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Display from '../components/display.vue'
-import GetOrder from '../components/getOrder.vue'
-import getDropdownCart from '../components/getDropdownCart.vue'
 import { Api } from '@/Api'
+import profileNav from '../components/profileNav.vue'
 
 export default {
-  name: 'profile',
-  components: { Display, GetOrder, getDropdownCart },
+  name: 'myInfo',
+  components: { profileNav },
   mounted() {
     const jwttoken = {
       token: sessionStorage.getItem('token')
@@ -70,15 +78,12 @@ export default {
 }
 </script>
 
-<style scoped>
-img {
-border-radius: 50%;
-display: block;
-margin-left: auto;
-margin-right: auto;
-width:150px;
-height:150px;
-}
+<style>
+.green-text{
+        text-align: center;
+        font-weight: 100;
+    }
+
 .button {
 background-color: #99ae71;
 border: none;
@@ -94,4 +99,5 @@ display: block;
 margin-left: auto;
 margin-right: auto;
 }
+
 </style>

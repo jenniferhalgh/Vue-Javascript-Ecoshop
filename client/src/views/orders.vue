@@ -1,19 +1,24 @@
 <template>
-    <div class="text">
-          <div style="text-align:center">
-            <h3> {{customer.name.firstname}} {{customer.name.lastname}}</h3>
-          </div>
-          <div class="green-text">
-            <p>{{ customer.email }}</p>
-          </div>
-          </div>
+  <div class="container-fluid">
+  <div class="row">
+    <div>
+      <profileNav/>
+    </div>
+    <div class="col ml-5">
+        <getOrder/>
+    </div>
+</div>
+</div>
 </template>
 
 <script>
 // @ is an alias to /src
+import profileNav from '../components/profileNav.vue'
+import getOrder from '../components/getOrder.vue'
 
 export default {
-  name: 'display',
+  name: 'orders',
+  components: { profileNav, getOrder },
   mounted() {
     const jwttoken = {
       token: sessionStorage.getItem('token')
@@ -44,13 +49,16 @@ export default {
     return {
       customer: {}
     }
+  },
+  methods: {
   }
-
 }
 </script>
-<style scoped>
-    .green-text{
+
+<style>
+.green-text{
         text-align: center;
         font-weight: 100;
     }
-    </style>
+
+</style>

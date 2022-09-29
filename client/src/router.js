@@ -6,13 +6,14 @@ import signUp from './views/signUp.vue'
 import Admin from './views/Admin.vue'
 import Catalogue from './views/Catalogue.vue'
 import ShoppingCart from './views/shoppingCart.vue'
-import Profile from './views/Profile.vue'
 import EditProfile from '@/views/EditProfile.vue'
 import CreateStore from './views/createStore.vue'
 import PaymentMethod from './views/choosePayment.vue'
 import ShoppingCartCheckOut from './components/getShoppingCart.vue'
 import OrderSummary from './views/orderSummary.vue'
-
+import myInfo from './views/myInfo.vue'
+import orders from './views/orders.vue'
+import paymentInfos from './views/paymentMethods.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -45,8 +46,8 @@ export default new Router({
       component: ShoppingCart
     }, {
       path: '/Profile',
-      name: 'profile',
-      component: Profile
+      name: 'myInfo',
+      component: myInfo
     }, {
       path: '/editProfile',
       name: 'editProfile',
@@ -76,6 +77,21 @@ export default new Router({
       path: '/checkout/order',
       name: 'order',
       component: OrderSummary
+    },
+    {
+      path: '/profile/myInfo',
+      name: 'myInfo',
+      component: myInfo
+    },
+    {
+      path: '/profile/paymentInfos',
+      name: 'paymentInfos',
+      component: paymentInfos
+    },
+    {
+      path: '/profile/orders',
+      name: 'orders',
+      component: orders
     }
   ]
 })
