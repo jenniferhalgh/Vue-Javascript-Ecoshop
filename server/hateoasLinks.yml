@@ -6,9 +6,17 @@
     - rel: "orders"
       method: "GET"
       href: "/orders"
-    - rel: "paymentInfos"
+  POST:
+    - rel: "self"
       method: "GET"
-      href: "/paymentInfos"
+      href: "/customers/:1"
+
+/customers/:oid:
+  GET:
+    - rel: "self"
+      method: "GET"
+      href: "/customers/:1"
+
 /stores:
  GET:
   - rel: "self"
@@ -22,11 +30,7 @@
   - rel: "self"
     method: "GET"
     href: "/items"
-/paymentInfos:
- GET:
-  - rel: "self"
+  - rel: "stores"
     method: "GET"
-    href: "/paymentInfos"
- 
+    href: "/stores"
 
- 

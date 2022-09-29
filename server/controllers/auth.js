@@ -16,7 +16,7 @@ router.post("/customers", async (req, res) => {
       })
     }
     console.log(regCustomer)
-  });
+  })
 
   if(!registeredCustomer){
 var shoppingCart = new ShoppingCart(req.body);
@@ -52,7 +52,8 @@ let jwttoken = jwt.sign({ customer_Id: req.body._id}, 'token_key', {
           if (err) { return res.status(500).send(err);}
           console.log(shoppingCart);
         })
-      return res.status(201).send(newCustomer);
+
+      return res.status(201).json(newCustomer, newCustomer._id);
   }
 }
 )
