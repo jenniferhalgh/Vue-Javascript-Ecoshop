@@ -4,12 +4,15 @@
   <li class="nav-item">
     <a class="nav-link" href="/profile/myInfo">My information</a>
   </li>
+  <div v-if="customer.email !='admin@gmail.com'">
   <li class="nav-item">
     <a class="nav-link" href="/profile/paymentInfos">Payment methods</a>
   </li>
+  <br>
   <li class="nav-item">
     <a class="nav-link" href="/profile/orders">Orders</a>
   </li>
+</div>
 </ul>
 </div>
 </template>
@@ -57,5 +60,8 @@ export default {
     .green-text{
         text-align: center;
         font-weight: 100;
+    }
+    .nav-item{
+      float: left;
     }
     </style>
