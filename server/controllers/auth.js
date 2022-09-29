@@ -52,7 +52,10 @@ let jwttoken = jwt.sign({ customer_Id: req.body._id}, 'token_key', {
           if (err) { return res.status(500).send(err);}
           console.log(shoppingCart);
         })
-      return res.status(201).send(newCustomer);
+
+        var id = newCustomer._id
+
+      return res.status(201).json(newCustomer, id);
   }
 }
 )
