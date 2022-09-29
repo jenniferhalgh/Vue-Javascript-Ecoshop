@@ -16,26 +16,35 @@ router.post("/customers/:id/orders", function(req, res){
             return res.status(404).json({"message": "Customer not found"});
             
         }
-        var order = new Order(req.body);
-        order.save(
-            function(err) { 
-            if (err) {return res.status(500)}
-            console.log(order);}
-        );
+        const order = {
+            items: [],
+            total_sum: req.body.total_sum,
+            customers: req.body.customers
+        };
         ShoppingCart.findById({ _id: customer.shoppingCart}, function(err, shoppingCart) {
             if (err) { return res.status(500).send(err);}
             if (shoppingCart == null) {
                 return res.status(404).json({"message": "No shopping cart"});
             }
             while(shoppingCart.items.length > 0) {
-                shoppingCart.items.pop();
+                var item = shoppingCart.items.pop();
+                console.log(order)
+                console.log(order.items)
+                order.items.push(item)
             }
-            shoppingCart.save()
-        })
-        
-        customer.orders.push(order);
+            shoppingCart.save() 
+           console.log(order)
+        var newOrder = new Order(order)
+        newOrder.save(
+        );
+        customer.orders.push(newOrder);
         customer.save();
         return res.status(201).json(customer.orders);
+
+
+        })
+
+        
     });
 });
 //get customer's order
