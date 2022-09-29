@@ -2,10 +2,13 @@
     <div>
       <checkout />
         <h1>Order Summary</h1>
+        <ul class="list-group my-info mt-5 ml-5">
+      <h6 class="list-group-item">Products</h6>
         <div v-for="(item, index) in shoppingCart" v-bind:key="item._id">
-          <p>{{itemNames[index]}}</p>
-          <p>{{itemPrice[index]}} kr</p>
+          <li class="list-group-item">{{itemNames[index]}} {{itemPrice[index]}} kr</li>
           </div>
+          <li class="list-group-item">subtotal: {{total_sum}}</li>
+    </ul>
           <button class="link; button" variant="primary" v-on:click="postOrder()">Complete Order</button>
     </div>
 </template>
@@ -54,6 +57,7 @@ export default {
               console.error(error)
             })
         })
+        vm.itemPrice.reduce(function (a, b) { return a + b }, 0)
       })
     }).catch(error => {
       console.error(error)
@@ -65,7 +69,8 @@ export default {
       itemNames: [],
       shoppingCart: [],
       itemPrice: [],
-      itemQuantity: []
+      itemQuantity: [],
+      total_sum: 0
     }
   },
   methods: {
