@@ -5,9 +5,9 @@ const Customer = require("../models/customer")
 const ShoppingCart = require("../models/shoppingCart")
 const jwt = require('jsonwebtoken');
 
-router.post("/customers", (req, res) => {
+router.post("/customers", async (req, res) => {
 
-  const registeredCustomer = Customer.findOne({email: req.body.email}, function(err, regCustomer){
+  const registeredCustomer = await Customer.findOne({email: req.body.email}, function(err, regCustomer){
     if(err){res.status(500).send(err)}
      if (regCustomer) {
       return res.status(409).json({
@@ -53,7 +53,7 @@ let jwttoken = jwt.sign({ customer_Id: req.body._id}, 'token_key', {
           console.log(shoppingCart);
         })
 
-      return res.status(201).json(newCustomer, newCustomer._id);
+      return res.status(201).json(newCustomer);
   }
 }
 )
