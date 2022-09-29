@@ -16,7 +16,9 @@ router.post("/customers", async (req, res) => {
       })
     }
     console.log(regCustomer)
-  });
+  }).catch(error => {
+    console.error(error)
+  })
 
   if(!registeredCustomer){
 var shoppingCart = new ShoppingCart(req.body);
