@@ -2,6 +2,7 @@
   <div>
     <h1> STORES </h1>
       <div v-for="store in allStores" v-bind:key="store._id">
+        <h2> Update Store: </h2>
         <p> {{store.name}}</p>
         <form @submit.prevent="updateStore(store)">
         <div>
@@ -10,18 +11,9 @@
         <br>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
-    <br>
-  </div>
-  <div class="nav-bar">
-  <b-button variant="danger" class="delete-button" @click="deleteStores()"> Delete All Stores </b-button>
-    <router-link class="links ml-5" to="/createStore">
-        <b-button class="create-button"> Create A Store </b-button>
-      </router-link>
-    </div>
-  <h1> ITEMS </h1>
-  <div v-for="store in allStores" v-bind:key="store._id">
-        <p> {{store.name}}</p>
-        <form @submit.prevent="createItem(store)">
+    <hr>
+    <h2> Create Item In Store: </h2>
+    <form @submit.prevent="createItem(store)">
           <div>
           <input type="text" class="form-control" v-model="name" placeholder="Name" />
           </div>
@@ -42,9 +34,43 @@
           <br>
           <button type="submit" class="btn btn-primary">Create New Item</button>
       </form>
-  <b-button variant="danger" class="delete-button" @click="deleteItems(store)"> Delete All Items </b-button>
-</div>
-</div>
+    <br>
+  </div>
+  <div class="nav-bar">
+  <b-button variant="danger" class="delete-button" @click="deleteStores()"> Delete All Stores </b-button>
+    <router-link class="links ml-5" to="/createStore">
+        <b-button class="create-button"> Create A Store </b-button>
+      </router-link>
+    </div>
+    <h1> ITEMS </h1>
+    <div v-for="item in allItems" v-bind:key="item._id">
+      <h2> Update Item: </h2>
+        <p> Name: {{item.name}}, Price: {{item.price}}, Category: {{item.category}}</p>
+        <form @submit.prevent="updateItems(item)">
+        <div>
+        <input type="text" class="form-control" v-model="name" placeholder="Item name" />
+        </div>
+        <br>
+        <div>
+        <input type="Number" class="form-control" v-model="price" placeholder="Item price" />
+        </div>
+        <br>
+        <label for="category-select">Choose a category:</label>
+          <b-form-select
+            v-model="category"
+            :options="categoryList"
+            class="input ml-5 filter"
+            style="width: 15%"
+            size="sm"
+            v-on:change="getSelectedCategory(category)">
+          </b-form-select>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+    </div>
+    <div class="nav-bar">
+  <b-button variant="danger" class="delete-button" @click="deleteItems()"> Delete All Stores </b-button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -55,6 +81,12 @@ export default {
   name: 'admin',
   components: { },
   mounted() {
+    Api.get('/items').then(response => {
+      console.log(response.data.items)
+      this.allItems = response.data.items
+    }).catch(error => {
+      console.error(error)
+    })
     Api.get('/stores').then(response => {
       this.allStores = response.data.stores
       console.log(response.data.stores)
@@ -84,7 +116,9 @@ export default {
         { value: 'Second Hand', text: 'Second Hand' },
         { value: 'Vegan', text: 'Vegan' },
         { value: 'Small Creator', text: 'Small Creator' }
-      ]
+      ],
+      items: {},
+      allItems: []
     }
   },
   methods: {
@@ -157,6 +191,29 @@ export default {
             console.error(error)
           })
       }
+    },
+    updateItems(item) {
+      Api.get(`/items/${item._id}`).then(response => {
+        console.log(response.data)
+        this.items = response.data
+        const vm = this
+        const itemUpdate = {
+          name: this.name,
+          price: this.price,
+          category: this.category
+        }
+        Api.patch(`/items/${item._id}`, itemUpdate).then(response => {
+          console.log(response.data)
+          vm.items = response.data
+          console.log(vm.items)
+          location.reload()
+        })
+          .catch(error => {
+            console.error(error)
+          })
+      }).catch(error => {
+        console.error(error)
+      })
     }
   }
 }
