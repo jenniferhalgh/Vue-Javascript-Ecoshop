@@ -210,7 +210,8 @@ export default {
         const itemUpdate = {
           name: this.name,
           price: this.price,
-          category: this.category
+          category: this.category,
+          image: this.image
         }
         Api.patch(`/items/${item._id}`, itemUpdate).then(response => {
           console.log(response.data)
