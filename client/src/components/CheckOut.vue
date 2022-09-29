@@ -7,9 +7,7 @@
   <router-link class="links" to="/checkout/paymentMethod">
   <button type="button" class="btn btn-secondary btn-arrow-right ml-1">Payment method</button>
   </router-link>
-  <router-link class="links" to="/checkout/order">
   <button type="button" class="btn btn-secondary btn-arrow-right ml-1">Order summary</button>
-  </router-link>
 </div>
 </div>
 </template>
