@@ -13,7 +13,9 @@ var itemSchema = new Schema(
     category:{
         type: String,
         allowedValues: ["Second Hand","Small Creator","Default","Vegan"]
-    }
+    },
+
+    image: {type: String}
 }
 );
 
