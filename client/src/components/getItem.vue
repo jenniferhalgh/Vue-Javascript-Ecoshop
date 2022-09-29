@@ -24,7 +24,7 @@
       <div v-for="(item, index) in filteredList()" v-bind:key="item.name">
       <div class="wrapper">
       <div class="card border-light mb-5" style="width:20rem;">
-    <img class="card-img-top" src="@/assets/white_shirt.jpeg" alt="Card image top">
+    <img class="card-img-top" id="img" v-bind:src="require(`@/assets/${item.image}`)" alt="Card image top">
 <div class="card-body">
   <div v-if="item.category!='Default'">
 <a href="#" class="badge badge-secondary">{{item.category}}</a>

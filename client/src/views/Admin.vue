@@ -30,6 +30,10 @@
           <input type="text" class="form-control" v-model="price" placeholder="Price" />
           </div>
           <br>
+          <div>
+          <input type="text" class="form-control" v-model="image" placeholder="Image path" />
+          </div>
+          <br>
           <label for="category-select">Choose a category:</label>
           <b-form-select
             v-model="category"
@@ -76,6 +80,7 @@ export default {
         category: '',
         store: '',
         _id: '',
+        image: '',
         error: ''
       },
       category: '',
@@ -128,6 +133,7 @@ export default {
           name: this.name,
           price: this.price,
           category: this.category,
+          image: this.image,
           store: store._id
 
         }
