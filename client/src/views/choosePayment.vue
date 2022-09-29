@@ -40,8 +40,11 @@
       </div>
       <div v-else>
         <div class="card-header">CHOSEN</div>
-      </div>
-          </div>
+        <router-link class="links" to="/checkout/order">
+  <b-button type="button" class="complete-order" @click="location.reload()"> Complete order</b-button>
+  </router-link>
+  </div>
+</div>
       </ul>
   </div>
   </div>
@@ -97,7 +100,6 @@
       </form>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -262,6 +264,9 @@ export default {
 }
 
 .button-delete{
+  float: right;
+}
+.complete-order{
   float: right;
 }
     </style>
