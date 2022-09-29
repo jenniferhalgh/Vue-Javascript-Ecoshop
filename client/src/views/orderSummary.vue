@@ -70,33 +70,22 @@ export default {
   },
   methods: {
     postOrder() {
-      const jwttoken = {
-        token: sessionStorage.getItem('token')
+      const newOrder = {
+        items: [],
+        customers: this.customer,
+        total_sum: 100
       }
-      fetch('http://localhost:3000/customer', {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-          Host: '',
-          token: jwttoken.token
-        }
-      }).then((response) => {
-        return response.json()
-      }).then((responseData) => {
-        this.customer = responseData._id
-        Api.post(`/customers/${this.customer}/orders`).then((res) => {
-          this.$bvModal.msgBoxOk('Order completed!')
-          this.$router.push('/')
-        },
-        (err) => {
-          console.log(err.response)
-          this.boxOne = ''
-          this.error = err.response.data.error
-          this.$bvModal.msgBoxOk(this.error)
-        }
-        )
-      }).catch(function (err) {
+      Api.post(`/customers/${this.customer}/orders`, newOrder).then((res) => {
+        this.$bvModal.msgBoxOk('Order completed!')
+        this.$router.push('/')
+      },
+      (err) => {
+        console.log(err.response)
+        this.boxOne = ''
+        this.error = err.response.data.error
+        this.$bvModal.msgBoxOk(this.error)
+      }
+      ).catch(function (err) {
         console.log(err)
       })
     }

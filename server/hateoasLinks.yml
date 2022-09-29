@@ -3,3 +3,30 @@
     - rel: "self"
       method: "GET"
       href: "/customers"
+    - rel: "orders"
+      method: "GET"
+      href: "/orders"
+    - rel: "paymentInfos"
+      method: "GET"
+      href: "/paymentInfos"
+/stores:
+ GET:
+  - rel: "self"
+    method: "GET"
+    href: "/stores"
+  - rel: "items"
+    method: "GET"
+    href: "/items"
+/items:
+  GET:
+  - rel: "self"
+    method: "GET"
+    href: "/items"
+/paymentInfos:
+ GET:
+  - rel: "self"
+    method: "GET"
+    href: "/paymentInfos"
+ 
+
+ 
