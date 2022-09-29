@@ -59,6 +59,10 @@
         <input type="Number" class="form-control" v-model="price" placeholder="Item price" />
         </div>
         <br>
+        <div>
+          <input type="text" class="form-control" v-model="image" placeholder="Image path" />
+          </div>
+          <br>
         <label for="category-select">Choose a category:</label>
           <b-form-select
             v-model="category"
@@ -206,7 +210,8 @@ export default {
         const itemUpdate = {
           name: this.name,
           price: this.price,
-          category: this.category
+          category: this.category,
+          image: this.image
         }
         Api.patch(`/items/${item._id}`, itemUpdate).then(response => {
           console.log(response.data)
