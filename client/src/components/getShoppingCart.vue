@@ -95,6 +95,7 @@ export default {
         this.customer = responseData._id
         Api.delete(`/customers/${this.customer}/shoppingCart/${item}`).then((res) => {
           this.$bvModal.msgBoxOk('Removed from cart!')
+          location.reload()
         },
         (err) => {
           console.log(err.response)

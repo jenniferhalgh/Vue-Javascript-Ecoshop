@@ -2,7 +2,7 @@
     <div>
       <router-link class="links ml-5" to="/shoppingCart">
           <div class="dropdown">
-          <b-button class="shopingcart-dropdown"> Shopping Cart</b-button>
+          <b-button class="shopingcart-dropdown" @click="location.reload()"> Shopping Cart</b-button>
           <div class="shoppingcart-content">
             <getShoppingCart/>
           </div>

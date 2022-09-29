@@ -1,25 +1,23 @@
 <template>
   <div v-cloak>
-    <checkout />
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
       <p style="color:#99ae71; font-size: 40px">SHOPPING CART </p>
-    </div>
     <getShoppingCart/>
     <hr>
-        <router-link class="links ml-5" to="/checkout">
-        <button type="button" class="btn btn-successs">Checkout</button>
+    <router-link class="links" to="/checkout/paymentMethod">
+        <button type="button" class="btn btn-successs" @click="location.reload()">Checkout</button>
       </router-link>
   </div>
+</div>
 </template>
 
 <script>
 // @ is an alias to /src
 import getShoppingCart from '@/components/getShoppingCart.vue'
-import checkout from '../components/CheckOut.vue'
 
 export default {
   name: 'shopping-cart',
-  components: { getShoppingCart, checkout },
+  components: { getShoppingCart },
   created() {
     if (sessionStorage.getItem('token') == null) {
       this.$bvModal.msgBoxOk('Unauthorized: Please log in')
