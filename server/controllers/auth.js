@@ -6,7 +6,13 @@ const ShoppingCart = require("../models/shoppingCart")
 const jwt = require('jsonwebtoken');
 
 router.post("/customers", async (req, res) => {
+  console.log('hello')
+  console.log(req.body.adress)
+  console.log('hello')
 
+  if (req.body.name.firstname == '' || req.body.name.lastname == '' || req.body.account.username == ''||req.body.account.password == ''||req.body.email == ''||req.body.phone == ''||req.body.personalNumber == ''||req.body.adress == ''){
+    return res.status(400).json({title: 'Empty fields', error: 'All inputs required!'})
+} else{
   const registeredCustomer = await Customer.findOne({email: req.body.email}, function(err, regCustomer){
     if(err){res.status(500).send(err)}
      if (regCustomer) {
@@ -19,11 +25,11 @@ router.post("/customers", async (req, res) => {
   })
 
   if(!registeredCustomer){
-var shoppingCart = new ShoppingCart(req.body);
+    var shoppingCart = new ShoppingCart(req.body);
 
-let jwttoken = jwt.sign({ customer_Id: req.body._id}, 'token_key', {
+    let jwttoken = jwt.sign({ customer_Id: req.body._id}, 'token_key', {
   expiresIn: "2h"
-});
+    });
 
     const newCustomer = new Customer({
     
@@ -46,17 +52,13 @@ let jwttoken = jwt.sign({ customer_Id: req.body._id}, 'token_key', {
     })
         newCustomer.save(function(err) {
           if (err) { return res.status(500).send(err);}
-          console.log(newCustomer);
-        });
-        shoppingCart.save(function(err) {
+           shoppingCart.save(function(err) {
           if (err) { return res.status(500).send(err);}
-          console.log(shoppingCart);
+          
+          return res.status(201).json(newCustomer, newCustomer._id);
         })
-
-      return res.status(201).json(newCustomer, newCustomer._id);
-  }
-}
-)
+        });
+       }}})
 
 router.post('/customers/login', (req, res, next) => {
 

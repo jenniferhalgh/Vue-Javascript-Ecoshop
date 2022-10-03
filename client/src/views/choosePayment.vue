@@ -62,29 +62,10 @@
         <div class="container">
           <div class="form-update">
             <span
-              onclick="document.getElementById('id2').style.display='none'"
-              class="close"
-              title="Close Modal"
-              >&times;</span
-            >
-            <input
-              type="text"
-              class="form-control"
-              v-model="nameOnCard"
-              placeholder="nameOnCard"
-            />
-            <input
-              type="text"
-              class="form-control"
-              v-model="cardNum"
-              placeholder="Card number"
-            />
-            <input
-              type="number"
-              class="form-control"
-              v-model.lazy="cvv"
-              placeholder="cvv"
-            />
+              onclick="document.getElementById('id2').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <input type="text" class="form-control" v-model="nameOnCard" placeholder="nameOnCard"/>
+            <input type="text" class="form-control" v-model="cardNum" placeholder="Card number"/>
+            <input type="number" class="form-control" v-model.lazy="cvv" placeholder="cvv"/>
             <button class="btn btn-primary btn-block">Update</button>
           </div>
         </div>

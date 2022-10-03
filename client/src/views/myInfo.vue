@@ -6,7 +6,7 @@
     </div>
             <div class="ml-5 mt-2 text">
                 <div class="green-text">
-                    <h4>{{ customer.email }}</h4>
+                    <h4>{{customer.name.firstname}} {{customer.name.lastname}}</h4>
             <p>{{ customer.email }}</p>
           </div>
             <router-link class="links" to="/editProfile">

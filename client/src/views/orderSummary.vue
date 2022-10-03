@@ -2,7 +2,7 @@
     <div>
       <checkout />
         <h1>Order Summary</h1>
-        <div class="my-info">
+        <div class="order">
         <ul class="list-group mt-5 ml-5">
       <h5 class="list-group-item">Products</h5>
           <li class="list-group-item" v-for="(item, index) in shoppingCart" v-bind:key="item._id">
@@ -14,10 +14,10 @@
     </ul>
         </div>
         <div class="buttons">
-          <button class="btn1" variant="primary" v-on:click="postOrder()">Complete Order</button>
           <router-link class="links ml-5" to="/shoppingCart">
-            <button class="btn2" variant="primary">Cancel</button>
+          <button class="btn1 btn-danger" variant="primary">Cancel</button>
           </router-link>
+            <button class="btn2" variant="primary" v-on:click="postOrder()">Confirm</button>
         </div>
     </div>
 </template>
@@ -125,20 +125,24 @@ export default {
  flex-direction: column !important;
 }
 
-.my-info{
- float: none;
-    margin-left: auto;
-    margin-right: auto;
+.order{
+  float: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 500px;
 }
 .btn1{display: inline-block;
-  width: 300px;
+  width: 100px;
   margin: 0 auto;
-  margin-left: 400px;
+  margin-left: 580px;
   color: rgb(255, 255, 255);
+  background-color: rgb(180, 12, 12) !important;
   }
-  .btn2{display: inline-block;
-  width: 300px;
+
+.btn2{display: inline-block;
+  width: 100px;
   margin: 0 auto;
+  margin-left: 50px;
   color: rgb(255, 255, 255);
   }
 
