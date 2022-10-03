@@ -2,14 +2,23 @@
     <div>
       <checkout />
         <h1>Order Summary</h1>
-        <ul class="list-group my-info mt-5 ml-5">
-      <h6 class="list-group-item">Products</h6>
-        <div v-for="(item, index) in shoppingCart" v-bind:key="item._id">
-          <li class="list-group-item">{{itemNames[index]}} {{itemPrice[index]}} kr</li>
-          </div>
-          <li class="list-group-item">subtotal: {{total_sum}}</li>
+        <div class="my-info">
+        <ul class="list-group mt-5 ml-5">
+      <h5 class="list-group-item">Products</h5>
+          <li class="list-group-item" v-for="(item, index) in shoppingCart" v-bind:key="item._id">
+            <p class="one">{{itemNames[index]}}</p><p class="two">{{itemPrice[index]}}</p>
+            </li>
+          <li class="list-group-item"><h6 class="one">Subtotal</h6><h6 class="two">{{totalSum}}</h6></li>
+          <li class="list-group-item"><p class="one">Shipping</p><p class="two">50</p></li>
+          <li class="list-group-item"><h5 class="one">Total cost</h5><h5 class="two">{{totalSum+50}}</h5></li>
     </ul>
-          <button class="link; button" variant="primary" v-on:click="postOrder()">Complete Order</button>
+        </div>
+        <div class="buttons">
+          <button class="btn1" variant="primary" v-on:click="postOrder()">Complete Order</button>
+          <router-link class="links ml-5" to="/shoppingCart">
+            <button class="btn2" variant="primary">Cancel</button>
+          </router-link>
+        </div>
     </div>
 </template>
 
@@ -25,6 +34,7 @@ export default {
     const jwttoken = {
       token: sessionStorage.getItem('token')
     }
+
     fetch('http://localhost:3000/customer', {
       method: 'GET',
       mode: 'cors',
@@ -51,17 +61,19 @@ export default {
           Api.get(`/items/${item}`).then(response => {
             vm.itemNames.push(response.data.name)
             vm.itemPrice.push(response.data.price)
+            vm.totalSum = vm.totalSum + response.data.price
+            console.log(vm.totalSum)
             vm.itemQuantity.push(response.data.quantity)
           })
             .catch(error => {
               console.error(error)
             })
         })
-        vm.itemPrice.reduce(function (a, b) { return a + b }, 0)
       })
     }).catch(error => {
       console.error(error)
     })
+    console.log('hello')
   },
   data() {
     return {
@@ -70,7 +82,7 @@ export default {
       shoppingCart: [],
       itemPrice: [],
       itemQuantity: [],
-      total_sum: 0
+      totalSum: 0
     }
   },
   methods: {
@@ -78,7 +90,7 @@ export default {
       const newOrder = {
         items: [],
         customers: this.customer,
-        total_sum: 100
+        total_sum: this.totalSum
       }
       Api.post(`/customers/${this.customer}/orders`, newOrder).then((res) => {
         this.$bvModal.msgBoxOk('Order completed!')
@@ -98,3 +110,42 @@ export default {
 
 }
 </script>
+
+<style>
+.one {
+    float: left;
+    text-align: left;
+    display: flex;
+ flex-direction: column;
+}
+.two {
+    float: right;
+    text-align: right;
+    display: flex;
+ flex-direction: column !important;
+}
+
+.my-info{
+ float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn1{display: inline-block;
+  width: 300px;
+  margin: 0 auto;
+  margin-left: 400px;
+  color: rgb(255, 255, 255);
+  }
+  .btn2{display: inline-block;
+  width: 300px;
+  margin: 0 auto;
+  color: rgb(255, 255, 255);
+  }
+
+.buttons {
+   float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+</style>

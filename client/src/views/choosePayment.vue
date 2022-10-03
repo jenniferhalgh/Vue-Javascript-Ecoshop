@@ -2,15 +2,6 @@
 
   <div>
   <checkout />
-    <!-- MY INFORMATION -->
-    <ul class="list-group my-info mt-5 ml-5">
-      <h4 class="list-group-item">My information</h4>
-      <li class="list-group-item">First name: {{customer.name.firstname}}</li>
-      <li class="list-group-item">Last name: {{customer.name.lastname}}</li>
-      <li class="list-group-item">Personal number: {{customer.personalNumber}}</li>
-      <li class="list-group-item">Phone number: {{customer.phone}}</li>
-    </ul>
-
     <!-- PAYMENT OPTIONS -->
   <h4 class= "ml-5 mt-5">Payment options </h4>
   <div class="card-deck mt-4 ml-1">
