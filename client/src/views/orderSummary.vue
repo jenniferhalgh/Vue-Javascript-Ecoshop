@@ -94,17 +94,10 @@ export default {
       }
       Api.post(`/customers/${this.customer}/orders`, newOrder).then((res) => {
         this.$bvModal.msgBoxOk('Order completed!')
-        this.$router.push('/')
-      },
-      (err) => {
-        console.log(err.response)
-        this.boxOne = ''
-        this.error = err.response.data.error
-        this.$bvModal.msgBoxOk(this.error)
-      }
-      ).catch(function (err) {
+      }).catch(function (err) {
         console.log(err)
       })
+      this.$router.push('/')
     }
   }
 

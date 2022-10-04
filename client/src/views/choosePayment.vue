@@ -32,8 +32,8 @@
       <div v-else>
         <div class="card-header">CHOSEN</div>
         <router-link class="links" to="/checkout/order">
-  <b-button type="button" class="complete-order" @click="location.reload()"> Complete order</b-button>
-  </router-link>
+          <b-button type="button" class="complete-order" @click="location.reload()"> Complete order</b-button>
+        </router-link>
   </div>
 </div>
       </ul>
@@ -239,6 +239,6 @@ export default {
   float: right;
 }
 .complete-order{
-  float: right;
+  width: 100%;
 }
     </style>

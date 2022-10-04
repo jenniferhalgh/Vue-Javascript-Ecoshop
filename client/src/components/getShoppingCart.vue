@@ -144,9 +144,11 @@ export default {
   }
 
   .btn-danger{
-    width: 70px;
-    text-align: center;
+    margin-top: 2px;
+    width: 70px !important;
+    text-align: center !important;
     background-color: rgb(180, 12, 12) !important;
+    color: white !important;
   }
 
   </style>
