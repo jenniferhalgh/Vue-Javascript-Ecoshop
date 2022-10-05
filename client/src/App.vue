@@ -5,16 +5,16 @@
     </div>
     <div v-if="isLoggedIn">
       <b-navbar type="navbar" class="navigation">
-        <router-link class= "links ml-5 mb-2" to="/" @click="location.reload()">Home </router-link>
+        <router-link class= "nav-link" to="/" @click="location.reload()">Home </router-link>
         <div v-if="customer.email === 'admin@gmail.com'">
-        <router-link class= "links ml-5" to="/admin" @click="location.reload()">Admin </router-link>
+        <router-link class= "nav-link" to="/admin" @click="location.reload()">Admin </router-link>
       </div>
       <div v-if="customer.email != 'admin@gmail.com'">
-        <router-link class= "links ml-5 mb-2" to="/catalogue" @click="location.reload()">Catalogue </router-link>
+        <router-link class= "nav-link" to="/catalogue" @click="location.reload()">Catalogue </router-link>
         </div>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item class="nav-item" to="/profile" @click="location.reload()">Profile</b-nav-item>
-          <b-nav-item class="nav-item" @click="logout">Logout</b-nav-item>
+          <b-nav-item class="nav-link" to="/profile" @click="location.reload()">Profile</b-nav-item>
+          <b-nav-item class="nav-link" @click="logout">Logout</b-nav-item>
         </b-navbar-nav>
       </b-navbar>
     </div>
@@ -93,18 +93,19 @@ export default {
   font-size: 50px;
   background-color: rgb(251, 230, 203);
 }
-.links{
+.nav-link{
   color: #888888;
 }
 .router-link-exact-active{
-  color: #000;
+  color: #000 !important;
 }
-.navbar{
+.navigation{
   background-color: rgb(255, 232, 201);
   margin-top: -10px;
+  color: #888888;
 }
-.item{
-  color: #888888 !important;
+.ml-auto{
+  color: #888888;
   float: right;
 }
 

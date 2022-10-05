@@ -41,8 +41,8 @@
     <br>
   </div>
   <div class="nav-bar">
-  <b-button variant="danger" class="delete-button" @click="deleteStores()"> Delete All Stores </b-button>
-    <router-link class="links ml-5" to="/createStore">
+    <b-button variant="danger" class="delete-button" @click="deleteStores()"> Delete All Stores </b-button>
+    <router-link to="/createStore">
         <b-button class="create-button"> Create A Store </b-button>
       </router-link>
     </div>
@@ -239,5 +239,13 @@ export default {
 }
 .delete-button{
   background: red !important
+}
+@media (min-device-width: 360px) and (max-device-height: 768px) {
+  .delete-button{
+    padding: 15px 32px;
+    display: inline-block;
+    margin-bottom: 1em;
+    text-align: center;
+  }
 }
 </style>
