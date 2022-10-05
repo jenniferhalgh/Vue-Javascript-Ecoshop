@@ -215,10 +215,12 @@ export default {
 
 .button-update{
   float: right;
+  color: rgb(255, 255, 255);
 }
 
 .button-delete{
   float: right;
+  background-color: rgb(180, 12, 12) !important;
 }
 
 </style>

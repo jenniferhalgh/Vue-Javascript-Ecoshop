@@ -1,11 +1,15 @@
 <template>
   <div>
     <div v-if="itemsInCart">
-      <div v-for="(item, index) in shoppingCart" v-bind:key="item._id">
-          <p>{{itemNames[index]}}</p>
-          <p>{{itemPrice[index]}} kr</p>
-          <a href="#" class="btn btn-light" v-on:click="removeFromCart(item)">Remove From Cart</a>
-      </div>
+      <div>
+        <ul class="list-group mt-5 ml-5">
+          <li class="list-group-item" v-for="(item, index) in shoppingCart" v-bind:key="item._id">
+            <p class="one">{{itemNames[index]}}</p> <a href="#" class="three btn-danger" v-on:click="removeFromCart(item)">Remove</a><p class="two">{{itemPrice[index]}}</p>
+            </li>
+          <li class="list-group-item"><h6 class="one">Subtotal</h6><h6 class="two">{{totalSum}}</h6></li>
+    </ul>
+        </div>
+
     </div>
     <div v-else>
       <p>No Items in Cart</p>
@@ -50,6 +54,7 @@ export default {
           Api.get(`/items/${item}`).then(response => {
             vm.itemNames.push(response.data.name)
             vm.itemPrice.push(response.data.price)
+            vm.totalSum = vm.totalSum + response.data.price
             vm.itemQuantity.push(response.data.quantity)
           })
             .catch(error => {
@@ -73,7 +78,8 @@ export default {
       shoppingCart: [],
       itemsInCart: false,
       itemPrice: [],
-      itemQuantity: []
+      itemQuantity: [],
+      totalSum: 0
     }
   },
   methods: {
@@ -119,4 +125,30 @@ export default {
   .a{
   background: #99ae71 !important;
   }
+  .three{
+    margin-left: 5px;
+    margin-right: 10px;
+     float: right;
+    text-align: right;
+    display: flex;
+ flex-direction: column !important;
+  }
+
+  .two{
+    margin-left: 5px;
+    margin-right: 10px;
+     float: right;
+    text-align: right;
+    display: flex;
+ flex-direction: column !important;
+  }
+
+  .btn-danger{
+    margin-top: 2px;
+    width: 70px !important;
+    text-align: center !important;
+    background-color: rgb(180, 12, 12) !important;
+    color: white !important;
+  }
+
   </style>

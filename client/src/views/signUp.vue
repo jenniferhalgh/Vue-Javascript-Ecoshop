@@ -1,40 +1,42 @@
 <template>
   <div>
-    <form @submit.prevent="handleSubmit">
-        <h1> Sign up </h1>
+    <h1> Sign up </h1>
+        <!-- Button to sign in -->
         <router-link class="links ml-5" to="/signIn">
-        <button type="button" class="btn">Sign In</button>
-      </router-link>
-        <div>
-        <input type="text" class="form-control" v-model="firstname" placeholder="First name" />
+           <button type="button" class="btn">Sign In</button>
+        </router-link>
+    <form @submit.prevent="handleSubmit">
+        <div class="row">
+          <div class="col">
+            <input type="text" class="form-control" v-model="firstname" placeholder="First name" />
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" v-model="lastname" placeholder="Last name" />
+          </div>
         </div>
         <br>
         <div>
-        <input type="text" class="form-control" v-model="lastname" placeholder="Last name" />
+          <input type="username" class="form-control" v-model="username" placeholder="Username" />
         </div>
         <br>
         <div>
-        <input type="username" class="form-control" v-model="username" placeholder="Username" />
+          <input type="password" class="form-control" v-model="password" placeholder="Password" />
         </div>
         <br>
         <div>
-        <input type="password" class="form-control" v-model="password" placeholder="Password" />
+          <input type="text" class="form-control" v-model="personalNumber" placeholder="Personal number" />
         </div>
         <br>
         <div>
-        <input type="text" class="form-control" v-model="personalNumber" placeholder="Personal number" />
+          <input type="email" class="form-control" v-model="email" placeholder="Email" />
         </div>
         <br>
         <div>
-        <input type="email" class="form-control" v-model="email" placeholder="Email" />
+          <input type="text" class="form-control" v-model="phone" placeholder="Phone number" />
         </div>
         <br>
         <div>
-        <input type="text" class="form-control" v-model="phone" placeholder="Phone number" />
-        </div>
-        <br>
-        <div>
-        <input type="text" class="form-control" v-model="address" placeholder="Address" />
+          <input type="text" class="form-control" v-model="adress" placeholder="Address" />
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -113,4 +115,15 @@ b-button{
 h1{
   text-align: center;
 }
+
+form{
+  width: 70%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.adj{
+  width: 50%;
+}
+
 </style>

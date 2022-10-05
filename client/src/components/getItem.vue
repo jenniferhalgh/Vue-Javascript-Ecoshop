@@ -55,16 +55,15 @@ export default {
       console.log(response.data.items)
       this.items = response.data.items
       const vm = this
-      response.data.items.forEach(function (item) {
-        Api.get(`/items/${item._id}`).then(response => {
+      for (let i = 0; i < response.data.items.length; i++) {
+        Api.get(`/items/${response.data.items[i]._id}`).then(response => {
           console.log(response.data.store.name)
-          vm.itemStoreNames.push(response.data.store.name)
-          console.log(vm.itemStoreNames)
+          vm.itemStoreNames.splice(i, 0, response.data.store.name)
         })
           .catch(error => {
             console.error(error)
           })
-      })
+      }
     }).catch(error => {
       console.error(error)
     })
@@ -140,16 +139,15 @@ export default {
         vm.itemStoreNames = []
         Api.get('/items').then((res) => {
           this.items = res.data.items
-          res.data.items.forEach(function (item) {
-            Api.get(`/items/${item._id}`).then(response => {
+          for (let i = 0; i < res.data.items.length; i++) {
+            Api.get(`/items/${res.data.items[i]._id}`).then(response => {
               console.log(response.data.store.name)
-              vm.itemStoreNames.push(response.data.store.name)
-              console.log(vm.itemStoreNames)
+              vm.itemStoreNames.splice(i, 0, response.data.store.name)
             })
               .catch(error => {
                 console.error(error)
               })
-          })
+          }
         },
         (err) => {
           console.log(err.response)
@@ -163,23 +161,16 @@ export default {
         vm.itemStoreNames = []
         Api.get(`/items/category/${category}`).then((res) => {
           this.items = res.data
-          res.data.forEach(function (item) {
-            Api.get(`/items/${item._id}`).then(response => {
+
+          for (let i = 0; i < res.data.length; i++) {
+            Api.get(`/items/${res.data[i]._id}`).then(response => {
               console.log(response.data.store.name)
-              vm.itemStoreNames.push(response.data.store.name)
-              console.log(vm.itemStoreNames)
+              vm.itemStoreNames.splice(i, 0, response.data.store.name)
             })
               .catch(error => {
                 console.error(error)
               })
-          },
-          (err) => {
-            console.log(err.response)
-            this.boxOne = ''
-            this.error = err.response.data.error
-            this.$bvModal.msgBoxOk(this.error)
           }
-          )
         })
       }
     },
@@ -194,16 +185,16 @@ export default {
         vm.itemStoreNames = []
         Api.get('/items').then((res) => {
           this.items = res.data.items
-          res.data.items.forEach(function (item) {
-            Api.get(`/items/${item._id}`).then(response => {
+
+          for (let i = 0; i < res.data.items.length; i++) {
+            Api.get(`/items/${res.data.items[i]._id}`).then(response => {
               console.log(response.data.store.name)
-              vm.itemStoreNames.push(response.data.store.name)
-              console.log(vm.itemStoreNames)
+              vm.itemStoreNames.splice(i, 0, response.data.store.name)
             })
               .catch(error => {
                 console.error(error)
               })
-          })
+          }
         },
         (err) => {
           console.log(err.response)

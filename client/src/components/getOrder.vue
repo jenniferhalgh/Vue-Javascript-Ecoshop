@@ -2,8 +2,8 @@
     <div>
     <h1>Order History</h1>
     <div class="block" v-for="order in orders" v-bind:key="order._id">
-        <h6> id:{{order._id}}</h6>
-        <p> Total cost: {{order.total_sum}} kr</p>
+        <h6> Order Id: {{order._id}}</h6>
+        <p> Total cost: {{order.total_sum + 50}} kr</p>
     </div>
 </div>
 </template>
