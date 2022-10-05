@@ -1,7 +1,7 @@
 <template>
     <div>
     <h1>Order History</h1>
-    <div class="block" v-for="order in orders" v-bind:key="order._id">
+    <div id="block" v-for="order in orders" v-bind:key="order._id">
         <h6> Order Id: {{order._id}}</h6>
         <p> Total cost: {{order.total_sum + 50}} kr</p>
     </div>
@@ -63,7 +63,7 @@ export default {
     text-align: center;
     font-size:160%
 }
-.block{
+#block{
     background-color:#cad7b3;
     border-block: solid;
 writing-mode: horizontal-tb;
