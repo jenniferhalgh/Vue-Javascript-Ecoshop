@@ -23,7 +23,7 @@
           </div>
           <br>
           <div>
-          <input type="text" class="form-control" v-model="image" placeholder="Image path" />
+         <input class="form-control" type="file" id="itemFile" v-on:change="readImage()">
           </div>
           <br>
           <label for="category-select">Choose a category:</label>
@@ -226,6 +226,11 @@ export default {
       }).catch(error => {
         console.error(error)
       })
+    },
+    readImage() {
+      const file = document.getElementById('itemFile')
+      console.log(file.value)
+      this.image = file.value.split(/(\\|\/)/g).pop()
     }
   }
 }
