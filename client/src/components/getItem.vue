@@ -20,11 +20,11 @@
           size="sm"
           v-on:change="getSelectedStore(store)">
       </b-form-select>
-    <div class="card-deck top-buffer ml-4">
-      <div v-for="(item, index) in filteredList()" v-bind:key="item.name">
-      <div class="wrapper">
-      <div class="card border-light mb-5" style="width:20rem;">
-    <img class="card-img-top" id="img" v-bind:src="require(`@/assets/${item.image}`)" alt="Card image top">
+    <div class="card-deck top-buffer">
+      <div id="card-div" v-for="(item, index) in filteredList()" v-bind:key="item.name">
+        <div class="wrapper">
+      <div class="card border-light mb-5" style="min-width: 7rem;">
+    <img class="card-img-top img-fluid" id="img" v-bind:src="require(`@/assets/${item.image}`)" alt="Card image top">
 <div class="card-body">
   <div v-if="item.category!='Default'">
 <a href="#" class="badge badge-secondary">{{item.category}}</a>
@@ -33,11 +33,11 @@
   <h6 class="card-subtitle mb-2 text-muted"> {{itemStoreNames[index]}}</h6>
   <p class="lead">{{item.name}}</p>
   <p class="lead">{{item.price}} kr</p>
-  <a href="#" class="btn" v-on:click="addToCart(item)">Add to cart</a>
+  <a href="#" class="btn add" v-on:click="addToCart(item)">Add to cart</a>
   </div>
 </div>
    </div>
-</div>
+   </div>
 </div>
 </div>
 </template>
@@ -233,11 +233,10 @@ export default {
 
 <style>
 
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center
+.card-deck{
+  margin-left: 50px !important;
 }
+
 .card-body {
     color: rgb(0, 0, 0) !important;
     background-color: rgb(255, 255, 255) !important;
@@ -245,6 +244,7 @@ export default {
 
 .card {
   margin-bottom: 30px;
+  width:20rem;
 }
 
 .top-buffer{margin-top:70px;}
@@ -280,6 +280,48 @@ color: #ffffff;
 }
 .ml-5{
   margin-top: 10px;
+}
+
+@media (min-width: 360px) and (max-device-height: 768px){
+  .card {
+  max-width: 50% !important;
+}
+
+.card-deck{
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+}
+
+p{
+  font-size: 50% !important;
+}
+
+h6{
+  font-size: 50% !important;
+}
+
+.add{
+  min-width: 15px !important;
+  font-size: 40% !important;
+}
+#card-div{
+  width: 50%;
+}
+
+.badge{
+  width: 40%;
+  font-size: 40% !important;
+}
+
+.card-body{
+  height: 50% !important;
+  padding: 0.80rem !important;
+  padding-top: 0rem !important;
+}
+
+.top-buffer{
+  margin-top: 30px !important;
+}
 }
 
 </style>
