@@ -5,16 +5,16 @@
     </div>
     <div v-if="isLoggedIn">
       <b-navbar type="navbar" class="navigation">
-        <router-link class= "links ml-5 mb-2" to="/" @click="location.reload()">Home </router-link>
+        <router-link class= "nav-link" to="/" @click="location.reload()">Home </router-link>
         <div v-if="customer.email === 'admin@gmail.com'">
-        <router-link class= "links ml-5" to="/admin" @click="location.reload()">Admin Page </router-link>
+        <router-link class= "nav-link" to="/admin" @click="location.reload()">Admin </router-link>
       </div>
       <div v-if="customer.email != 'admin@gmail.com'">
-        <router-link class= "links ml-5 mb-2" to="/catalogue" @click="location.reload()">Catalogue </router-link>
+        <router-link class= "nav-link" to="/catalogue" @click="location.reload()">Catalogue </router-link>
         </div>
         <b-navbar-nav class="ml-auto">
-          <router-link class="links ml-5 profile" to="/profile" @click="location.reload()">Profile</router-link>
-          <b-nav-item class="links ml-5 mb-2" @click="logout">Logout</b-nav-item>
+          <b-nav-item class="nav-link" to="/profile" @click="location.reload()">Profile</b-nav-item>
+          <b-nav-item class="nav-link" @click="logout">Logout</b-nav-item>
         </b-navbar-nav>
       </b-navbar>
     </div>
@@ -27,7 +27,6 @@
 
 <script>
 // @ is an alias to /src
-import { Api } from '@/Api'
 
 export default {
   data() {
@@ -75,17 +74,6 @@ export default {
       }).catch(function (err) {
         console.log(err)
       })
-    },
-    deleteCustomers() {
-      Api.delete('/customers').then((res) => {
-        this.$bvModal.msgBoxOk('All Customers Are Deleted')
-      },
-      (err) => {
-        console.log(err.response)
-        this.boxOne = ''
-        this.error = err.response.data.error
-        this.$bvModal.msgBoxOk(this.error)
-      })
     }
   }
 }
@@ -105,23 +93,50 @@ export default {
   font-size: 50px;
   background-color: rgb(251, 230, 203);
 }
-.links{
+.nav-link{
   color: #888888;
 }
 .router-link-exact-active{
-  color: #000;
+  color: #000 !important;
 }
-.navbar{
+.navigation{
   background-color: rgb(255, 232, 201);
   margin-top: -10px;
+  color: #888888;
 }
-.nav-item{
-  color: #888888 !important;
+.ml-auto{
+  color: #888888;
   float: right;
 }
 
 .profile{
   margin-top: 20px !important;
+}
+@media (min-device-width: 360px) and (max-device-height: 768px) {
+  .navbar {
+    position: sticky-bottom;
+    width: 100%;
+    max-width: 360px;
+    padding : 0;
+  }
+  .ml-auto {
+    margin-right: 0;
+    width: 100%;
+    max-width: 360px;
+    padding : 0;
+  }
+  .header{
+    position: sticky-bottom;
+    width: 100%;
+    max-width: 360px;
+    padding : 0;
+  }
+  .app{
+    position: sticky-bottom;
+    width: 100%;
+    max-width: 360px;
+    padding : 0;
+  }
 }
 
 </style>

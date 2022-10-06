@@ -1,7 +1,7 @@
 <template>
   <div>
     <getDropdownCart/>
-      <div class="search-wrapper">
+      <div id="search-wrapper">
       <b-form-input type="text" v-model="input" placeholder="Search For Items" style="width: 50%"></b-form-input>
       </div>
     <b-form-select
@@ -275,7 +275,7 @@ color: #ffffff;
 .lead{
   margin-bottom:0px;
 }
-.search-wrapper{
+#search-wrapper{
   margin-left: 50px;
 }
 .ml-5{
