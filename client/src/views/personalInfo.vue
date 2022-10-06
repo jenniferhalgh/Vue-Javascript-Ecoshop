@@ -9,11 +9,10 @@
                     <h4>{{customer.name.firstname}} {{customer.name.lastname}}</h4>
             <p>{{ customer.email }}</p>
           </div>
-                <button class="button" variant="primary" v-on:click="enableInput()">Edit Profile</button>
             <button class="link; button" variant="primary" v-on:click="deleteCustomer()">Delete Account</button>
             <!-- Personal Info -->
     <ul class="list-group my-info mt-5 ml-5 left">
-      <h4 class="list-group-item">Personal Information</h4>
+      <h4 class="list-group-item">Personal Information <button class="btn two" variant="primary" v-on:click="enableInput(), update=true">Edit</button></h4>
       <h6 class="list-group-item">First name <input type="text" class="form-control" disabled v-model="firstname" :placeholder="customer.name.firstname" /></h6>
       <h6 class="list-group-item">Last name <input type="text" class="form-control" disabled v-model="lastname" :placeholder="customer.name.lastname" /></h6>
       <h6 class="list-group-item">Personal number <input type="text" class="form-control" disabled v-model="personalNumber" :placeholder="customer.personalNumber" /></h6>
@@ -22,8 +21,10 @@
       <h6 class="list-group-item">Username <input type="text" class="form-control" disabled v-model="username" :placeholder="customer.account.username" /></h6>
       <h6 class="list-group-item">Email <input type="email" class="form-control" disabled v-model="email" :placeholder="customer.email" /></h6>
       <h6 class="list-group-item">Password <input type="password" class="form-control" disabled v-model="password" placeholder="*********" /></h6>
-      <button class="button-1 btn-danger" variant="primary">Cancel</button>
-      <button class="button-2" variant="primary" v-on:click="updateProfile()">Update</button>
+      <div class="buttons" v-if="update">
+        <button class="btn btn-danger mt-1" variant="primary">Cancel</button>
+      <button class="btn ml-2 mt-1" variant="primary" v-on:click="updateProfile(), update=false">Update</button>
+      </div>
     </ul>
 
     </div>
@@ -81,7 +82,8 @@ export default {
       paymentInfos: [],
       orders: [],
       token: '',
-      error: ''
+      error: '',
+      update: false
     }
   },
   methods: {
@@ -167,6 +169,11 @@ display: inline-block;
 margin-left: auto;
 margin-right: auto;
 display: inline-block;
+}
+
+.btn{
+text-align: center !important;
+min-width: 50px !important;
 }
 
 .text{
