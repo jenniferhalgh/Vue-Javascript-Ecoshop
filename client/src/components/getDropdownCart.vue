@@ -2,7 +2,7 @@
     <div>
       <router-link class="links ml-5" to="/shoppingCart" @click="location.reload()">
           <div class="dropdown">
-          <b-button class="shopingcart-dropdown" @click="location.reload()"> Shopping Cart</b-button>
+          <b-button class="shoppingcart-dropdown" @click="location.reload()"> Shopping Cart</b-button>
           <div class="shoppingcart-content">
             <ul class="list-group">
           <li class="list-group-item" v-for="(item, index) in shoppingCart" v-bind:key="item._id">
@@ -117,7 +117,7 @@ export default {
 </script>
 
 <style>
-    .shopingcart-dropdown {
+    .shoppingcart-dropdown {
       background-color: none;
       color: white;
       font-size: 16px;
