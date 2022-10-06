@@ -11,7 +11,7 @@ import CreateStore from './views/createStore.vue'
 import PaymentMethod from './views/choosePayment.vue'
 import ShoppingCartCheckOut from './components/getShoppingCart.vue'
 import OrderSummary from './views/orderSummary.vue'
-import myInfo from './views/myInfo.vue'
+import personalInfo from './views/personalInfo.vue'
 import orders from './views/orders.vue'
 import paymentInfos from './views/paymentMethods.vue'
 Vue.use(Router)
@@ -46,8 +46,8 @@ export default new Router({
       component: ShoppingCart
     }, {
       path: '/Profile',
-      name: 'myInfo',
-      component: myInfo
+      name: 'personalInfo',
+      component: personalInfo
     }, {
       path: '/editProfile',
       name: 'editProfile',
@@ -79,9 +79,9 @@ export default new Router({
       component: OrderSummary
     },
     {
-      path: '/profile/myInfo',
-      name: 'myInfo',
-      component: myInfo
+      path: '/profile/personalInformation',
+      name: 'personalInfo',
+      component: personalInfo
     },
     {
       path: '/profile/paymentInfos',

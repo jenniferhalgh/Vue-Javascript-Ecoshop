@@ -16,7 +16,7 @@
         </div>
         <br>
         <div>
-          <input type="username" class="form-control" v-model="username" placeholder="Username" />
+          <input type="text" class="form-control" v-model="username" placeholder="Username" />
         </div>
         <br>
         <div>
