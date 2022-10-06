@@ -10,11 +10,22 @@
     - rel: "self"
       method: "GET"
       href: "/customers/:1"
+  PUT:
+    use: "POST"
 
 /customers/:oid:
+  PUT:
+    use: "GET"
   GET:
     - rel: "self"
       method: "GET"
+      href: "/customers/:1"
+    - rel: "self"
+      method: "DELETE"
+      warning: "Delete this customer permanently"
+      href: "/customers/:1"
+    - rel: "self"
+      method: "PUT"
       href: "/customers/:1"
 
 /stores:

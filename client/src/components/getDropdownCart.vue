@@ -1,6 +1,6 @@
 <template>
     <div>
-      <router-link class="links ml-5" to="/shoppingCart">
+      <router-link class="links ml-5" to="/shoppingCart" @click="location.reload()">
           <div class="dropdown">
           <b-button class="shopingcart-dropdown" @click="location.reload()"> Shopping Cart</b-button>
           <div class="shoppingcart-content">

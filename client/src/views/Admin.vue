@@ -41,10 +41,11 @@
     <br>
   </div>
   <div class="nav-bar">
-    <b-button variant="danger" class="delete-button" @click="deleteStores()"> Delete All Stores </b-button>
     <router-link to="/createStore">
-        <b-button class="create-button"> Create A Store </b-button>
+      <b-button class="create-button"> Create A Store </b-button>
       </router-link>
+      <br>
+      <b-button variant="danger" class="delete-button" @click="deleteStores()"> Delete All Stores </b-button>
     </div>
     <h1> ITEMS </h1>
     <div v-for="item in allItems" v-bind:key="item._id">
@@ -235,17 +236,27 @@ export default {
   margin-bottom: 1em;
 }
 .create-button{
-  float: right
+  margin-bottom: 1em;
 }
 .delete-button{
-  background: red !important
+  background: red;
 }
-@media (min-device-width: 360px) and (max-device-height: 768px) {
+.b-form-select{
+    width: 150px;
+  }
+
+@media (min-device-width: 360px) and (max-device-height: 900px) {
   .delete-button{
-    padding: 15px 32px;
-    display: inline-block;
-    margin-bottom: 1em;
-    text-align: center;
+    margin-left: 70px;
+  }
+  .create-button{
+    margin-left: 70px;
+  }
+  .navbar{
+    float: center;
+  }
+  .b-form-select{
+    width: 150px;
   }
 }
 </style>

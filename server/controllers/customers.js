@@ -23,7 +23,7 @@ router.get('/customers/:id', function(req, res){
     if (customer == null) {
         return res.status(404).json({"message": "Customer not found"});
     }
-    res.status(200).send(customer);
+    res.status(200).json(customer, id);
     })
 });
 
@@ -73,7 +73,7 @@ router.patch("/customers/:id", (req, res) => {
             return res.status(404).json({"message": "Customer not found"});
         }
     
-        res.status(200).json(customer);
+        res.status(200).json(customer, id);
     });
 });
   })
