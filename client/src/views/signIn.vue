@@ -96,4 +96,15 @@ p{
 }
 
 hr {margin-left: auto;margin-right: auto;height: 100px;background-color:#666; opacity: 0.5;}
+
+@media (min-width: 360px) and (max-device-height: 768px){
+  .center1{
+    top: 30% !important;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: auto !important;
+  }
+}
+
 </style>
