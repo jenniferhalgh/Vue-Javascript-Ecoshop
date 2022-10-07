@@ -15,10 +15,10 @@
         </div>
         <div class="buttons">
           <router-link class="links ml-5" to="/shoppingCart">
-          <button class="btn1" variant="primary">Cancel</button>
+          <button class="btn1 btn-danger" variant="primary">Cancel</button>
           </router-link>
-          <button class="btn2" variant="primary" v-on:click="postOrder()">Confirm</button>
-          </div>
+            <button class="btn2" variant="primary" v-on:click="postOrder()">Confirm</button>
+        </div>
     </div>
 </template>
 
@@ -125,18 +125,9 @@ export default {
   width: 500px;
 }
 .btn1{display: inline-block;
-  width:100px;
-  border: none;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  width: 100px;
   margin: 0 auto;
-  border-radius: 12px;
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
+  margin-left: 580px;
   color: rgb(255, 255, 255);
   background-color: rgb(180, 12, 12) !important;
   }
@@ -144,32 +135,14 @@ export default {
 .btn2{display: inline-block;
   width: 100px;
   margin: 0 auto;
-  margin-right: 30px;
-  background-color: #99ae71;
-  border: none;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 12px;
-  display: block;
-  margin-top:-65px;
-}
+  margin-left: 50px;
+  color: rgb(255, 255, 255);
+  }
 
 .buttons {
    float: none;
     margin-left: auto;
     margin-right: auto;
-}
-@media (min-device-width: 360px) and (max-device-height: 900px) {
-  .order{
-    width: 90%;
-  }
-  .btn1{
-    margin-left:50px;
-  }
 }
 
 </style>
