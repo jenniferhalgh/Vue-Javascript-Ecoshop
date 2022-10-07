@@ -184,17 +184,8 @@ align-items: center;
     width: 1000px;
 }
 
-@media only screen and (min-device-width: 360px) and (max-device-height: 768px) and (-webkit-device-pixel-ratio: 3) {
-  .Logo img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;
-    height: 2%;
-  }
-  .row {
-    padding: 50px 10px 60px 5px;
-  }
+@media (min-device-width: 360px) and (max-device-height: 768px) {
+
 }
 
 </style>

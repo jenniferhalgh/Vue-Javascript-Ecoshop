@@ -1,11 +1,10 @@
 <template>
-  <div>
-    <h1> Sign up </h1>
+  <div class="center2">
         <!-- Button to sign in -->
-        <router-link class="links ml-5" to="/signIn">
-           <button type="button" class="btn">Sign In</button>
-        </router-link>
+
     <form @submit.prevent="handleSubmit">
+      <h6> SIGN UP </h6>
+      <hr>
         <div class="row">
           <div class="col">
             <input type="text" class="form-control" v-model="firstname" placeholder="First name" />
@@ -39,7 +38,12 @@
           <input type="text" class="form-control" v-model="adress" placeholder="Address" />
         </div>
         <br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">CREATE ACCOUNT</button>
+        <hr>
+        <p>Already have an account?</p>
+         <router-link class="link" to="/signIn">
+           Log in
+        </router-link>
     </form>
   </div>
 </template>
@@ -124,6 +128,17 @@ form{
 
 .adj{
   width: 50%;
+}
+
+.center2{
+    height: 100px;
+    width: 700px;
+    position: absolute;
+    top:0;
+    bottom: 60% !important;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 </style>
