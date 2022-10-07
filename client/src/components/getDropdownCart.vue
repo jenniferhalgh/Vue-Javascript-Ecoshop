@@ -122,7 +122,7 @@ export default {
       color: white;
       font-size: 16px;
       border: none;
-      width: 160px;
+      width: 250px;
       height: 50px;
     }
     .dropdown {
@@ -156,5 +156,13 @@ export default {
       height: auto !important;
       margin-top: -12px;
     }
+
+    @media (min-device-width: 360px) and (max-device-height: 768px){
+    .shoppingcart-dropdown{
+      width: 100px !important;
+      height: 50% !important;
+      font-size: 60% !important;
+    }
+   }
 
 </style>

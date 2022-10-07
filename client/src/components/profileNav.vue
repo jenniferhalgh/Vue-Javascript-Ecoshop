@@ -2,7 +2,7 @@
 <div>
   <ul class="nav flex-column ml-5">
   <li class="nav-item">
-    <a class="nav-link" href="/profile/myInfo">My information</a>
+    <a class="nav-link" href="/profile/personalInformation">My information</a>
   </li>
   <div v-if="customer.email !='admin@gmail.com'">
   <li class="nav-item">
