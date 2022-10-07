@@ -4,7 +4,29 @@
     <div id="block" v-for="order in orders" v-bind:key="order._id">
         <h6> Order Id: {{order._id}}</h6>
         <p> Total cost: {{order.total_sum + 50}} kr</p>
+        <button class="btn" onclick="document.getElementById('order').style.display='block'" v-on:click="viewDetails(order)">
+           View details
+        </button>
     </div>
+
+<div id="order" class="modal">
+      <form class="modal-contents">
+        <div class="container">
+          <ul class="list-group mt-5 ml-5">
+            <span
+              onclick="document.getElementById('order').style.display='none'" class="close" title="Exit">&times;</span>
+      <h5 class="list-group-item">Products</h5>
+          <li class="list-group-item" v-for="(item, index) in itemNames" v-bind:key="item">
+            <p class="one">{{itemNames[index]}}</p><p class="two">{{itemPrices[index]}}</p>
+            </li>
+          <li class="list-group-item"><h6 class="one">Subtotal</h6><h6 class="two">{{totalSum}}</h6></li>
+          <li class="list-group-item"><p class="one">Shipping</p><p class="two">50</p></li>
+          <li class="list-group-item"><h5 class="one">Total cost</h5><h5 class="two">{{totalSum+50}}</h5></li>
+    </ul>
+        </div>
+      </form>
+    </div>
+
 </div>
 </template>
 
@@ -50,7 +72,31 @@ export default {
     return {
       customer: '',
       orders: {},
-      oItem: {}
+      itemNames: [],
+      itemPrices: [],
+      totalSum: 0
+    }
+  },
+  methods: {
+    viewDetails(order) {
+      this.itemNames = []
+      this.itemPrices = []
+      this.totalSum = 0
+      Api.get(`/customers/${this.customer}/orders/${order._id}`).then(response => {
+        const vm = this
+        response.data[0].items.forEach(function (item) {
+          Api.get(`/items/${item}`).then(response => {
+            vm.itemNames.push(response.data.name)
+            vm.itemPrices.push(response.data.price)
+            console.log(response.data)
+            vm.totalSum = vm.totalSum + response.data.price
+          }).catch(function (err) {
+            console.log(err)
+          })
+        })
+      }).catch(function (err) {
+        console.log(err)
+      })
     }
   }
 
@@ -58,14 +104,14 @@ export default {
 </script>
 
 <style scoped>
-.green-text{
-    color:#99ae71;
-    text-align: center;
-    font-size:160%
-}
 #block{
     background-color:#cad7b3;
     border-block: solid;
-writing-mode: horizontal-tb;
+    writing-mode: horizontal-tb;
+    margin-top: 3rem;
+}
+
+.close{
+  margin-left: auto;
 }
 </style>
