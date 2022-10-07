@@ -2,7 +2,7 @@
   <div>
     <div v-if="itemsInCart">
       <div>
-        <ul class="list-group mt-5 ml-5">
+        <ul class="list-group">
           <li class="list-group-item" v-for="(item, index) in shoppingCart" v-bind:key="item._id">
             <p class="one">{{itemNames[index]}}</p> <a href="#" class="three btn-danger" v-on:click="removeFromCart(item)">Remove</a><p class="two">{{itemPrice[index]}}</p>
             </li>
@@ -150,5 +150,21 @@ export default {
     background-color: rgb(180, 12, 12) !important;
     color: white !important;
   }
+
+  .list-group{
+      margin-left: 3rem !important;
+      margin-top: 3rem !important;
+    }
+
+  @media (min-device-width: 360px) and (max-device-height: 768px){
+    .list-group{
+      margin-left: auto !important;
+      margin-top: 1rem !important;
+    }
+    .btn-danger{
+    width: 50px !important;
+    font-size: 60%;
+  }
+   }
 
   </style>
