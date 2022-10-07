@@ -4,17 +4,16 @@
     <div>
       <profileNav/>
     </div>
-            <div class="ml-5 mt-2 text">
+            <div class="mt-2 text">
                 <div class="green-text">
                     <h4>{{customer.name.firstname}} {{customer.name.lastname}}</h4>
-            <p>{{ customer.email }}</p>
+                    <div v-if="customer.email !='admin@gmail.com'">
+            <button class="btn delete-btn" variant="primary" v-on:click="deleteCustomer()">Delete Account</button>
           </div>
-          <div v-if="customer.email !='admin@gmail.com'">
-            <button class="link; button" variant="primary" v-on:click="deleteCustomer()">Delete Account</button>
           </div>
             <!-- Personal Info -->
-    <ul class="list-group my-info mt-5 ml-5 left">
-      <h4 class="list-group-item">Personal Information <button class="btn two" variant="primary" v-on:click="enableInput(), update=true">Edit</button></h4>
+    <ul class="list-group my-info mt-5 left">
+      <h6 class="list-group-item">PERSONAL INFORMATION <button class="btn two edit-btn" variant="primary" v-on:click="enableInput(), update=true">Edit</button></h6>
       <h6 class="list-group-item">First name <input type="text" class="form-control" disabled v-model="firstname" :placeholder="customer.name.firstname" /></h6>
       <h6 class="list-group-item">Last name <input type="text" class="form-control" disabled v-model="lastname" :placeholder="customer.name.lastname" /></h6>
       <h6 class="list-group-item">Personal number <input type="text" class="form-control" disabled v-model="personalNumber" :placeholder="customer.personalNumber" /></h6>
@@ -178,8 +177,20 @@ text-align: center !important;
 min-width: 50px !important;
 }
 
+.edit-btn{
+  width: auto;
+  font-size: 80% !important;
+}
+
+.delete-btn{
+  width: auto;
+  font-size: 50% !important;
+  background-color: rgb(165, 17, 17) !important;
+}
+
 .text{
 align-items: center;
+margin-left: 3rem;
 }
 
 .my-info{
@@ -187,7 +198,12 @@ align-items: center;
 }
 
 @media (min-device-width: 360px) and (max-device-height: 768px) {
-
+.text{
+  width: 80% !important;
+}
+.list-group{
+  width: 100% !important;
+}
 }
 
 </style>
