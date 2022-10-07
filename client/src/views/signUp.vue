@@ -137,4 +137,18 @@ form{
     margin: auto;
 }
 
+@media (min-width: 360px) and (max-device-height: 768px){
+  .center2{
+    top: 10% !important;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: auto !important;
+  }
+
+  .btn{
+    width: 100% !important;
+  }
+}
+
 </style>
