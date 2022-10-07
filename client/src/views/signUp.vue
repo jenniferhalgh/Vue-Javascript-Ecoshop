@@ -1,7 +1,5 @@
 <template>
   <div class="center2">
-        <!-- Button to sign in -->
-
     <form @submit.prevent="handleSubmit">
       <h6> SIGN UP </h6>
       <hr>
@@ -57,21 +55,19 @@ export default {
   components: { },
   data() {
     return {
-      customerData: {
-        firstname: '',
-        lastname: '',
-        username: '',
-        password: '',
-        personalNumber: '',
-        email: '',
-        phone: '',
-        adress: '',
-        shoppingCart: null,
-        paymentInfos: [],
-        orders: [],
-        token: '',
-        error: ''
-      }
+      firstname: '',
+      lastname: '',
+      username: '',
+      password: '',
+      personalNumber: '',
+      email: '',
+      phone: '',
+      adress: '',
+      shoppingCart: null,
+      paymentInfos: [],
+      orders: [],
+      token: '',
+      error: ''
     }
   },
   methods: {

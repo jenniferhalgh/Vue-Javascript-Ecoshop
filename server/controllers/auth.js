@@ -6,9 +6,6 @@ const ShoppingCart = require("../models/shoppingCart")
 const jwt = require('jsonwebtoken');
 
 router.post("/customers", async (req, res) => {
-  console.log('hello')
-  console.log(req.body.adress)
-  console.log('hello')
 
   if (req.body.name.firstname == '' || req.body.name.lastname == '' || req.body.account.username == ''||req.body.account.password == ''||req.body.email == ''||req.body.phone == ''||req.body.personalNumber == ''||req.body.adress == ''){
     return res.status(400).json({title: 'Empty fields', error: 'All inputs required!'})
