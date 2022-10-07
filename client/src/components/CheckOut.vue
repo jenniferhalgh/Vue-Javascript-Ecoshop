@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="btn-groupd-flex" role="group" aria-label="Basic example">
+    <div class="btn-groupd-flex" role="group">
    <router-link class="links" to="/checkout/shoppingCart">
   <button type="button" class="btn btn-secondary btn-arrow-right ml-1">Shopping cart</button>
   </router-link>

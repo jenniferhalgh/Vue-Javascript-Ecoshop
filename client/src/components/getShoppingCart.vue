@@ -151,11 +151,6 @@ export default {
     color: white !important;
   }
 
-  .list-group{
-      margin-left: 3rem !important;
-      margin-top: 3rem !important;
-    }
-
   @media (min-device-width: 360px) and (max-device-height: 768px){
     .list-group{
       margin-left: auto !important;
@@ -166,5 +161,4 @@ export default {
     font-size: 60%;
   }
    }
-
   </style>
