@@ -9,7 +9,9 @@
                     <h4>{{customer.name.firstname}} {{customer.name.lastname}}</h4>
             <p>{{ customer.email }}</p>
           </div>
+          <div v-if="customer.email !='admin@gmail.com'">
             <button class="link; button" variant="primary" v-on:click="deleteCustomer()">Delete Account</button>
+          </div>
             <!-- Personal Info -->
     <ul class="list-group my-info mt-5 ml-5 left">
       <h4 class="list-group-item">Personal Information <button class="btn two" variant="primary" v-on:click="enableInput(), update=true">Edit</button></h4>
