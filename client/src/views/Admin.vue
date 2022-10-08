@@ -250,8 +250,6 @@ export default {
 margin-left: 100px;
 margin-right: 100px;
 }
-.b-form-select{
-  }
 
 @media (min-device-width: 360px) and (max-device-height: 768px) {
   .delete-button{
