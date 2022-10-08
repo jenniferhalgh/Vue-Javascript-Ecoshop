@@ -1,10 +1,9 @@
 <template>
-  <div class="container-fluid">
-  <div class="row">
+  <div class="row-sm">
     <div>
       <profileNav/>
     </div>
-            <div class="text">
+            <div class="mt-2 text">
                 <div class="green-text">
                     <h4>{{customer.name.firstname}} {{customer.name.lastname}}</h4>
                     <div v-if="customer.email !='admin@gmail.com'">
@@ -12,7 +11,8 @@
           </div>
           </div>
             <!-- Personal Info -->
-      <h6 class="list-group-item">PERSONAL INFORMATION <button class="btn two edit-btn btn-sm" variant="primary" v-on:click="enableInput(), update=true">Edit</button></h6>
+    <ul class="list-group my-info">
+      <h6 class="list-group-item">PERSONAL INFORMATION <button class="btn two edit-btn" variant="primary" v-on:click="enableInput(), update=true">Edit</button></h6>
       <h6 class="list-group-item">First name <input type="text" class="form-control" disabled v-model="firstname" :placeholder="customer.name.firstname" /></h6>
       <h6 class="list-group-item">Last name <input type="text" class="form-control" disabled v-model="lastname" :placeholder="customer.name.lastname" /></h6>
       <h6 class="list-group-item">Personal number <input type="text" class="form-control" disabled v-model="personalNumber" :placeholder="customer.personalNumber" /></h6>
@@ -25,9 +25,8 @@
         <button class="btn btn-danger mt-1" variant="primary">Cancel</button>
       <button class="btn ml-2 mt-1" variant="primary" v-on:click="updateProfile(), update=false">Update</button>
       </div>
-
+    </ul>
     </div>
-          </div>
   </div>
 
 </template>
@@ -147,7 +146,6 @@ background-color: #99ae71;
 border: none;
 color: white;
 padding: 20px;
-text-align: center;
 text-decoration: none;
 display: inline-block;
 font-size: 16px;
@@ -159,7 +157,7 @@ margin-right: auto;
 }
 
 .button-1{
-  margin-left: auto;
+margin-left: auto;
 margin-right: auto;
 display: inline-block;
 }
@@ -174,33 +172,48 @@ display: inline-block;
 text-align: center !important;
 min-width: 50px !important;
 }
-h6{
-  margin-bottom: 50px;
-}
+
 .edit-btn{
   width: auto;
   font-size: 80% !important;
-  text-align: center !important;
 }
 
 .delete-btn{
   width: auto;
   font-size: 50% !important;
   background-color: rgb(165, 17, 17) !important;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 .text{
 align-items: center;
 margin-left: 3rem;
+margin-right: 3rem;
+margin-bottom: 3rem;
+}
+
+.my-info{
+    width: 100%;
+}
+.list-group{
+  width: 100%;
+}
+.row{
+  width: auto;
 }
 
 @media (min-device-width: 360px) and (max-device-height: 768px) {
+  .green-text{
+    float: left;
+  }
 .text{
-  width: 80% !important;
+  width: auto !important;
+}
+.list-group{
+  width: auto !important;
 }
 .my-info{
-  width: 100px !important;
+  width: auto !important;
 }
 }
 
