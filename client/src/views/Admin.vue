@@ -9,7 +9,7 @@
         <input type="text" class="form-control" v-model="name" placeholder="Store name" />
         </div>
         <br>
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-block">Update</button>
     </form>
     <hr>
     <h2> Create Item In Store: </h2>
@@ -30,22 +30,22 @@
           <b-form-select
             v-model="category"
             :options="categoryList"
-            class="input ml-5 filter"
+            class="form-select"
             style="width: 15%"
             size="sm"
             v-on:change="getSelectedCategory(category)">
           </b-form-select>
           <br>
-          <button type="submit" class="btn btn-primary">Create New Item</button>
+          <button type="submit" class="btn btn-block">Create New Item</button>
       </form>
     <br>
   </div>
   <div class="nav-bar">
     <router-link to="/createStore">
-      <b-button class="create-button"> Create A Store </b-button>
+      <b-button class="btn btn-block"> Create A Store </b-button>
       </router-link>
       <br>
-      <b-button variant="danger" class="delete-button" @click="deleteStores()"> Delete All Stores </b-button>
+      <b-button variant="danger" class="btn btn-block" @click="deleteStores()"> Delete All Stores </b-button>
     </div>
     <h1> ITEMS </h1>
     <div v-for="item in allItems" v-bind:key="item._id">
@@ -68,16 +68,17 @@
           <b-form-select
             v-model="category"
             :options="categoryList"
-            class="input ml-5 filter"
+            class="form-select"
             style="width: 15%"
             size="sm"
             v-on:change="getSelectedCategory(category)">
           </b-form-select>
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-block">Update</button>
     </form>
     </div>
+    <br>
     <div class="nav-bar">
-  <b-button variant="danger" class="delete-button" @click="deleteItems()"> Delete All Stores </b-button>
+  <b-button variant="danger" class="btn btn-block" @click="deleteItems()"> Delete All Items </b-button>
     </div>
   </div>
 </template>
@@ -240,22 +241,25 @@ export default {
 .btn_message {
   margin-bottom: 1em;
 }
-.create-button{
+.primary{
   margin-bottom: 1em;
+  float: right;
+  width: 350px;
 }
-.delete-button{
-  background: red;
+.nav-bar{
+margin-left: 100px;
+margin-right: 100px;
 }
 .b-form-select{
-    width: 150px;
   }
 
-@media (min-device-width: 360px) and (max-device-height: 900px) {
+@media (min-device-width: 360px) and (max-device-height: 768px) {
   .delete-button{
-    margin-left: 70px;
-  }
-  .create-button{
-    margin-left: 70px;
+    display: block !important;
+   }
+  .primary{
+    width: auto !important;
+    display: block;
   }
   .navbar{
     float: center;

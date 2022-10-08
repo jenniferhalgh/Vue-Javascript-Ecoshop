@@ -145,7 +145,7 @@ export default {
 
   .btn-danger{
     margin-top: 2px;
-    width: 70px !important;
+    width: 70px;
     text-align: center !important;
     background-color: rgb(180, 12, 12) !important;
     color: white !important;
@@ -157,7 +157,7 @@ export default {
       margin-top: 1rem !important;
     }
     .btn-danger{
-    width: 50px !important;
+    width: 50px;
     font-size: 60%;
   }
    }

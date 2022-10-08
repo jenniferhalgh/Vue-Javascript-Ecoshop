@@ -6,7 +6,7 @@
           <input type="text" class="form-control" v-model="name" placeholder="Name" />
           </div>
           <br>
-          <button type="submit" class="btn btn-primary">Create New Store</button>
+          <button type="submit" class="btn btn-block">Create New Store</button>
       </form>
     </div>
 </template>
