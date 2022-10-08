@@ -180,7 +180,7 @@ min-width: 50px !important;
 
 .delete-btn{
   width: auto;
-  font-size: 50% !important;
+  font-size: auto !important;
   background-color: rgb(165, 17, 17) !important;
   margin-bottom: 1rem;
 }
