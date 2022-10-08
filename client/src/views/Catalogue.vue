@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div class="shoppingCart"></div>
+    <div class="shoppingCart">
     <getDropdownCart/>
+  </div>
       <div id="search-wrapper">
       <b-form-input class="search" type="text" v-model="input" placeholder="Search For Items"></b-form-input>
       </div>
