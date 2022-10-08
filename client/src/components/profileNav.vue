@@ -1,18 +1,15 @@
 <template>
 <div>
-  <ul class="nav flex-column ml-5">
+  <ul class="nav ml-5">
   <li class="nav-item">
     <a class="nav-link" href="/profile/personalInformation">My information</a>
   </li>
-  <div v-if="customer.email !='admin@gmail.com'">
-  <li class="nav-item">
+  <li class="nav-item" v-if="customer.email !='admin@gmail.com'">
     <a class="nav-link" href="/profile/paymentInfos">Payment methods</a>
   </li>
-  <br>
-  <li class="nav-item">
+  <li class="nav-item" v-if="customer.email !='admin@gmail.com'">
     <a class="nav-link" href="/profile/orders">Orders</a>
   </li>
-</div>
 </ul>
 </div>
 </template>
@@ -64,4 +61,18 @@ export default {
     .nav-item{
       float: left;
     }
+
+    .nav{
+      flex-direction: column !important;
+    }
+
+@media (min-device-width: 360px) and (max-device-height: 768px) {
+.nav{
+  flex-direction: row !important;
+}
+.nav-item{
+  font-size: 60%;
+}
+}
+
     </style>
