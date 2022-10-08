@@ -1,5 +1,5 @@
 <template>
-  <div class="center1">
+  <div class="form-group">
     <form @submit.prevent="handleSubmit">
         <h6> LOG IN </h6>
         <hr>
@@ -11,7 +11,7 @@
         <input type="password" class="form-control" v-model="password" placeholder="Password" />
         </div>
         <br>
-        <button type="submit" class="btn btn-primary">LOG IN</button>
+        <button type="submit" class="btn btn-block">LOG IN</button>
         <hr>
         <p>Need an account?</p>
         <router-link class="link" to="/signUp">
@@ -76,15 +76,8 @@ form{
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.center1{
-    height: 100px;
-    width: 500px;
-    position: absolute;
-    top:0;
-    bottom: 40% !important;
-    left: 0;
-    right: 0;
-    margin: auto;
+.form-group{
+ margin-top: 100px
 }
 
 p{
@@ -98,13 +91,6 @@ p{
 hr {margin-left: auto;margin-right: auto;height: 100px;background-color:#666; opacity: 0.5;}
 
 @media (min-width: 360px) and (max-device-height: 768px){
-  .center1{
-    top: 30% !important;
-    width: auto;
-    margin-left: auto;
-    margin-right: auto;
-    bottom: auto !important;
-  }
 }
 
 </style>
