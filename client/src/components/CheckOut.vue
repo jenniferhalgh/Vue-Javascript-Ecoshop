@@ -2,12 +2,12 @@
 <div>
     <div class="btn-groupd-flex" role="group">
    <router-link class="links" to="/checkout/shoppingCart">
-  <button type="button" class="btn btn-secondary btn-arrow-right ml-1">Shopping cart</button>
+  <button type="button" class="btn btn-secondary btn-arrow-right btn-bar">Shopping cart</button>
   </router-link>
   <router-link class="links" to="/checkout/paymentMethod">
-  <button type="button" class="btn btn-secondary btn-arrow-right ml-1">Payment method</button>
+  <button type="button" class="btn btn-secondary btn-arrow-right btn-bar">Payment method</button>
   </router-link>
-  <button type="button" class="btn btn-secondary btn-arrow-right ml-1">Order summary</button>
+  <button type="button" class="btn btn-secondary btn-arrow-right btn-bar">Order summary</button>
 </div>
 </div>
 </template>
@@ -41,6 +41,11 @@ export default {
 </script>
 
 <style>
+
+.btn-bar{
+   margin-left: 0.25rem;
+   width: 32.5%;
+}
 
 .btn-arrow-right {
    position: relative;
@@ -106,8 +111,9 @@ export default {
 .btn-arrow-right:before{
    /* hide arrow tails background */
 
-   background-color: white;
+   background-color: white !important;
 }
+
 .btn-arrow-right {
    padding-left: 36px;
 }
@@ -117,4 +123,31 @@ export default {
    padding-left: 18px;
    padding-right: 18px;
 }
+
+@media (min-device-width: 360px) and (max-device-height: 768px){
+.btn-bar{
+   width: 32.5% !important;
+   font-size: 60% !important;
+   margin-left: 0rem !important;
+}
+.btn-arrow-right:before,
+.btn-arrow-right:after {
+   top: 4px;
+   /* move it down because of rounded corners */
+   width: 18px !important;
+   /* same as height */
+   height: 18px !important;
+}
+
+.btn-arrow-right:before {
+   /* align the "before" square to the left */
+   left: -7px !important;
+}
+
+.btn-arrow-right:after{
+   /* align the "after" square to the right */
+   right: -8px;
+}
+}
+
 </style>
