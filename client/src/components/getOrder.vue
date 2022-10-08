@@ -126,12 +126,6 @@ export default {
 }
 .container{
   width: 80%;
-  margin: auto;
-}
-.modal-contents{
-  background-color: #fefefe;
-  margin: 15% auto;
-  border: 1px solid #888;
-  width: 80%;
+  margin-top: 121px;
 }
 </style>
