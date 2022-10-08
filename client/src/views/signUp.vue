@@ -1,5 +1,5 @@
 <template>
-  <div class="center2">
+  <div class="form-group">
     <form @submit.prevent="handleSubmit">
       <h6> SIGN UP </h6>
       <hr>
@@ -36,7 +36,7 @@
           <input type="text" class="form-control" v-model="adress" placeholder="Address" />
         </div>
         <br>
-        <button type="submit" class="btn btn-primary">CREATE ACCOUNT</button>
+        <button type="submit" class="btn btn-block">CREATE ACCOUNT</button>
         <hr>
         <p>Already have an account?</p>
          <router-link class="link" to="/signIn">
