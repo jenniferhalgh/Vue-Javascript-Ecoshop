@@ -91,7 +91,7 @@ export default {
   text-align: center;
   color: #99ae71;
   font-size: 50px;
-  background-color: rgb(251, 230, 203);
+  background-color: antiquewhite;
 }
 .nav-link{
   color: #888888;

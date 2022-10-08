@@ -4,18 +4,20 @@
     <div id="block" v-for="order in orders" v-bind:key="order._id">
         <h6> Order Id: {{order._id}}</h6>
         <p> Total cost: {{order.total_sum + 50}} kr</p>
-        <button class="btn" onclick="document.getElementById('order').style.display='block'" v-on:click="viewDetails(order)">
+        <div class="button">
+        <b-button class="btn-block btn-order" onclick="document.getElementById('order').style.display='block'" v-on:click="viewDetails(order)">
            View details
-        </button>
+        </b-button>
+      </div>
     </div>
 
 <div id="order" class="modal">
-      <form class="modal-contents">
         <div class="container">
           <ul class="list-group mt-5 ml-5">
+            <h5 class="list-group-item">Products
             <span
               onclick="document.getElementById('order').style.display='none'" class="close" title="Exit">&times;</span>
-      <h5 class="list-group-item">Products</h5>
+            </h5>
           <li class="list-group-item" v-for="(item, index) in itemNames" v-bind:key="item">
             <p class="one">{{itemNames[index]}}</p><p class="two">{{itemPrices[index]}}</p>
             </li>
@@ -24,7 +26,6 @@
           <li class="list-group-item"><h5 class="one">Total cost</h5><h5 class="two">{{totalSum+50}}</h5></li>
     </ul>
         </div>
-      </form>
     </div>
 
 </div>
@@ -113,5 +114,18 @@ export default {
 
 .close{
   margin-left: auto;
+}
+.button{
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 50px;
+  padding: 10px;
+}
+.btn{
+  color: black;
+}
+.container{
+  width: 80%;
+  margin-top: 121px;
 }
 </style>

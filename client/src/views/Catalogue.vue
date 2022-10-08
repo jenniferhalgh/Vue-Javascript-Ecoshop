@@ -234,7 +234,7 @@ export default {
 <style>
 
 .card-deck{
-  margin-left: 50px !important;
+  margin-left: 20px !important;
 }
 
 .card-body {
