@@ -1,6 +1,9 @@
 <template>
   <div class="row-sm">
-    <div>
+    <div v-if="customer.email !='admin@gmail.com'">
+      <div class="shoppingCart">
+        <getDropdownCart/>
+      </div>
       <profileNav/>
     </div>
             <div class="mt-2 text">
@@ -34,11 +37,12 @@
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
+import getDropdownCart from '../components/getDropdownCart.vue'
 import profileNav from '../components/profileNav.vue'
 
 export default {
   name: 'myInfo',
-  components: { profileNav },
+  components: { profileNav, getDropdownCart },
   mounted() {
     const jwttoken = {
       token: sessionStorage.getItem('token')
@@ -176,6 +180,7 @@ min-width: 50px !important;
 .edit-btn{
   width: auto;
   font-size: 80% !important;
+  margin-right: auto;
 }
 
 .delete-btn{
@@ -200,6 +205,9 @@ margin-bottom: 3rem;
 }
 .row{
   width: auto;
+}
+.shoppingCart{
+  margin-bottom: 30px;
 }
 
 @media (min-device-width: 360px) and (max-device-height: 768px) {

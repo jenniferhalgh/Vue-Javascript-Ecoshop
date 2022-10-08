@@ -3,11 +3,7 @@
   <ul class="nav ml-5">
   <li class="nav-item">
     <a class="nav-link" href="/profile/personalInformation">My information</a>
-  </li>
-  <li class="nav-item" v-if="customer.email !='admin@gmail.com'">
     <a class="nav-link" href="/profile/paymentInfos">Payment methods</a>
-  </li>
-  <li class="nav-item" v-if="customer.email !='admin@gmail.com'">
     <a class="nav-link" href="/profile/orders">Orders</a>
   </li>
 </ul>

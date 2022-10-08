@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div v-if="customer.email !='admin@gmail.com'">
+  <div v-if="customer.email !='admin@gmail.com'">
     <getDropdownCart/>
-    </div>
+  </div>
+  ansndnas
   </div>
 </template>
 
@@ -30,7 +31,4 @@ export default {
 </script>
 
 <style>
-.delete-button {
- margin-top: 10px;
-}
 </style>

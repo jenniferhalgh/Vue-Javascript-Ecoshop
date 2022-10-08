@@ -1,6 +1,8 @@
 <template>
   <div>
+    <div class="shoppingCart">
     <getDropdownCart/>
+  </div>
       <div id="search-wrapper">
       <b-form-input class="search" type="text" v-model="input" placeholder="Search For Items"></b-form-input>
       </div>
@@ -260,11 +262,12 @@ color: #ffffff;
 
 .filter{
   margin-top:70px;
+  width: auto
 }
 
 .filter-1, .filter-2{
-  margin-top:10px;
-  margin-left: 3rem !important;
+  margin-top: 10px;
+  margin-left: 1.25rem !important;
 }
 
 .badge{
@@ -281,29 +284,20 @@ color: #ffffff;
   margin-bottom:0px;
 }
 #search-wrapper{
-  margin-left: 50px;
+  margin-top: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .search{
-  width: 50% !important;
+  width: auto;
+}
+.shoppingCart{
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 @media (min-width: 360px) and (max-device-height: 768px){
-
-.search{
-  width: 85% !important;
-  font-size: 60% !important;
-}
-
-.filter-1, .filter-2{
-  width: 35% !important;
-  font-size: 60% !important;
-}
-
-.filter-2{
-  margin-left: 1rem !important;
-}
-
 .card, #card-div {
   max-width: 50% !important;
 }
