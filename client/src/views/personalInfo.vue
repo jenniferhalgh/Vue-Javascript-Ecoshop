@@ -1,6 +1,6 @@
 <template>
   <div class="row-sm">
-    <div>
+    <div v-if="customer.email !='admin@gmail.com'">
       <profileNav/>
     </div>
             <div class="mt-2 text">
