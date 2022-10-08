@@ -176,6 +176,7 @@ min-width: 50px !important;
 .edit-btn{
   width: auto;
   font-size: 80% !important;
+  margin-right: auto;
 }
 
 .delete-btn{
