@@ -5,7 +5,7 @@
       <profileNav/>
     </div>
     <h4 class= "ml-5 mt-5">Payment information
-    <button class="btn-primary" :pressed="false" variant="success" onclick="document.getElementById('id1').style.display='block'">+</button>
+    <button class="btn-primary add-btn" :pressed="false" variant="success" onclick="document.getElementById('id1').style.display='block'">+</button>
     </h4>
 
      <!-- BUTTON CARD -->
@@ -221,6 +221,10 @@ export default {
 .button-delete{
   float: right;
   background-color: rgb(180, 12, 12) !important;
+}
+
+.add-btn{
+    width: auto !important;
 }
 
 </style>
