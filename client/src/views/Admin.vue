@@ -90,12 +90,12 @@
 <!-- Show items in store -->
        <div id="showItems" class="modal modal-items">
            <div class="container">
-             <ul class="list-group mt-5 ml-5">
+             <ul class="list-group mt-5 ml-4">
       <h5 class="list-group-item">Items <span onclick="document.getElementById('showItems').style.display='none'" class="close" title="Close">&times;</span></h5>
       <div v-for="item in storeItems" v-bind:key="item._id">
  <li class="list-group-item itemList">
-  <img class="img mr-5" id="img" v-bind:src="require(`@/assets/${item.image}`)" alt="">
-  <div>
+  <div class="container">
+     <img class="img mr-5" id="img" v-bind:src="require(`@/assets/${item.image}`)" alt="">
     <p>ID: {{item._id}}<button class="btn btn-edit two" onclick="document.getElementById('updateItem').style.display='block'" v-on:click="currentItem=item._id">Edit</button></p>
     <p>Name: {{item.name}}</p>
     <p>Price: {{item.price}}</p>
@@ -378,11 +378,8 @@ margin-right: 100px;
   display: inline-block !important;
 }
 
-.btn-delete{
-}
-
 .img{
-  width: 15% !important;
+  width: 10% !important;
   float: left !important;
 
 }
@@ -416,5 +413,27 @@ margin-right: 100px;
   .b-form-select{
     width: 150px;
   }
+
+  .img{
+    width: 20% !important;
+  }
+
+  .btn{
+    width: auto !important;
+    font-size: 60% !important;
+  }
+
+  .modal{
+    width: 90% !important;
+  }
+
+  .modal-items{
+    width: 100% !important;
+    margin-left: -7% !important;
+  }
+
+  .itemList{
+  height: auto !important;
+}
 }
 </style>
