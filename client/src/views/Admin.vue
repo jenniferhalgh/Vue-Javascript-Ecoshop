@@ -1,54 +1,30 @@
 <template>
   <div>
     <h1> STORES </h1>
-      <div class="container-fluid ml-5" v-for="store in allStores" v-bind:key="store._id">
+    <div class="buttons">
+    <router-link to="/createStore">
+      <button class="btn btn-create one"> Create A Store </button>
+      </router-link>
+      <button class="btn btn-danger btn-delete two" @click="deleteStores()"> Delete All Stores </button>
+      <br>
+      <br>
+      <br>
+    </div>
+      <div class="container-fluid mb-3" v-for="store in allStores" v-bind:key="store._id">
         <h5> {{store.name}} <button class="btn btn-edit" onclick="document.getElementById('storeName').style.display='block'">Edit</button></h5>
         <p class="text-muted"> ID: {{store._id}}</p>
+    <hr class="hr-dotted">
+    <button class="btn " onclick="document.getElementById('addItem').style.display='block'" v-on:click="currentStore=store._id">Add new item</button>
+    <button class="btn" @click="showItems(store)" onclick="document.getElementById('showItems').style.display='block'" v-bind:key="store._id">View all items</button>
+    <button class="btn btn-danger btn-delete" @click="deleteStores()">Delete store</button>
     <hr>
-    <button class="btn btn-add" onclick="document.getElementById('addItem').style.display='block'">Add new item</button>
-    <br>
-  </div>
-  <div class="nav-bar">
-    <router-link to="/createStore">
-      <b-button class="btn btn-block"> Create A Store </b-button>
-      </router-link>
-      <br>
-      <b-button variant="danger" class="btn btn-block" @click="deleteStores()"> Delete All Stores </b-button>
-    </div>
-    <h1> ITEMS </h1>
-    <div v-for="item in allItems" v-bind:key="item._id">
-      <h2> Update Item: </h2>
-        <p> Name: {{item.name}}, Price: {{item.price}}, Category: {{item.category}}</p>
-        <form @submit.prevent="updateItems(item)">
-        <div>
-        <input type="text" class="form-control" v-model="name" placeholder="Item name" />
-        </div>
-        <br>
-        <div>
-        <input type="Number" class="form-control" v-model="price" placeholder="Item price" />
-        </div>
-        <br>
-        <div>
-          <input type="text" class="form-control" v-model="image" placeholder="Image path" />
-          </div>
-          <br>
-        <label for="category-select">Choose a category:</label>
-          <b-form-select
-            v-model="category"
-            :options="categoryList"
-            class="form-select"
-            style="width: 15%"
-            size="sm"
-            v-on:change="getSelectedCategory(category)">
-          </b-form-select>
-        <button type="submit" class="btn btn-block">Update</button>
-    </form>
     </div>
     <br>
     <div class="nav-bar">
   <b-button variant="danger" class="btn btn-block" @click="deleteItems()"> Delete All Items </b-button>
     </div>
 
+<!-- Update store name -->
     <div id="storeName" class="modal">
         <form class="modal-contents" @submit.prevent="updateStore(store)">
            <div class="container">
@@ -64,8 +40,9 @@
       </form>
        </div>
 
+<!-- Add item in store -->
        <div id="addItem" class="modal">
-        <form class="modal-contents" @submit.prevent="updateStore(store)">
+        <form class="modal-content" @submit.prevent="createItem()">
            <div class="container">
           <div class="form-update">
           <span onclick="document.getElementById('addItem').style.display='none'" class="close" title="Close">&times;</span>
@@ -97,7 +74,51 @@
       </form>
        </div>
 
+<!-- Show items in store -->
+       <div id="showItems" class="modal modal-items">
+           <div class="container">
+             <ul class="list-group mt-5 ml-5">
+      <h5 class="list-group-item">Items <span onclick="document.getElementById('showItems').style.display='none'" class="close" title="Close">&times;</span></h5>
+      <div v-for="item in storeItems" v-bind:key="item._id">
+ <li class="list-group-item itemList">
+  <img class="img mr-5" id="img" v-bind:src="require(`@/assets/${item.image}`)" alt="">
+  <div>
+    <p>ID: {{item._id}}<button class="btn btn-edit two" onclick="document.getElementById('updateItem').style.display='block'" v-on:click="currentItem=item._id">Edit</button></p>
+    <p>Name: {{item.name}}</p>
+    <p>Price: {{item.price}}</p>
+    <p>Category: {{item.category}}</p>
   </div>
+            </li>
+      </div>
+    </ul>
+       </div>
+       </div>
+
+       <div id="updateItem" class="modal">
+        <form class="modal-content" @submit.prevent="updateItems()">
+           <div class="container">
+            <span onclick="document.getElementById('updateItem').style.display='none'" class="close" title="Close">&times;</span>
+        <input type="text" class="form-control" v-model="name" placeholder="Item name" />
+        <br>
+        <input type="Number" class="form-control" v-model="price" placeholder="Item price" />
+        <br>
+          <input class="form-control" type="file" id="itemFile" v-on:change="readImage()">
+          <br>
+        <label for="category-select">Choose a category:</label>
+          <b-form-select
+            v-model="category"
+            :options="categoryList"
+            class="form-select"
+            style="width: 15%"
+            size="sm"
+            v-on:change="getSelectedCategory(category)">
+          </b-form-select>
+        <button type="submit" class="btn btn-block">Update</button>
+    </div>
+    </form>
+    </div>
+
+       </div>
 </template>
 
 <script>
@@ -140,13 +161,17 @@ export default {
       },
       category: '',
       categoryList: [
-        { value: '', text: '--Select category--' },
+        { value: 'Default', text: '--Select category--' },
         { value: 'Second Hand', text: 'Second Hand' },
         { value: 'Vegan', text: 'Vegan' },
         { value: 'Small Creator', text: 'Small Creator' }
       ],
       items: {},
-      allItems: []
+      allItems: [],
+      storeItems: [],
+      currentStore: '',
+      currentItem: ''
+
     }
   },
   methods: {
@@ -181,8 +206,8 @@ export default {
         console.error(error)
       })
     },
-    createItem(store) {
-      Api.get(`/stores/${store._id}`).then(response => {
+    createItem() {
+      Api.get(`/stores/${this.currentStore}`).then(response => {
         console.log(response.data)
         this.stores = response.data
         const vm = this
@@ -191,10 +216,10 @@ export default {
           price: this.price,
           category: this.category,
           image: this.image,
-          store: store._id
+          store: this.currentStore
 
         }
-        Api.post(`/stores/${store._id}/items`, newItem).then((res) => {
+        Api.post(`/stores/${this.currentStore}/items`, newItem).then((res) => {
           console.log(res.data)
           vm.items = []
           vm.items.push(newItem)
@@ -221,8 +246,8 @@ export default {
           })
       }
     },
-    updateItems(item) {
-      Api.get(`/items/${item._id}`).then(response => {
+    updateItems() {
+      Api.get(`/items/${this.currentItem}`).then(response => {
         console.log(response.data)
         this.items = response.data
         const vm = this
@@ -232,7 +257,7 @@ export default {
           category: this.category,
           image: this.image
         }
-        Api.patch(`/items/${item._id}`, itemUpdate).then(response => {
+        Api.patch(`/items/${this.currentItem}`, itemUpdate).then(response => {
           console.log(response.data)
           vm.items = response.data
           console.log(vm.items)
@@ -249,12 +274,45 @@ export default {
       const file = document.getElementById('itemFile')
       console.log(file.value)
       this.image = file.value.split(/(\\|\/)/g).pop()
+    },
+    showItems(store) {
+      this.storeItems = []
+      console.log(this.storeItems)
+      console.log(store)
+      console.log(store.items)
+      const vm = this
+      store.items.forEach(function (item) {
+        Api.get(`/items/${item}`).then(response => {
+          vm.storeItems.push(response.data)
+        })
+          .catch(error => {
+            console.error(error)
+          })
+        console.log(vm.storeItems)
+      })
     }
   }
 }
+
 </script>
 
 <style>
+
+.buttons {
+   float: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.hr-dotted {
+  border: none;
+  border-top: 3px dotted rgb(0, 0, 0);
+  color: #fff;
+  background-color: #fff;
+  height: 1px;
+  width: 100%;
+}
+
 .btn_message {
   margin-bottom: 1em;
 }
@@ -270,6 +328,38 @@ margin-right: 100px;
 
 .btn-edit{
  width: auto;
+}
+
+.btn{
+  width: auto !important;
+}
+
+.btn-create, .btn-delete{
+  display: inline-block !important;
+}
+
+.btn-delete{
+}
+
+.img{
+  width: 10% !important;
+  float: left !important;
+
+}
+
+.itemList{
+  height: 180px !important;
+}
+
+.modal{
+  width: 50% !important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10% !important;
+}
+
+.modal-items{
+  width: 100% !important;
 }
 
 @media (min-device-width: 360px) and (max-device-height: 768px) {
