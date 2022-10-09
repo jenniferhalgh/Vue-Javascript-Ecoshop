@@ -1,17 +1,21 @@
 <template>
   <div>
     <h1> STORES </h1>
-      <div v-for="store in allStores" v-bind:key="store._id">
-        <h2> Update Store: </h2>
-        <p> {{store.name}}</p>
-        <form @submit.prevent="updateStore(store)">
-        <div>
-        <input type="text" class="form-control" v-model="name" placeholder="Store name" />
-        </div>
-        <br>
-        <button type="submit" class="btn btn-block">Update</button>
-    </form>
+      <div class="container-fluid ml-5" v-for="store in allStores" v-bind:key="store._id">
+        <h5> {{store.name}} <button type="submit" class="btn btn-edit" onclick="document.getElementById('storeName').style.display='block'">Edit</button></h5>
+        <p class="text-muted"> ID: {{store._id}}</p>
     <hr>
+    <div class="items">
+        <ul class="list-group">
+      <h5 class="list-group-item">Products</h5>
+          <li class="list-group-item" v-for="(item, index) in shoppingCart" v-bind:key="item._id">
+            <p class="one">{{itemNames[index]}}</p><p class="two">{{itemPrice[index]}}</p>
+            </li>
+          <li class="list-group-item"><h6 class="one">Subtotal</h6><h6 class="two">{{totalSum}}</h6></li>
+          <li class="list-group-item"><p class="one">Shipping</p><p class="two">50</p></li>
+          <li class="list-group-item"><h5 class="one">Total cost</h5><h5 class="two">{{totalSum+50}}</h5></li>
+    </ul>
+        </div>
     <h2> Create Item In Store: </h2>
     <form @submit.prevent="createItem(store)">
           <div>
@@ -80,6 +84,21 @@
     <div class="nav-bar">
   <b-button variant="danger" class="btn btn-block" @click="deleteItems()"> Delete All Items </b-button>
     </div>
+
+    <div id="storeName" class="modal">
+        <form class="modal-contents" @submit.prevent="updateStore(store)">
+           <div class="container">
+          <div class="form-update">
+          <span onclick="document.getElementById('storeName').style.display='none'" class="close" title="Close">&times;</span>
+        <div>
+        <input type="text" class="form-control" v-model="name" placeholder="Store name" />
+        </div>
+        <br>
+        <button type="submit" class="btn btn-block">Update</button>
+        </div>
+        </div>
+      </form>
+       </div>
   </div>
 </template>
 
@@ -249,6 +268,10 @@ export default {
 .nav-bar{
 margin-left: 100px;
 margin-right: 100px;
+}
+
+.btn-edit{
+ width: auto;
 }
 
 @media (min-device-width: 360px) and (max-device-height: 768px) {
