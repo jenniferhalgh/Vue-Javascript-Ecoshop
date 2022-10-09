@@ -241,4 +241,10 @@ export default {
 .complete-order{
   width: 100%;
 }
+
+@media (min-device-width: 360px) and (max-device-height: 768px){
+  .card{
+    min-width: 80% !important;
+  }
+}
     </style>

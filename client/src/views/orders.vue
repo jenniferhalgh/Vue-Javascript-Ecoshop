@@ -4,7 +4,7 @@
     <div>
       <profileNav/>
     </div>
-    <div class="col ml-5">
+    <div class="col">
         <getOrder/>
     </div>
 </div>

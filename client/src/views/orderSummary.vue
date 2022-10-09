@@ -3,7 +3,7 @@
       <checkout />
         <h1>Order Summary</h1>
         <div class="order">
-        <ul class="list-group mt-5 ml-5">
+        <ul class="list-group mt-5">
       <h5 class="list-group-item">Products</h5>
           <li class="list-group-item" v-for="(item, index) in shoppingCart" v-bind:key="item._id">
             <p class="one">{{itemNames[index]}}</p><p class="two">{{itemPrice[index]}}</p>
@@ -15,9 +15,9 @@
         </div>
         <div class="buttons">
           <router-link class="links ml-5" to="/shoppingCart">
-          <button class="btn1" variant="primary">Cancel</button>
+          <button class="btn btn1 btn-order one" variant="primary">Cancel</button>
           </router-link>
-            <button class="btn2" variant="primary" v-on:click="postOrder()">Confirm</button>
+            <button class="btn btn2 btn-order two" variant="primary" v-on:click="postOrder()">Confirm</button>
         </div>
     </div>
 </template>
@@ -122,54 +122,30 @@ export default {
   float: none !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  width: 500px;
+  width: 80% !important;
 }
-.btn1{display: inline-block;
-  width:100px;
-  border: none;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 0 auto;
-  border-radius: 12px;
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
+.btn1{
   color: rgb(255, 255, 255);
   background-color: rgb(180, 12, 12) !important;
   }
 
-.btn2{display: inline-block;
-  width: 100px;
-  margin: 0 auto;
-  margin-right: 30px;
-  background-color: #99ae71;
-  border: none;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 12px;
-  display: block;
-  margin-top:-65px;
-}
+  .btn-order{
+    width: auto !important;
+  }
 
 .buttons {
-   float: none;
-    margin-left: auto;
-    margin-right: auto;
+float: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 30% !important;
 }
-@media (min-device-width: 360px) and (max-device-height: 900px) {
-  .order{
-    width: 90%;
-  }
-  .btn1{
-    margin-left:50px;
-  }
+@media (min-device-width: 360px) and (max-device-height: 768px) {
+.btn-order{
+  font-size: 60% !important;
+}
+.buttons{
+  width: 50% !important;
+}
 }
 
 </style>
