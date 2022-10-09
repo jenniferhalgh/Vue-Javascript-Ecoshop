@@ -2,46 +2,10 @@
   <div>
     <h1> STORES </h1>
       <div class="container-fluid ml-5" v-for="store in allStores" v-bind:key="store._id">
-        <h5> {{store.name}} <button type="submit" class="btn btn-edit" onclick="document.getElementById('storeName').style.display='block'">Edit</button></h5>
+        <h5> {{store.name}} <button class="btn btn-edit" onclick="document.getElementById('storeName').style.display='block'">Edit</button></h5>
         <p class="text-muted"> ID: {{store._id}}</p>
     <hr>
-    <div class="items">
-        <ul class="list-group">
-      <h5 class="list-group-item">Products</h5>
-          <li class="list-group-item" v-for="(item, index) in shoppingCart" v-bind:key="item._id">
-            <p class="one">{{itemNames[index]}}</p><p class="two">{{itemPrice[index]}}</p>
-            </li>
-          <li class="list-group-item"><h6 class="one">Subtotal</h6><h6 class="two">{{totalSum}}</h6></li>
-          <li class="list-group-item"><p class="one">Shipping</p><p class="two">50</p></li>
-          <li class="list-group-item"><h5 class="one">Total cost</h5><h5 class="two">{{totalSum+50}}</h5></li>
-    </ul>
-        </div>
-    <h2> Create Item In Store: </h2>
-    <form @submit.prevent="createItem(store)">
-          <div>
-          <input type="text" class="form-control" v-model="name" placeholder="Name" />
-          </div>
-          <br>
-          <div>
-          <input type="text" class="form-control" v-model="price" placeholder="Price" />
-          </div>
-          <br>
-          <div>
-         <input class="form-control" type="file" id="itemFile" v-on:change="readImage()">
-          </div>
-          <br>
-          <label for="category-select">Choose a category:</label>
-          <b-form-select
-            v-model="category"
-            :options="categoryList"
-            class="form-select"
-            style="width: 15%"
-            size="sm"
-            v-on:change="getSelectedCategory(category)">
-          </b-form-select>
-          <br>
-          <button type="submit" class="btn btn-block">Create New Item</button>
-      </form>
+    <button class="btn btn-add" onclick="document.getElementById('addItem').style.display='block'">Add new item</button>
     <br>
   </div>
   <div class="nav-bar">
@@ -99,6 +63,40 @@
         </div>
       </form>
        </div>
+
+       <div id="addItem" class="modal">
+        <form class="modal-contents" @submit.prevent="updateStore(store)">
+           <div class="container">
+          <div class="form-update">
+          <span onclick="document.getElementById('addItem').style.display='none'" class="close" title="Close">&times;</span>
+        <div>
+          <input type="text" class="form-control" v-model="name" placeholder="Name" />
+          </div>
+          <br>
+          <div>
+          <input type="text" class="form-control" v-model="price" placeholder="Price" />
+          </div>
+          <br>
+          <div>
+         <input class="form-control" type="file" id="itemFile" v-on:change="readImage()">
+          </div>
+          <br>
+          <label for="category-select">Choose a category:</label>
+          <b-form-select
+            v-model="category"
+            :options="categoryList"
+            class="form-select"
+            style="width: 15%"
+            size="sm"
+            v-on:change="getSelectedCategory(category)">
+          </b-form-select>
+          <br>
+          <button type="submit" class="btn btn-block">Create New Item</button>
+        </div>
+        </div>
+      </form>
+       </div>
+
   </div>
 </template>
 
