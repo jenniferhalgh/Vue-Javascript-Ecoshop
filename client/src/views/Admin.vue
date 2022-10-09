@@ -2,9 +2,7 @@
   <div>
     <h1> STORES </h1>
     <div class="buttons">
-    <router-link to="/createStore">
-      <button class="btn btn-create one"> Create A Store </button>
-      </router-link>
+      <button class="btn btn-create one" onclick="document.getElementById('addStore').style.display='block'"> Add new store </button>
       <button class="btn btn-danger btn-delete two" @click="deleteAllStores()"> Delete All Stores </button>
       <br>
       <br>
@@ -15,7 +13,7 @@
         <p class="text-muted"> ID: {{store._id}}</p>
     <hr class="hr-dotted">
     <button class="btn " onclick="document.getElementById('addItem').style.display='block'" v-on:click="currentStore=store._id">Add new item</button>
-    <button class="btn" @click="showItems()" onclick="document.getElementById('showItems').style.display='block'" v-bind:key="store._id">View all items</button>
+    <button class="btn" @click="showItems(store)" onclick="document.getElementById('showItems').style.display='block'" v-bind:key="store._id">View all items</button>
     <button class="btn btn-danger btn-delete" @click="deleteStore(store)">Delete store</button>
     <hr>
     </div>
@@ -24,9 +22,24 @@
   <b-button variant="danger" class="btn btn-block" @click="deleteItems()"> Delete All Items </b-button>
     </div>
 
+<!-- Add store -->
+    <div id="addStore" class="modal">
+        <form class="modal-content" @submit.prevent="createStore()">
+           <div class="container">
+            <span onclick="document.getElementById('addStore').style.display='none'" class="close" title="Close">&times;</span>
+          <h5> Add New Store </h5>
+          <div>
+          <input type="text" class="form-control" v-model="name" placeholder="Name" />
+          </div>
+          <br>
+          <button type="submit" class="btn btn-block">Add New Store</button>
+        </div>
+      </form>
+       </div>
+
 <!-- Update store name -->
     <div id="storeName" class="modal">
-        <form class="modal-contents" @submit.prevent="updateStore(store)">
+        <form class="modal-content" @submit.prevent="updateStore(store)">
            <div class="container">
           <div class="form-update">
           <span onclick="document.getElementById('storeName').style.display='none'" class="close" title="Close">&times;</span>
@@ -146,7 +159,8 @@ export default {
   data() {
     return {
       storeData: {
-        name: ''
+        name: '',
+        store_id: ''
       },
       allStores: [],
       stores: {},
@@ -298,6 +312,24 @@ export default {
           })
         console.log(vm.storeItems)
       })
+    },
+    createStore() {
+      const newStore = {
+        name: this.name
+      }
+      Api.post('/stores', newStore).then((res) => {
+        console.log(res.data)
+        this.stores = []
+        this.stores.push(newStore)
+        this.$router.push('/admin')
+        this.$bvModal.msgBoxOk('New item added')
+        location.reload()
+      },
+      (err) => {
+        console.log(err.response)
+        this.error = err.response.data.error
+        this.$bvModal.msgBoxOk(this.error)
+      })
     }
   }
 }
@@ -350,7 +382,7 @@ margin-right: 100px;
 }
 
 .img{
-  width: 10% !important;
+  width: 15% !important;
   float: left !important;
 
 }
