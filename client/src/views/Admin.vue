@@ -5,7 +5,7 @@
     <router-link to="/createStore">
       <button class="btn btn-create one"> Create A Store </button>
       </router-link>
-      <button class="btn btn-danger btn-delete two" @click="deleteStores()"> Delete All Stores </button>
+      <button class="btn btn-danger btn-delete two" @click="deleteAllStores()"> Delete All Stores </button>
       <br>
       <br>
       <br>
@@ -15,8 +15,8 @@
         <p class="text-muted"> ID: {{store._id}}</p>
     <hr class="hr-dotted">
     <button class="btn " onclick="document.getElementById('addItem').style.display='block'" v-on:click="currentStore=store._id">Add new item</button>
-    <button class="btn" @click="showItems(store)" onclick="document.getElementById('showItems').style.display='block'" v-bind:key="store._id">View all items</button>
-    <button class="btn btn-danger btn-delete" @click="deleteStores()">Delete store</button>
+    <button class="btn" @click="showItems()" onclick="document.getElementById('showItems').style.display='block'" v-bind:key="store._id">View all items</button>
+    <button class="btn btn-danger btn-delete" @click="deleteStore(store)">Delete store</button>
     <hr>
     </div>
     <br>
@@ -175,7 +175,7 @@ export default {
     }
   },
   methods: {
-    deleteStores() {
+    deleteAllStores() {
       if (confirm('Are you certain that you want to delete all stores? This action cannot be undone.')) {
         Api.delete('/stores').then((res) => {
           this.$bvModal.msgBoxOk('All Stores Are Deleted')
@@ -184,6 +184,14 @@ export default {
             console.error(error)
           })
       }
+    },
+    deleteStore(store) {
+      Api.delete(`/stores/${store._id}`).then((res) => {
+        this.$bvModal.msgBoxOk(store.name + ' (ID: ' + store._id + ') has been deleted.')
+      })
+        .catch(error => {
+          console.error(error)
+        })
     },
     updateStore(store) {
       Api.get(`/stores/${store._id}`).then(response => {
