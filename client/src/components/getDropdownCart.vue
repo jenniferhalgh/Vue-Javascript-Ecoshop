@@ -122,8 +122,7 @@ export default {
       color: white;
       font-size: 16px;
       border: none;
-      width: 250px;
-      height: 50px;
+      width: 250px !important;
     }
     .dropdown {
       position: relative;
@@ -146,7 +145,7 @@ export default {
       text-decoration: none;
       display: block;
     }
-    .shoppingcart-content a:hover {background-color: #ddd;}
+    .shoppingcart-content a:hover { background-color: #ddd;}
     .dropdown:hover .shoppingcart-content {display: block;}
 
     .three{
@@ -158,11 +157,6 @@ export default {
     }
 
     @media (min-device-width: 360px) and (max-device-height: 768px){
-    .shoppingcart-dropdown{
-      width: 100px !important;
-      height: 50% !important;
-      font-size: 60% !important;
-    }
    }
 
 </style>

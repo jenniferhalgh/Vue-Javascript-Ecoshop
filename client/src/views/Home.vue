@@ -17,12 +17,12 @@
         <div class="child">
             <img class="img-blur" src="@/assets/catalogue.jpeg" alt="catalogue">
             <h2 class="centered">CATALOGUE</h2>
-            <router-link class= "nav-link" to="/catalogue" @click="location.reload()"><button class="btn">See More</button></router-link>
+            <button class="btn">See More <router-link class= "nav-link" to="/catalogue" @click="location.reload()"></router-link></button>
           </div>
           <div class="child">
             <img class="img-blur" src="@/assets/profile.jpg" alt="profile">
             <h2 class="centered">Profile</h2>
-            <b-nav-item class="nav-link" to="/profile" @click="location.reload()"><button class="btn">See More</button></b-nav-item>
+            <b-button class="btn">See More <router-link class="nav-link" to="/profile" @click="location.reload()"></router-link></b-button>
         </div>
         </div>
     </div>

@@ -181,13 +181,13 @@ min-width: 50px !important;
 
 .edit-btn{
   width: auto !important;
-  font-size: 80% !important;
+  font-size: auto !important;
   float: right;
 }
 
 .delete-btn{
   width: auto !important;
-  font-size: 50% !important;
+  font-size: auto !important;
   background-color: rgb(165, 17, 17) !important;
   margin-bottom: 10px;
 }
