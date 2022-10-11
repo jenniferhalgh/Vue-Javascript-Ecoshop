@@ -127,8 +127,6 @@ export default {
 .container{
   margin-top: 121px;
 }
-.list-group-item{
-}
 .modal{
   width: auto !important;
 }

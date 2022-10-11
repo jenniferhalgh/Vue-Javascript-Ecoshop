@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "bb1533fc-0d04-465e-935f-e3be6b5809ee",
-		"name": "server",
+		"_postman_id": "3acbc60f-329e-4aeb-b317-86391b78bb49",
+		"name": "server - 3001",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23291016"
+		"_exporter_id": "23101615"
 	},
 	"item": [
 		{
@@ -18,7 +18,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(201);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -146,7 +151,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(201);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -270,7 +280,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(201);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -378,7 +393,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(201);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -490,7 +510,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(201);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -598,7 +623,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -688,7 +718,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -780,7 +815,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -870,7 +910,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -966,7 +1011,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1060,7 +1110,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1152,7 +1207,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1242,7 +1302,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1336,7 +1401,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1430,7 +1500,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1541,7 +1616,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1637,7 +1717,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1742,7 +1827,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1830,6 +1920,91 @@
 							"body": "{\n    \"name\": {\n        \"firstname\": \"Jennifer\",\n        \"lastname\": \"Hälgh\"\n    },\n    \"account\": {\n        \"username\": \"jenniferhalgh\",\n        \"password\": \"jennifer123\"\n    },\n    \"contact\": {\n        \"email\": \"jennife@gmail.com\",\n        \"phone\": \"0737628386\"\n    },\n    \"paymentInfo\": [],\n    \"orders\": [],\n    \"_id\": \"632355f08372959addef47ad\",\n    \"personalNumber\": \"200203011234\",\n    \"adress\": \"Nowhere Street 123\",\n    \"shoppingCart\": null,\n    \"__v\": 0\n}"
 						}
 					]
+				},
+				{
+					"name": "getItemsByCategory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/items/category/:category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"items",
+								"category",
+								":category"
+							],
+							"variable": [
+								{
+									"key": "category",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSpecificOrderFromCustomer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a/orders/6323906d3e80b7777268010c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"632e307fbc0fec38f83f7d4a",
+								"orders",
+								"6323906d3e80b7777268010c"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1845,7 +2020,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(201);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1959,7 +2139,7 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(204);",
-									"})"
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -2061,7 +2241,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -2171,7 +2356,12 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
-									"})"
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -2272,7 +2462,7 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(204);",
-									"})"
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -2365,7 +2555,7 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(204);",
-									"})"
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -2448,6 +2638,55 @@
 							"body": null
 						}
 					]
+				},
+				{
+					"name": "updatePaymentInfo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(201);",
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"cardInfo\": {\n          \"nameOnCard\": \"test\",\n          \"cardNum\": \"1111111111111\",\n          \"cvv\": \"111\"\n        },\n        \"customer\": \"632e307fbc0fec38f83f7d4a\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a/paymentInfos/63238ebe1bd2346c7886a2b4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"632e307fbc0fec38f83f7d4a",
+								"paymentInfos",
+								"63238ebe1bd2346c7886a2b4"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -3079,6 +3318,72 @@
 							"body": null
 						}
 					]
+				},
+				{
+					"name": "deleteAllCustomers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAllStores",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/stores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"stores"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

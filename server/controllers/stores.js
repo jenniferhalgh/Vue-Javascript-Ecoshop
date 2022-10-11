@@ -52,14 +52,13 @@ router.delete("/stores", function (req, res) {
         if (err) {
           return res.status(500).send(err);
         }
-        res.status(200).json(item);
+        Store.deleteMany(function (err, store) {
+            if (err) {
+              return res.status(500).send(err);
+            }
+            res.status(200).json(store);
+          });
       });
-    Store.deleteMany(function (err, store) {
-      if (err) {
-        return res.status(500).send(err);
-      }
-      res.status(200).json(store);
-    });
   });
 
 //Update partial info of a specific store
