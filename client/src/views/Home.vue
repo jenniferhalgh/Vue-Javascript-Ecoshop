@@ -65,6 +65,7 @@ img{
 }
 .info{
   padding: 70px;
+  text-align: center;
 }
 .delete-button {
  margin-top: 10px;
