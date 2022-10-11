@@ -2081,11 +2081,6 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(204);",
-									"})",
-									"",
-									"pm.test('Response must have valid JSON data', function () { ",
-									"    pm.response.to.be.json;",
-									"    pm.response.to.be.withBody;",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2409,11 +2404,6 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(204);",
-									"})",
-									"",
-									"pm.test('Response must have valid JSON data', function () { ",
-									"    pm.response.to.be.json;",
-									"    pm.response.to.be.withBody;",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2611,7 +2601,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a/paymentInfos/63337b1e32f7ef466ddbb438",
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a/paymentInfos/63238ebe1bd2346c7886a2b4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2621,7 +2611,7 @@
 								"customers",
 								"632e307fbc0fec38f83f7d4a",
 								"paymentInfos",
-								"63337b1e32f7ef466ddbb438"
+								"63238ebe1bd2346c7886a2b4"
 							]
 						}
 					},
