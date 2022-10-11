@@ -1,8 +1,8 @@
 <template>
   <div>
+    <div><getDropdownCart class="shopping-cart" /></div>
     <div class="container">
       <img id="landing" class="center" src="@/assets/shopping.jpeg" alt="Shopping" style="width:100%;height:60%;">
-      <div><getDropdownCart class="top-right" /></div>
     <div class="heading">
       <h2>
         SHOPPING WITH SUSTAINABILITY </h2>
@@ -17,12 +17,12 @@
         <div class="child">
             <img class="img-blur" src="@/assets/catalogue.jpeg" alt="catalogue">
             <h2 class="centered">CATALOGUE</h2>
-            <button class="btn">See More <router-link class= "nav-link" to="/catalogue" @click="location.reload()"></router-link></button>
+            <button class="btn" v-on:click="myFunction()">See More</button>
           </div>
           <div class="child">
             <img class="img-blur" src="@/assets/profile.jpg" alt="profile">
             <h2 class="centered">Profile</h2>
-            <b-button class="btn">See More <router-link class="nav-link" to="/profile" @click="location.reload()"></router-link></b-button>
+            <button class="btn" v-on:click="myFunction1()">See More</button>
         </div>
         </div>
     </div>
@@ -47,6 +47,12 @@ export default {
     }
   },
   methods: {
+    myFunction() {
+      location.replace('http://localhost:8080/catalogue')
+    },
+    myFunction1() {
+      location.replace('http://localhost:8080/profile')
+    }
   }
 }
 </script>
@@ -59,25 +65,23 @@ img{
   width: 200px;
   height: 300px;
   object-fit: cover;
-    margin: auto;
-
+    margin-top: 50px;
     display: block;
 }
 .info{
   padding: 70px;
   text-align: center;
 }
-.delete-button {
- margin-top: 10px;
-}
+
 /* Container holding the image and the text */
 .container {
   position:relative;
   text-align: center;
   color: white;
   object-fit: cover;
-  width: 100%;
+  width: 100% !important;
   height: 100%;
+  margin: auto !important
 }
 
 /* Bottom left text */
@@ -96,10 +100,8 @@ img{
 }
 
 /* Top right text */
-.top-right {
-  position: absolute;
-  top: 8px;
-  right: 16px;
+.shopping-cart {
+  margin-top: 10px;
 }
 
 /* Bottom right text */
@@ -168,14 +170,11 @@ h2, p{
   cursor: pointer;
   border-radius: 5px;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  width: auto !important;
 }
 .img-blur{
   opacity: 0.4;
   max-height: 400px;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 @media (min-device-width: 360px) and (max-device-height: 900px) {
@@ -189,7 +188,7 @@ h2, p{
     font-size: 3vw !important;
   }
   .child.btn{
-    font-size: 10px !important
+    font-size: 70%!important;
   }
   .centered{
     font-size: 4vw;
