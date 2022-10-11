@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1> STORES </h1>
-    <div class="buttons">
+    <div class="admin-buttons">
       <button class="btn btn-create one" onclick="document.getElementById('addStore').style.display='block'"> Add new store </button>
       <button class="btn btn-danger btn-delete two" @click="deleteAllStores()"> Delete All Stores </button>
       <br>
@@ -372,12 +372,14 @@ margin-right: 100px;
 
 .btn{
   width: auto;
+  margin-left: 10px;
 }
 
 .btn-create, .btn-delete{
   display: inline-block !important;
   width: 140px !important;
   text-align: center !important;
+  margin-left: 10px;
 }
 
 .img{

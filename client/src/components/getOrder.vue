@@ -125,7 +125,11 @@ export default {
   color: black;
 }
 .container{
-  width: 80%;
   margin-top: 121px;
+}
+.list-group-item{
+}
+.modal{
+  width: auto !important;
 }
 </style>
