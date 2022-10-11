@@ -371,11 +371,13 @@ margin-right: 100px;
 }
 
 .btn{
-  width: auto !important;
+  width: auto;
 }
 
 .btn-create, .btn-delete{
   display: inline-block !important;
+  width: 140px !important;
+  text-align: center !important;
 }
 
 .img{
@@ -419,7 +421,7 @@ margin-right: 100px;
   }
 
   .btn{
-    width: auto !important;
+    width: auto;
     font-size: 60% !important;
   }
 
