@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div><getDropdownCart class="shopping-cart" /></div>
+    <div v-if="customer.email !='admin@gmail.com'">
+      <div class="shoppingCart">
+        <getDropdownCart/>
+      </div>
+    </div>
     <div class="container">
       <img id="landing" class="center" src="@/assets/shopping.jpeg" alt="Shopping" style="width:100%;height:60%;">
     <div class="heading">
@@ -36,14 +40,30 @@ export default {
   name: 'home',
   components: { getDropdownCart },
   props: {
-    customer: Object
   },
   mounted() {
-
+    const jwttoken = {
+      token: sessionStorage.getItem('token')
+    }
+    fetch('http://localhost:3000/customer', {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Host: '',
+        token: jwttoken.token
+      }
+    }).then((response) => {
+      return response.json()
+    }).then((responseData) => {
+      this.customer = responseData
+    }).catch(error => {
+      console.error(error)
+    })
   },
   data() {
     return {
-
+      customer: {}
     }
   },
   methods: {
