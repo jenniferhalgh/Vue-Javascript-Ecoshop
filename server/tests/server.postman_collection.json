@@ -1923,6 +1923,24 @@
 				},
 				{
 					"name": "getItemsByCategory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -1943,6 +1961,46 @@
 									"key": "category",
 									"value": null
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSpecificOrderFromCustomer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/customers/632e307fbc0fec38f83f7d4a/orders/6323906d3e80b7777268010c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customers",
+								"632e307fbc0fec38f83f7d4a",
+								"orders",
+								"6323906d3e80b7777268010c"
 							]
 						}
 					},
@@ -2497,11 +2555,6 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(204);",
-									"})",
-									"",
-									"pm.test('Response must have valid JSON data', function () { ",
-									"    pm.response.to.be.json;",
-									"    pm.response.to.be.withBody;",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2588,6 +2641,19 @@
 				},
 				{
 					"name": "updatePaymentInfo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -3250,6 +3316,20 @@
 				},
 				{
 					"name": "deleteAllCustomers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -3269,6 +3349,20 @@
 				},
 				{
 					"name": "deleteAllStores",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Correct status code', function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
