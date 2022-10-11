@@ -35,7 +35,7 @@
   <h6 class="card-subtitle mb-2 text-muted"> {{itemStoreNames[index]}}</h6>
   <p class="lead">{{item.name}}</p>
   <p class="lead">{{item.price}} kr</p>
-  <a href="#" class="btn btn-add" v-on:click="addToCart(item)">Add to cart</a>
+  <a href="#" class="btn add" v-on:click="addToCart(item)">Add to cart</a>
   </div>
 </div>
    </div>
@@ -236,7 +236,8 @@ export default {
 <style>
 
 .card-deck{
-  margin-left: 20px !important;
+  margin-left: auto !important;
+  margin-right: 0px !important;
 }
 
 .card-body {
@@ -297,10 +298,6 @@ color: #ffffff;
   margin-top: 10px;
 }
 
-.btn-add{
-  width: 100% !important;
-}
-
 @media (min-width: 360px) and (max-device-height: 768px){
 .card, #card-div {
   max-width: 50% !important;
@@ -309,6 +306,7 @@ color: #ffffff;
 .card-deck{
   flex-direction: row !important;
   flex-wrap: wrap !important;
+  margin-right: 0px !important;
 }
 
 p, h6{

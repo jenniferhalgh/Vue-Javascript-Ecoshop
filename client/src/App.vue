@@ -112,7 +112,7 @@ export default {
 .profile{
   margin-top: 20px !important;
 }
-@media (min-device-width: 360px) and (max-device-height: 768px) {
+@media (min-device-width: 200px) and (max-device-height: 500px) {
   .navbar {
     position: sticky-bottom;
     width: 100%;
