@@ -2648,6 +2648,11 @@
 								"exec": [
 									"pm.test('Correct status code', function(){",
 									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('Response must have valid JSON data', function () { ",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.withBody;",
 									"});"
 								],
 								"type": "text/javascript"
