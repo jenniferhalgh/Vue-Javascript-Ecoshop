@@ -291,14 +291,14 @@ color: #ffffff;
 }
 
 .search{
-  width: auto;
+  width: 80% !important;
 }
 .shoppingCart{
   margin-bottom: 10px;
   margin-top: 10px;
 }
 
-@media (min-device-width: 360px) and (min-device-height: 500px) and (max-device-height: 2000px) {
+@media (min-device-width: 360px) and (max-device-height: 768px){
 .card, #card-div {
   max-width: 50% !important;
 }

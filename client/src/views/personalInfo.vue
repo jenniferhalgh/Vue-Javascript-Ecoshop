@@ -215,7 +215,7 @@ margin-bottom: 3rem;
   margin-bottom: 30px;
 }
 
-@media (min-device-width: 360px) and (min-device-height: 500px) and (max-device-height: 2000px)  {
+@media (min-device-width: 360px) and (max-device-height: 768px){
   .text{
   width: 80% !important;
 }
