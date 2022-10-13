@@ -7,7 +7,7 @@
     </div>
     <div class="container">
       <img id="landing" class="center" src="@/assets/shopping.jpeg" alt="Shopping" style="width:100%;height:60%;">
-    <div class="heading">
+    <div id="heading">
       <h2>
         SHOPPING WITH SUSTAINABILITY </h2>
         <p>HASN'T BEEN EASIER</p>
@@ -91,6 +91,7 @@ img{
 .info{
   padding: 70px;
   text-align: center;
+  font-family: "copperplate";
 }
 
 /* Container holding the image and the text */
@@ -104,35 +105,8 @@ img{
   margin: auto !important
 }
 
-/* Bottom left text */
-.bottom-left {
-  position: absolute;
-  bottom: 8px;
-  left: 16px;
-}
-
-/* Top left text */
-.top-left {
-  position: absolute;
-  top: 8px;
-  left: 16px;
-  color:black
-}
-
-/* Top right text */
-.shopping-cart {
-  margin-top: 10px;
-}
-
-/* Bottom right text */
-.bottom-right {
-  position: absolute;
-  bottom: 8px;
-  right: 16px;
-}
-
 /* Centered text */
-.heading {
+#heading {
   position: absolute;
   top: 40%;
   left: 70%;
@@ -156,10 +130,6 @@ img{
   height: 700px;
   opacity: 0.8;
 
-}
-h2, p{
-  text-align-last: center;
-  font-family: "copperplate" !important;
 }
 .parent{
     display: flex;
@@ -201,7 +171,7 @@ h2, p{
   img{
     width: 90%;
   }
-  .heading{
+  #heading{
     font-size: 2vw !important;
   }
   h2{
