@@ -1,13 +1,11 @@
 <template>
   <div class="container-fluid">
-  <div class="row">
     <div>
       <profileNav/>
     </div>
     <div class="col">
         <getOrder/>
     </div>
-</div>
 </div>
 </template>
 

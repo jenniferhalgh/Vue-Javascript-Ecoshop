@@ -298,7 +298,7 @@ color: #ffffff;
   margin-top: 10px;
 }
 
-@media (min-width: 360px) and (max-device-height: 768px){
+@media (min-device-width: 360px) and (min-device-height: 500px) and (max-device-height: 2000px) {
 .card, #card-div {
   max-width: 50% !important;
 }
@@ -331,6 +331,9 @@ p, h6{
 
 .top-buffer{
   margin-top: 30px !important;
+}
+.shoppingCart{
+  margin-right: 10px !important;
 }
 }
 

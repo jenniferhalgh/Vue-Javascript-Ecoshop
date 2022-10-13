@@ -403,7 +403,7 @@ margin-right: 100px;
   width: 100% !important;
 }
 
-@media (min-device-width: 360px) and (max-device-height: 768px) {
+@media (min-device-width: 360px) and (min-device-height: 500px) and (max-device-height: 2000px) {
   .delete-button{
     display: block !important;
    }
