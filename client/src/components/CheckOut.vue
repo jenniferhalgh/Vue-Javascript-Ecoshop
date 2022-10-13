@@ -124,7 +124,7 @@ export default {
    padding-right: 18px;
 }
 
-@media (min-device-width: 200px) and (max-device-height: 768px){
+@media (min-device-width: 200px) and (max-device-height: 1200px){
 .btn-bar{
    width: 32.5% !important;
    font-size: 60% !important;
