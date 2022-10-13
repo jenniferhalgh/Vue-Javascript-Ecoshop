@@ -116,25 +116,25 @@ export default {
   .navbar {
     position: sticky-bottom;
     width: 100%;
-    max-width: 360px;
+    min-width: 360px;
     padding : 0;
   }
   .ml-auto {
     margin-right: 0;
     width: 100%;
-    max-width: 360px;
+    min-width: 360px;
     padding : 0;
   }
   .header{
     position: sticky-bottom;
     width: 100%;
-    max-width: 360px;
+    min-width: 360px;
     padding : 0;
   }
   .app{
     position: sticky-bottom;
     width: 100%;
-    max-width: 360px;
+    min-width: 360px;
     padding : 0;
   }
 }

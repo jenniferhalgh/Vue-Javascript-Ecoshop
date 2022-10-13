@@ -13,17 +13,17 @@
 
 <div id="order" class="modal">
         <div class="container">
-          <ul class="list-group mt-5 ml-5">
-            <h5 class="list-group-item">Products
+          <ul class="list-group mt-5 ml-5 mr-5">
+            <h5 class="list-group-item ml-5 mr-5">Products
             <span
               onclick="document.getElementById('order').style.display='none'" class="close" title="Exit">&times;</span>
             </h5>
-          <li class="list-group-item" v-for="(item, index) in itemNames" v-bind:key="item">
+          <li class="list-group-item ml-5" v-for="(item, index) in itemNames" v-bind:key="item">
             <p class="one">{{itemNames[index]}}</p><p class="two">{{itemPrices[index]}}</p>
             </li>
-          <li class="list-group-item"><h6 class="one">Subtotal</h6><h6 class="two">{{totalSum}}</h6></li>
-          <li class="list-group-item"><p class="one">Shipping</p><p class="two">50</p></li>
-          <li class="list-group-item"><h5 class="one">Total cost</h5><h5 class="two">{{totalSum+50}}</h5></li>
+          <li class="list-group-item ml-5 mr-5"><h6 class="one">Subtotal</h6><h6 class="two">{{totalSum}}</h6></li>
+          <li class="list-group-item ml-5 mr-5"><p class="one">Shipping</p><p class="two">50</p></li>
+          <li class="list-group-item ml-5 mr-5"><h5 class="one">Total cost</h5><h5 class="two">{{totalSum+50}}</h5></li>
     </ul>
         </div>
     </div>
@@ -128,6 +128,7 @@ export default {
   margin-top: 121px;
 }
 .modal{
-  width: auto !important;
+  width: 100% !important;
+  margin-right: 20px !important;
 }
 </style>
