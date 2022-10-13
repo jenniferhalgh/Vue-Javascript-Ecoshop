@@ -217,6 +217,7 @@ export default {
 
  .choose{
       width: 100%;
+      margin-left: 0px!important;
     }
 
     .card-header{
@@ -240,6 +241,7 @@ export default {
 }
 .complete-order{
   width: 100%;
+  margin-left: 0px!important;
 }
 
 @media (min-device-width: 360px) and (max-device-height: 768px){
