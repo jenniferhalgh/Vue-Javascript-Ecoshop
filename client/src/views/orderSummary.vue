@@ -1,25 +1,23 @@
 <template>
-    <div>
-      <checkout />
-        <h1>Order Summary</h1>
-        <div class="order">
-        <ul class="list-group mt-5">
-      <h5 class="list-group-item">Products</h5>
-          <li class="list-group-item" v-for="(item, index) in shoppingCart" v-bind:key="item._id">
-            <p class="one">{{itemNames[index]}}</p><p class="two">{{itemPrice[index]}}</p>
-            </li>
-          <li class="list-group-item"><h6 class="one">Subtotal</h6><h6 class="two">{{totalSum}}</h6></li>
-          <li class="list-group-item"><p class="one">Shipping</p><p class="two">50</p></li>
-          <li class="list-group-item"><h5 class="one">Total cost</h5><h5 class="two">{{totalSum+50}}</h5></li>
-    </ul>
-        </div>
-        <div class="buttons">
-          <router-link class="links ml-5" to="/shoppingCart">
-          <button class="btn btn1 btn-order one" variant="primary">Cancel</button>
-          </router-link>
-            <button class="btn btn2 btn-order two" variant="primary" v-on:click="postOrder()">Confirm</button>
-        </div>
-    </div>
+  <div>
+    <checkout />
+      <h1>Order Summary</h1>
+      <div class="order">
+      <ul class="list-group mt-5">
+    <h5 class="list-group-item">Products</h5>
+        <li class="list-group-item" v-for="(item, index) in shoppingCart" v-bind:key="item._id">
+          <p class="one">{{itemNames[index]}}</p><p class="two">{{itemPrice[index]}}</p>
+          </li>
+        <li class="list-group-item"><h6 class="one">Subtotal</h6><h6 class="two">{{totalSum}}</h6></li>
+        <li class="list-group-item"><p class="one">Shipping</p><p class="two">50</p></li>
+        <li class="list-group-item"><h5 class="one">Total cost</h5><h5 class="two">{{totalSum+50}}</h5></li>
+  </ul>
+      </div>
+      <div class="buttons">
+        <button class="btn btn1 btn-order one" variant="primary" v-on:click="myFunction()">Cancel</button>
+          <button class="btn btn2 btn-order two" variant="primary" v-on:click="postOrder()">Confirm</button>
+      </div>
+  </div>
 </template>
 
 <script>
@@ -98,6 +96,9 @@ export default {
         console.log(err)
       })
       this.$router.push('/')
+    },
+    myFunction() {
+      location.replace('http://localhost:8080/shoppingCart')
     }
   }
 
@@ -106,45 +107,45 @@ export default {
 
 <style>
 .one {
-    float: left;
-    text-align: left;
-    display: flex;
- flex-direction: column;
+  float: left;
+  text-align: left;
+  display: flex;
+flex-direction: column;
 }
 .two {
-    float: right;
-    text-align: right;
-    display: flex;
- flex-direction: column !important;
+  float: right;
+  text-align: right;
+  display: flex;
+flex-direction: column !important;
 }
 
 .order{
-  float: none !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  width: 80% !important;
+float: none !important;
+margin-left: auto !important;
+margin-right: auto !important;
+width: 80% !important;
 }
 .btn1{
-  color: rgb(255, 255, 255);
-  background-color: rgb(180, 12, 12) !important;
-  }
+color: rgb(255, 255, 255);
+background-color: rgb(180, 12, 12) !important;
+}
 
-  .btn-order{
-    width: auto !important;
-  }
+.btn-order{
+  width: auto !important;
+}
 
 .buttons {
 float: auto;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    width: 30% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 30% !important;
 }
 @media (min-device-width: 360px) and (max-device-height: 768px) {
 .btn-order{
-  font-size: 60% !important;
+font-size: 60% !important;
 }
 .buttons{
-  width: 50% !important;
+width: 50% !important;
 }
 }
 
