@@ -134,5 +134,6 @@ export default {
 .list-group{
   margin-left: 10px;
   margin-top: 80px;
+  color: black;
 }
 </style>
