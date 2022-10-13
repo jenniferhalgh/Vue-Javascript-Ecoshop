@@ -291,14 +291,14 @@ color: #ffffff;
 }
 
 .search{
-  width: auto;
+  width: 80% !important;
 }
 .shoppingCart{
   margin-bottom: 10px;
   margin-top: 10px;
 }
 
-@media (min-width: 360px) and (max-device-height: 768px){
+@media (min-device-width: 360px) and (max-device-height: 768px){
 .card, #card-div {
   max-width: 50% !important;
 }
@@ -331,6 +331,9 @@ p, h6{
 
 .top-buffer{
   margin-top: 30px !important;
+}
+.shoppingCart{
+  margin-right: 10px !important;
 }
 }
 
