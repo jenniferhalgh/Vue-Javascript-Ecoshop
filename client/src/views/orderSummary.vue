@@ -140,12 +140,16 @@ float: auto;
   margin-right: auto !important;
   width: 30% !important;
 }
-@media (min-device-width: 360px) and (max-device-height: 768px) {
+@media (min-device-width: 360px) and (max-device-height: 900px) {
 .btn-order{
 font-size: 60% !important;
+margin-right: auto;
+margin-left:auto;
 }
 .buttons{
 width: 50% !important;
+margin-right: auto;
+margin-left:auto;
 }
 }
 
