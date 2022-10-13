@@ -27,7 +27,7 @@
       <h6 class="list-group-item">Email <input type="email" class="form-control" disabled v-model="email" :placeholder="customer.email" /></h6>
       <h6 class="list-group-item">Password <input type="password" class="form-control" disabled v-model="password" placeholder="*********" /></h6>
       <div class="buttons" v-if="update">
-        <button class="btn btn-danger mt-1" variant="primary">Cancel</button>
+        <button class="btn btn-danger mt-1" variant="primary" v-on:click="update=false, cancel()">Cancel</button>
       <button class="btn ml-2 mt-1" variant="primary" v-on:click="updateProfile(), update=false">Update</button>
       </div>
     </ul>
@@ -136,6 +136,9 @@ export default {
       ).catch(error => {
         console.error(error)
       })
+      location.reload()
+    },
+    cancel() {
       location.reload()
     }
   }
