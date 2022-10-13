@@ -126,13 +126,9 @@ export default {
 }
 .container{
   margin-top: 121px;
-  margin-right: auto !important;
 }
 .modal{
   width: 100% !important;
-  margin-right: 20px !important;
-}
-.group-item{
   margin-right: 20px !important;
 }
 </style>
