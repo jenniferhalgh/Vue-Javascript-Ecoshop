@@ -85,13 +85,13 @@ export default {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   text-align: left;
   color: #99ae71;
-  background-color: antiquewhite;
+  background-color: rgb(255, 232, 201);
 }
 .header{
   text-align: center;
   color: #99ae71;
   font-size: 50px;
-  background-color: antiquewhite;
+  background-color: rgb(255, 232, 201);
 }
 .nav-link{
   color: #888888;

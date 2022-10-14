@@ -9,7 +9,7 @@ import ShoppingCart from './views/shoppingCart.vue'
 import EditProfile from '@/views/EditProfile.vue'
 import CreateStore from './components/createStore.vue'
 import PaymentMethod from './views/choosePayment.vue'
-import ShoppingCartCheckOut from './components/getShoppingCart.vue'
+// import ShoppingCartCheckOut from './components/getShoppingCart.vue'
 import OrderSummary from './views/orderSummary.vue'
 import personalInfo from './views/personalInfo.vue'
 import orders from './views/orders.vue'
@@ -68,11 +68,11 @@ export default new Router({
       name: 'shoppingCart',
       component: ShoppingCart
     },
-    {
+    /* {
       path: '/checkout/shoppingCart',
       name: 'shoppingCartCheckout',
       component: ShoppingCartCheckOut
-    },
+    }, */
     {
       path: '/checkout/order',
       name: 'order',

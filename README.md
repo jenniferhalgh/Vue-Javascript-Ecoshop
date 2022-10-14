@@ -77,4 +77,4 @@ The system will allow users to browse and buy items from different stores in one
 
 ## Teaser (MS3)
 
-![Teaser](./images/teaser.png)
+![Teaser](./images/MS3 teaser.png)
