@@ -128,7 +128,7 @@ export default {
       Api.put(`/customers/${this.customer._id}`, updateCustomer).then(
         res => {
           console.log(res)
-          this.$bvModal.msgBoxOk('Account updated.')
+          this.$bvModal.msgBoxOk('Account updated')
         },
         (err) => {
           console.log(err.response)
