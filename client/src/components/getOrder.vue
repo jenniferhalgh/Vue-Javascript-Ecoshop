@@ -121,8 +121,9 @@ export default {
   height: 50px;
   padding: 10px;
 }
-.btn{
+.btn-order{
   color: black;
+  font-size: 100% !important;
 }
 .container{
   margin-top: 121px;

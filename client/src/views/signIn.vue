@@ -2,7 +2,7 @@
   <div class="form-group">
     <form @submit.prevent="handleSubmit">
         <h6> LOG IN </h6>
-        <hr>
+        <br>
         <div>
         <input type="email" class="form-control" v-model="email" placeholder="Email address" />
         </div>
@@ -12,7 +12,7 @@
         </div>
         <br>
         <button type="submit" class="btn btn-block">LOG IN</button>
-        <hr>
+        <br>
         <p>Need an account?</p>
         <router-link class="link" to="/signUp">
         Sign up

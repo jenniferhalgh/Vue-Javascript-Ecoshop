@@ -43,7 +43,7 @@
 
   <!--ADD NEW CARD INPUTS-->
 <div id="id1" class="modal">
-      <form class="modal-contents" @submit.prevent="addPayment()">
+      <form class="modal-content" @submit.prevent="addPayment()">
         <div class="container">
           <div class="form-update">
             <span
@@ -58,7 +58,7 @@
     </div>
 
   <div id="id2" class="modal">
-      <form class="modal-contents" @submit.prevent="edit()">
+      <form class="modal-content" @submit.prevent="edit()">
         <div class="container">
           <div class="form-update">
             <span

@@ -11,15 +11,15 @@
       <div class="container-fluid mb-3" v-for="store in allStores" v-bind:key="store._id">
         <h5> {{store.name}} <button class="btn btn-edit" onclick="document.getElementById('storeName').style.display='block'">Edit</button></h5>
         <p class="text-muted"> ID: {{store._id}}</p>
-    <hr class="hr-dotted">
+        <br>
     <button class="btn " onclick="document.getElementById('addItem').style.display='block'" v-on:click="currentStore=store._id">Add new item</button>
     <button class="btn" @click="showItems(store)" onclick="document.getElementById('showItems').style.display='block'" v-bind:key="store._id">View all items</button>
     <button class="btn btn-danger btn-delete" @click="deleteStore(store)">Delete store</button>
-    <hr>
+    <br>
     </div>
     <br>
     <div class="nav-bar">
-  <b-button variant="danger" class="btn btn-block" @click="deleteItems()"> Delete All Items </b-button>
+  <b-button variant="danger" class="btn btn-items btn-block one" @click="deleteItems()"> Delete All Items </b-button>
     </div>
 
 <!-- Add store -->
@@ -344,15 +344,6 @@ export default {
     margin-right: auto !important;
 }
 
-.hr-dotted {
-  border: none;
-  border-top: 3px dotted rgb(0, 0, 0);
-  color: #fff;
-  background-color: #fff;
-  height: 1px;
-  width: 100%;
-}
-
 .btn_message {
   margin-bottom: 1em;
 }
@@ -401,6 +392,9 @@ margin-right: 100px;
 
 .modal-items{
   width: 100% !important;
+}
+.btn-items{
+  width: auto !important;
 }
 
 @media (min-device-width: 360px) and (max-device-height: 768px){
