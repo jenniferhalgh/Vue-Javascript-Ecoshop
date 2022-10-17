@@ -98,7 +98,7 @@
 									"",
 									"var jsonData = JSON.parse(responseBody);",
 									"",
-									"pm.variables.set('paymentInfo', jsonData._id);"
+									"pm.variables.set('paymentInfo', jsonData[0]._id);"
 								],
 								"type": "text/javascript"
 							}
