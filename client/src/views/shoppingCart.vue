@@ -3,7 +3,7 @@
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
       <p style="color:#99ae71; font-size: 40px" >SHOPPING CART </p>
     <getShoppingCart/>
-    <hr>
+    <br>
     <router-link class="links" to="/checkout/paymentMethod">
         <button type="button" class="btn btn-successs" @click="location.reload()">Checkout</button>
       </router-link>

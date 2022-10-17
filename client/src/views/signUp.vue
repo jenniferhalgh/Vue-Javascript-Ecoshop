@@ -2,7 +2,7 @@
   <div class="form-group">
     <form @submit.prevent="handleSubmit">
       <h6> SIGN UP </h6>
-      <hr>
+      <br>
         <div class="row">
           <div class="col">
             <input type="text" class="form-control" v-model="firstname" placeholder="First name" />
@@ -37,7 +37,7 @@
         </div>
         <br>
         <button type="submit" class="btn btn-block">CREATE ACCOUNT</button>
-        <hr>
+        <br>
         <p>Already have an account?</p>
          <router-link class="link" to="/signIn">
            Log in

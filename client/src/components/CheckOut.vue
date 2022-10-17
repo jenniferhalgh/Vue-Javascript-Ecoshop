@@ -1,153 +1,77 @@
 <template>
-<div>
-    <div class="btn-groupd-flex" role="group">
-   <router-link class="links" to="/checkout/shoppingCart">
-  <button type="button" class="btn btn-secondary btn-arrow-right btn-bar">Shopping cart</button>
-  </router-link>
-  <router-link class="links" to="/checkout/paymentMethod">
-  <button type="button" class="btn btn-secondary btn-arrow-right btn-bar">Payment method</button>
-  </router-link>
-  <button type="button" class="btn btn-secondary btn-arrow-right btn-bar">Order summary</button>
-</div>
-</div>
-</template>
-
+   <div>
+   <ul class="nav ml-5">
+     <li class="nav-item">
+       <a class="nav-link" href="/checkout/shoppingCart"> Shopping Cart </a>
+     </li>
+   <li class="nav-item">
+       <a class="nav-link" href="/checkout/paymentMethod">Payment method </a>
+     </li>
+   <li class="nav-item">
+       <a class="nav-link" href="/checkout/order"> Order Summary</a>
+     </li>
+     </ul>
+   </div>
+   </template>
 <script>
 // @ is an alias to /src
-import { Api } from '@/Api'
 
 export default {
-  name: 'checkout',
+  name: 'display',
   mounted() {
-    Api.get('/items').then(response => {
-      this.items = response.data.items
+    const jwttoken = {
+      token: sessionStorage.getItem('token')
+    }
+    fetch('http://localhost:3000/customer', {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Host: '',
+        token: jwttoken.token
+      }
+    }).then((response) => {
+      if (response.status === 401) {
+        this.$bvModal.msgBoxOk('Unauthorized. Please log in again')
+        sessionStorage.setItem('token', null)
+        this.$router.push('/signIn')
+      } else {
+        return response.json()
+      }
+    }).then((responseData) => {
+      this.customer = responseData
+    }).catch(function (err) {
+      console.log(err)
     })
-      .catch(error => {
-        console.error(error)
-      })
   },
   data() {
     return {
-      items: [],
-      showCartPage: false,
-      showPaymentPage: false,
-      showOrderSummary: false,
-      showMyInfo: false
+      customer: {}
     }
-  },
-  methods: {
   }
+
 }
 </script>
+   <style scoped>
+       .green-text{
+           text-align: center;
+           font-weight: 100;
+       }
+       .nav-item{
+         float: left;
+       }
 
-<style>
+       .nav{
+         flex-direction: row !important;
+       }
 
-.btn-bar{
-   margin-left: 0.25rem;
-   width: 32.5%;
-}
+   @media (min-device-width: 360px) and (max-device-height: 768px) {
+   .nav{
+     flex-direction: row !important;
+   }
+   .nav-item{
+     font-size: 60%;
+   }
+   }
 
-.btn-arrow-right {
-   position: relative;
-   padding-left: 18px;
-   padding-right: 18px;
-}
-
-.btn-arrow-right {
-   padding-left: 36px;
-}
-
-.btn-arrow-right:before,
-.btn-arrow-right:after {
-   /* make two squares (before and after), looking similar to the button */
-   content: "";
-   position: absolute;
-   top: 7px;
-   /* move it down because of rounded corners */
-   width: 22px;
-   /* same as height */
-   height: 22px;
-   /* button_outer_height / sqrt(2) */
-   background: inherit;
-   /* use parent background */
-   border: inherit;
-   /* use parent border */
-   border-left-color: transparent;
-   /* hide left border */
-   border-bottom-color: transparent;
-   /* hide bottom border */
-   border-radius: 0px 4px 0px 0px;
-   /* round arrow corner, the shorthand property doesn't accept "inherit" so it is set to 4px */
-   -webkit-border-radius: 0px 4px 0px 0px;
-   -moz-border-radius: 0px 4px 0px 0px;
-}
-
-.btn-arrow-right:before,
-.btn-arrow-right:after {
-   transform: rotate(45deg);
-   /* rotate right arrow squares 45 deg to point right */
-   -webkit-transform: rotate(45deg);
-   -moz-transform: rotate(45deg);
-   -o-transform: rotate(45deg);
-   -ms-transform: rotate(45deg);
-}
-
-.btn-arrow-right:before {
-   /* align the "before" square to the left */
-   left: -11px;
-}
-
-.btn-arrow-right:after{
-   /* align the "after" square to the right */
-   right: -11px;
-}
-
-.btn-arrow-right:after{
-   /* bring arrow pointers to front */
-
-   z-index: 1;
-}
-
-.btn-arrow-right:before{
-   /* hide arrow tails background */
-
-   background-color: white !important;
-}
-
-.btn-arrow-right {
-   padding-left: 36px;
-}
-
-.btn-arrow-right{
-   position: relative;
-   padding-left: 18px;
-   padding-right: 18px;
-}
-
-@media (min-device-width: 200px) and (max-device-height: 1200px){
-.btn-bar{
-   width: 32.5% !important;
-   font-size: 60% !important;
-   margin-left: 0rem !important;
-}
-.btn-arrow-right:before,
-.btn-arrow-right:after {
-   top: 4px;
-   /* move it down because of rounded corners */
-   width: 18px !important;
-   /* same as height */
-   height: 18px !important;
-}
-
-.btn-arrow-right:before {
-   /* align the "before" square to the left */
-   left: -7px !important;
-}
-
-.btn-arrow-right:after{
-   /* align the "after" square to the right */
-   right: -8px;
-}
-}
-
-</style>
+   </style>
