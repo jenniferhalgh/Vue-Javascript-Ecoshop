@@ -433,7 +433,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/stores/63238ef01bd2346c7886a2b8/items/63238ef01bd2346c7886a2b7",
+							"raw": "http://localhost:3001/stores/{{store}}/items/{{item}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -441,9 +441,9 @@
 							"port": "3001",
 							"path": [
 								"stores",
-								"63238ef01bd2346c7886a2b8",
+								"{{store}}",
 								"items",
-								"63238ef01bd2346c7886a2b7"
+								"{{item}}"
 							]
 						}
 					},
