@@ -29,7 +29,7 @@
 									"",
 									"pm.variables.set('customer', jsonData._id);",
 									"pm.variables.set('email', jsonData.email);",
-									"var reqBody = JSON.parse(request.body.raw);",
+									"var reqBody = JSON.parse(pm.request.body.raw);",
 									"pm.variables.set('password', reqBody.account.password);"
 								],
 								"type": "text/javascript"
