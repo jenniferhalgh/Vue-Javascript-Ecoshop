@@ -29,8 +29,7 @@
 									"",
 									"pm.variables.set('customer', jsonData._id);",
 									"pm.variables.set('email', jsonData.email);",
-									"var reqPassword = JSON.parse(pm.request.body.raw).password;",
-									"pm.variables.set('password', reqPassword);"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -39,7 +38,8 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									""
+									"var reqPassword = JSON.parse(pm.request.body.raw).password;",
+									"pm.variables.set('password', reqPassword);"
 								],
 								"type": "text/javascript"
 							}
