@@ -80,7 +80,7 @@
 							"script": {
 								"exec": [
 									"pm.test('Correct status code', function(){",
-									"    pm.response.to.have.status(201);",
+									"    pm.response.to.have.status(200);",
 									"})",
 									"",
 									"pm.test('Response must have valid JSON data', function () { ",
@@ -119,12 +119,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/customers/login",
+							"raw": "http://localhost:3001/customers/login",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "3001",
 							"path": [
 								"customers",
 								"login"
