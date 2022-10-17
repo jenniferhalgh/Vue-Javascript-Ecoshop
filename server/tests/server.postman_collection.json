@@ -29,8 +29,8 @@
 									"",
 									"pm.variables.set('customer', jsonData._id);",
 									"pm.variables.set('email', jsonData.email);",
-									"pm.variables.set('password', pm.request.body.account.password);",
-									"console.log(pm.request.body.account.password)"
+									"var reqPassword = JSON.parse(pm.request.body.raw).password;",
+									"pm.variables.set('password', reqPassword);"
 								],
 								"type": "text/javascript"
 							}
