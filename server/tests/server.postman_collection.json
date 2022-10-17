@@ -206,7 +206,7 @@
 									"",
 									"var jsonData = JSON.parse(responseBody);",
 									"",
-									"pm.variables.set('item', jsonData.items._id);"
+									"pm.variables.set('item', jsonData.items[0]._id);"
 								],
 								"type": "text/javascript"
 							}
@@ -217,7 +217,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"White shirt\",\n    \"price\": 200,\n    \"quantity\": 30,\n    \"store\": \"{{store}}\",\n    \"category\": \"Default\"\n}",
+							"raw": "{\n    \"name\": \"White shirt\",\n    \"price\": 200,\n    \"quantity\": 30,\n    \"store\": \"{{store}}\",\n    \"image\": \"white_shirt.jpeg\",\n    \"category\": \"Default\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
