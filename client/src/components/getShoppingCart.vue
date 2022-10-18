@@ -28,7 +28,7 @@ export default {
     const jwttoken = {
       token: sessionStorage.getItem('token')
     }
-    fetch('http://localhost:3000/customer', {
+    fetch('/customer', {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -87,7 +87,7 @@ export default {
       const jwttoken = {
         token: sessionStorage.getItem('token')
       }
-      fetch('http://localhost:3000/customer', {
+      fetch('/customer', {
         method: 'GET',
         mode: 'cors',
         headers: {
