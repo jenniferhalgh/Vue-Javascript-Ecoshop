@@ -93,8 +93,7 @@
  <li class="list-group-item itemList">
   <div class="container">
      <img class="img mr-5" id="img" v-bind:src="require(`@/assets/${item.image}`)" alt="">
-    <p>ID: {{item._id}}<button class="btn btn-edit two" onclick="document.getElementById('updateItem').style.display='block'" v-on:click="currentItem=item._id">Edit</button>
-    <button class="btn btn-danger two" v-on:click="currentItem=item._id, deleteItem()">Delete</button></p>
+    <button class="btn btn-danger two" v-on:click="currentItem=item._id, deleteItem()">Delete</button>
     <p>Name: {{item.name}}</p>
     <p>Price: {{item.price}}</p>
     <p>Category: {{item.category}}</p>
@@ -104,31 +103,6 @@
     </ul>
        </div>
        </div>
-
-       <div id="updateItem" class="modal">
-        <form class="modal-content" @submit.prevent="updateItems()">
-           <div class="container">
-            <span onclick="document.getElementById('updateItem').style.display='none'" class="close" title="Close">&times;</span>
-        <input type="text" class="form-control" v-model="name" placeholder="Item name" />
-        <br>
-        <input type="Number" class="form-control" v-model="price" placeholder="Item price" />
-        <br>
-          <input class="form-control" type="file" id="itemFile" v-on:change="readImage()">
-          <br>
-        <label for="category-select">Choose a category:</label>
-          <b-form-select
-            v-model="category"
-            :options="categoryList"
-            class="form-select"
-            style="width: 15%"
-            size="sm"
-            v-on:change="getSelectedCategory(category)">
-          </b-form-select>
-        <button type="submit" class="btn btn-block">Update</button>
-    </div>
-    </form>
-    </div>
-
        </div>
 </template>
 
@@ -191,6 +165,7 @@ export default {
       if (confirm('Are you certain that you want to delete all stores? This action cannot be undone.')) {
         Api.delete('/stores').then((res) => {
           this.$bvModal.msgBoxOk('All Stores Are Deleted')
+          location.reload()
         })
           .catch(error => {
             console.error(error)
@@ -200,20 +175,21 @@ export default {
     deleteStore(store) {
       Api.delete(`/stores/${store._id}`).then((res) => {
         this.$bvModal.msgBoxOk(store.name + ' (ID: ' + store._id + ') has been deleted.')
+        location.reload()
       })
         .catch(error => {
           console.error(error)
         })
     },
     updateStore(store) {
-      Api.get(`/stores/${store._id}`).then(response => {
+      Api.get(`/stores/${this.currentStore}`).then(response => {
         console.log(response.data)
         this.stores = response.data
         const vm = this
         const storeUpdate = {
           name: this.name
         }
-        Api.patch(`/stores/${store._id}`, storeUpdate).then(response => {
+        Api.patch(`/stores/${this.currentStore}`, storeUpdate).then(response => {
           console.log(response.data)
           vm.stores = response.data
           console.log(vm.stores)
@@ -243,7 +219,6 @@ export default {
           console.log(res.data)
           vm.items = []
           vm.items.push(newItem)
-          this.$router.push('/admin')
           this.$bvModal.msgBoxOk('New item added')
           location.reload()
         })
@@ -258,37 +233,12 @@ export default {
       if (confirm('Are you certain that you want to delete this item? This action cannot be undone.')) {
         Api.delete(`/stores/${this.currentStore}/items/${this.currentItem}`).then((res) => {
           this.$bvModal.msgBoxOk('Item has been deleted')
-          this.$router.push('/admin')
           location.reload()
         })
           .catch(error => {
             console.error(error)
           })
       }
-    },
-    updateItems() {
-      Api.get(`/items/${this.currentItem}`).then(response => {
-        console.log(response.data)
-        this.items = response.data
-        const vm = this
-        const itemUpdate = {
-          name: this.name,
-          price: this.price,
-          category: this.category,
-          image: this.image
-        }
-        Api.patch(`/items/${this.currentItem}`, itemUpdate).then(response => {
-          console.log(response.data)
-          vm.items = response.data
-          console.log(vm.items)
-          location.reload()
-        })
-          .catch(error => {
-            console.error(error)
-          })
-      }).catch(error => {
-        console.error(error)
-      })
     },
     readImage() {
       const file = document.getElementById('itemFile')
