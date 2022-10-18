@@ -6,9 +6,7 @@ import signUp from './views/signUp.vue'
 import Admin from './views/Admin.vue'
 import Catalogue from './views/Catalogue.vue'
 import ShoppingCart from './views/shoppingCart.vue'
-import CreateStore from './components/createStore.vue'
 import PaymentMethod from './views/choosePayment.vue'
-// import ShoppingCartCheckOut from './components/getShoppingCart.vue'
 import OrderSummary from './views/orderSummary.vue'
 import personalInfo from './views/personalInfo.vue'
 import orders from './views/orders.vue'
@@ -49,11 +47,6 @@ export default new Router({
       component: personalInfo
     },
     {
-      path: '/createStore',
-      name: 'createStore',
-      component: CreateStore
-    },
-    {
       path: '/checkout/paymentMethod',
       name: 'paymentMethod',
       component: PaymentMethod
@@ -63,11 +56,6 @@ export default new Router({
       name: 'shoppingCart',
       component: ShoppingCart
     },
-    /* {
-      path: '/checkout/shoppingCart',
-      name: 'shoppingCartCheckout',
-      component: ShoppingCartCheckOut
-    }, */
     {
       path: '/checkout/order',
       name: 'order',
