@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       isLoggedIn: false,
-      customer: {},
+      customer: '',
       isAdmin: false
     }
   },
@@ -50,7 +50,7 @@ export default {
     logout() {
       sessionStorage.setItem('token', null)
       this.isLoggedIn = false
-      this.customer = {}
+      this.customer = ''
       sessionStorage.clear()
       this.$router.push('/signUp')
       location.reload()
@@ -61,7 +61,7 @@ export default {
       }
       let host = window.location.origin
       if (host === 'https://group20-ecoshop.herokuapp.com/') {
-        host = 'http://localhost:5000/'
+        host = '/'
       } else {
         host = 'http://localhost:3000/'
         console.log(host)
