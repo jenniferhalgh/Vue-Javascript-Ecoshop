@@ -13,14 +13,11 @@
         <p class="text-muted"> ID: {{store._id}}</p>
         <br>
     <button class="btn " onclick="document.getElementById('addItem').style.display='block'" v-on:click="currentStore=store._id">Add new item</button>
-    <button class="btn" @click="showItems(store)" onclick="document.getElementById('showItems').style.display='block'" v-bind:key="store._id">View all items</button>
+    <button class="btn" @click="showItems(store)" onclick="document.getElementById('showItems').style.display='block'" v-bind:key="store._id" v-on:click="currentStore=store._id">View all items</button>
     <button class="btn btn-danger btn-delete" @click="deleteStore(store)">Delete store</button>
     <br>
     </div>
     <br>
-    <div class="nav-bar">
-  <b-button variant="danger" class="btn btn-items btn-block one" @click="deleteItems()"> Delete All Items </b-button>
-    </div>
 
 <!-- Add store -->
     <div id="addStore" class="modal">
@@ -96,7 +93,8 @@
  <li class="list-group-item itemList">
   <div class="container">
      <img class="img mr-5" id="img" v-bind:src="require(`@/assets/${item.image}`)" alt="">
-    <p>ID: {{item._id}}<button class="btn btn-edit two" onclick="document.getElementById('updateItem').style.display='block'" v-on:click="currentItem=item._id">Edit</button></p>
+    <p>ID: {{item._id}}<button class="btn btn-edit two" onclick="document.getElementById('updateItem').style.display='block'" v-on:click="currentItem=item._id">Edit</button>
+    <button class="btn btn-danger two" v-on:click="currentItem=item._id, deleteItem()">Delete</button></p>
     <p>Name: {{item.name}}</p>
     <p>Price: {{item.price}}</p>
     <p>Category: {{item.category}}</p>
@@ -256,10 +254,10 @@ export default {
         console.error(error)
       })
     },
-    deleteItems(store) {
-      if (confirm('Are you certain that you want to delete all items? This action cannot be undone.')) {
-        Api.delete(`/stores/${store._id}/items`).then((res) => {
-          this.$bvModal.msgBoxOk('All Items in this Store Are Deleted')
+    deleteItem() {
+      if (confirm('Are you certain that you want to delete this item? This action cannot be undone.')) {
+        Api.delete(`/stores/${this.currentStore}/items/${this.currentItem}`).then((res) => {
+          this.$bvModal.msgBoxOk('Item has been deleted')
           this.$router.push('/admin')
           location.reload()
         })
