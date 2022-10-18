@@ -12,7 +12,7 @@
      </li>
      </ul>
    </div>
-   </template>
+</template>
 <script>
 // @ is an alias to /src
 
@@ -22,7 +22,11 @@ export default {
     const jwttoken = {
       token: sessionStorage.getItem('token')
     }
-    fetch('/customer', {
+    let host = window.location.origin
+    if (!host === 'https://group20-ecoshop.herokuapp.com/') {
+      host = 'http://localhost:3000/'
+    }
+    fetch(`${host}/customer`, {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -52,7 +56,7 @@ export default {
 
 }
 </script>
-   <style scoped>
+<style scoped>
        .green-text{
            text-align: center;
            font-weight: 100;
@@ -74,4 +78,4 @@ export default {
    }
    }
 
-   </style>
+</style>
