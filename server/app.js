@@ -11,12 +11,12 @@ const hateoasOptions = {
 
 //var shoppingCartController = require("./controllers/shoppingCarts");
 
-var customerController = require("./controllers/customers");
-var storeController = require("./controllers/stores");
-var itemController = require("./controllers/items");
-var orderController = require("./controllers/orders");
-var paymentInfoController = require("./controllers/paymentInfos");
-var authController = require("./controllers/auth");
+var customerController = require('./controllers/customers');
+var storeController = require('./controllers/stores');
+var itemController = require('./controllers/items');
+var orderController = require('./controllers/orders');
+var paymentInfoController = require('./controllers/paymentInfos');
+var authController = require('./controllers/auth');
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://group20:group20@cluster0.uqdxdkk.mongodb.net/?retryWrites=true&w=majority';
