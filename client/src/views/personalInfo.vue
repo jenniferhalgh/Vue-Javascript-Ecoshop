@@ -94,8 +94,7 @@ export default {
       orders: [],
       token: '',
       error: '',
-      update: false,
-      isLoggedIn: false
+      update: false
     }
   },
   methods: {
@@ -105,7 +104,6 @@ export default {
           .then((res) => {
             sessionStorage.clear()
             console.log(res)
-            this.isLoggedIn = false
             this.$bvModal.msgBoxOk('Account deleted')
           }).catch((error) => {
             console.log(error)
