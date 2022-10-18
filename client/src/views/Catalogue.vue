@@ -104,10 +104,14 @@ export default {
         token: sessionStorage.getItem('token')
       }
       let host = window.location.origin
-      if (!host === 'https://group20-ecoshop.herokuapp.com/') {
+      if (host === 'https://group20-ecoshop.herokuapp.com/') {
+        host = 'https://group20-ecoshop.herokuapp.com/'
+      } else {
         host = 'http://localhost:3000/'
+        console.log(host)
       }
-      fetch(`${host}/customer`, {
+      console.log(host)
+      fetch(`${host}customer`, {
         method: 'GET',
         mode: 'cors',
         headers: {
