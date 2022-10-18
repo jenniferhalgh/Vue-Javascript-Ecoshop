@@ -103,7 +103,7 @@ export default {
       this.$router.push('/')
     },
     myFunction() {
-      location.replace('http://localhost:8080/shoppingCart')
+      this.$router.push('/shoppingCart')
     }
   }
 
