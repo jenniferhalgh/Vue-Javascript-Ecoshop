@@ -94,7 +94,8 @@ export default {
       orders: [],
       token: '',
       error: '',
-      update: false
+      update: false,
+      isLoggedIn: false
     }
   },
   methods: {
@@ -104,11 +105,12 @@ export default {
           .then((res) => {
             sessionStorage.clear()
             console.log(res)
+            this.isLoggedIn = false
             this.$bvModal.msgBoxOk('Account deleted')
           }).catch((error) => {
             console.log(error)
           })
-        this.$router.push('/Login')
+        this.$router.push('/signUp')
       }
     },
     enableInput() {
@@ -193,6 +195,7 @@ min-width: 50px !important;
   width: auto !important;
   font-size: auto !important;
   float: right;
+  color: white !important;
 }
 
 .delete-btn{
@@ -200,6 +203,7 @@ min-width: 50px !important;
   font-size: auto !important;
   background-color: rgb(165, 17, 17) !important;
   margin-bottom: 10px;
+  color: white !important;
 }
 
 .text{
