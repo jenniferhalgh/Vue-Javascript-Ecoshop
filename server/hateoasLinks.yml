@@ -38,6 +38,9 @@
     href: "/items"
   POST:
   - rel: "items"
+    method: "POST"
+    href: "/stores/:1/items"
+  - rel: "items"
     method: "GET"
     href: "/stores/:1/items"
 /items:
