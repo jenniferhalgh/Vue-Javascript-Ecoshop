@@ -68,10 +68,12 @@ export default {
   },
   methods: {
     myFunction() {
-      location.replace('http://localhost:3000/catalogue' || '/catalogue')
+      const host = window.location.host
+      location.replace(`${host}/catalogue`)
     },
     myFunction1() {
-      location.replace('http://localhost:3000/profile' || '/profile')
+      const host = window.location.host
+      location.replace(`${host}/profile`)
     }
   }
 }
