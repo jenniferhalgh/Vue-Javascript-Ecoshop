@@ -5,7 +5,7 @@ const Customer = require("../models/customer")
 const ShoppingCart = require("../models/shoppingCart")
 const jwt = require('jsonwebtoken');
 
-router.post("/customers", async (req, res) => {
+router.post("/api/customers", async (req, res) => {
 
   if (req.body.name.firstname == '' || req.body.name.lastname == '' || req.body.account.username == ''||req.body.account.password == ''||req.body.email == ''||req.body.phone == ''||req.body.personalNumber == ''||req.body.adress == ''){
     return res.status(400).json({title: 'Empty fields', error: 'All inputs required!'})
@@ -57,7 +57,7 @@ router.post("/customers", async (req, res) => {
         });
        }}})
 
-router.post('/customers/login', (req, res, next) => {
+router.post('/api/customers/login', (req, res, next) => {
 
       if (!(req.body.email && req.body.password)) {
         res.status(400).json({
@@ -103,7 +103,7 @@ router.post('/customers/login', (req, res, next) => {
   })
 
   //getting the customer
-  router.get('/customer', (req, res, next) => {
+  router.get('/api/customer', (req, res, next) => {
     jwt.verify(req.headers.token, 'token_key', (err, decoded) => {
       console.log(decoded)
       console.log(req.headers.token)
