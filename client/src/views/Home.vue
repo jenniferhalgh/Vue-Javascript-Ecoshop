@@ -1,5 +1,6 @@
 <template>
   <div>
+    hi
     <div v-if="customer.email !='admin@gmail.com'">
       <div class="shoppingCart">
         <getDropdownCart/>
