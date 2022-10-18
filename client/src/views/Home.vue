@@ -68,10 +68,10 @@ export default {
   },
   methods: {
     myFunction() {
-      location.replace('http://localhost:8080/catalogue')
+      location.replace('https://group20-ecoshop.herokuapp.com/catalogue')
     },
     myFunction1() {
-      location.replace('http://localhost:8080/profile')
+      location.replace('https://group20-ecoshop.herokuapp.com/profile')
     }
   }
 }
