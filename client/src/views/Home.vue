@@ -45,7 +45,11 @@ export default {
     const jwttoken = {
       token: sessionStorage.getItem('token')
     }
-    fetch('/customer', {
+    let host = window.location.origin
+    if (!host === 'https://group20-ecoshop.herokuapp.com/') {
+      host = 'http://localhost:3000/'
+    }
+    fetch(`${host}/customer`, {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -68,12 +72,10 @@ export default {
   },
   methods: {
     myFunction() {
-      const host = window.location.host
-      location.replace(`${host}/catalogue`)
+      this.$router.push('/catalogue')
     },
     myFunction1() {
-      const host = window.location.host
-      location.replace(`${host}/profile`)
+      this.$router.push('/profile')
     }
   }
 }

@@ -50,9 +50,7 @@ export default {
       token: sessionStorage.getItem('token')
     }
     let host = window.location.origin
-    if (host === 'https://group20-ecoshop.herokuapp.com/') {
-      host = 'https://group20-ecoshop.herokuapp.com/'
-    } else {
+    if (!host === 'https://group20-ecoshop.herokuapp.com/') {
       host = 'http://localhost:3000/'
     }
     console.log(host)
