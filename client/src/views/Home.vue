@@ -68,10 +68,10 @@ export default {
   },
   methods: {
     myFunction() {
-      location.replace('http://localhost:8080/catalogue')
+      location.replace('/catalogue')
     },
     myFunction1() {
-      location.replace('http://localhost:8080/profile')
+      location.replace('/profile')
     }
   }
 }
