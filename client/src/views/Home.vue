@@ -190,6 +190,9 @@ img{
     font-size: 4vw;
     top: 40%
   }
+  .button{
+    width:70%;
+  }
 }
 
 </style>
