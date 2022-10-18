@@ -1,51 +1,51 @@
-var mongoose = require("mongoose");
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var customerSchema = new Schema (
-{
-    name:{
-        firstname:{
-            type:String
+var customerSchema = new Schema(
+    {
+        name: {
+            firstname: {
+                type: String
+            },
+            lastname: {
+                type: String
+            }
         },
-        lastname:{
-            type:String
-        }
-    },
-    account:{
-        username:{
-            type:String
+        account: {
+            username: {
+                type: String
+            },
+            password: {
+                type: String
+            }
         },
-        password:{
-            type: String
-        } 
-    },
-    personalNumber:{
-        type:String, max:12, min:10, unique:true
-    },
-    
-        email: { 
+        personalNumber: {
+            type: String, max: 12, min: 10, unique: true
+        },
+
+        email: {
             type: String,
             unique: true
         },
-        phone: { 
-            type: String 
+        phone: {
+            type: String
         }
-    ,
-    adress:{
-        type:String  
-    },
-    token:{
-        type:String
-    },
-    shoppingCart:{
-        type: Schema.Types.ObjectId, ref: "shoppingCarts"
-    },
-    paymentInfo:[{
-        type: Schema.Types.ObjectId, ref: "paymentInfos"
-    }],
-    orders:[{
-        type: Schema.Types.ObjectId, ref: "orders"
-    }]
-}
-)
-module.exports = mongoose.model("customers",customerSchema);
+        ,
+        adress: {
+            type: String
+        },
+        token: {
+            type: String
+        },
+        shoppingCart: {
+            type: Schema.Types.ObjectId, ref: 'shoppingCarts'
+        },
+        paymentInfo: [{
+            type: Schema.Types.ObjectId, ref: 'paymentInfos'
+        }],
+        orders: [{
+            type: Schema.Types.ObjectId, ref: 'orders'
+        }]
+    }
+);
+module.exports = mongoose.model('customers', customerSchema);
