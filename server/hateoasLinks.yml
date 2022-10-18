@@ -29,13 +29,17 @@
       href: "/customers/:1"
 
 /stores:
- GET:
+  GET:
   - rel: "self"
     method: "GET"
     href: "/stores"
   - rel: "items"
     method: "GET"
     href: "/items"
+  POST:
+  - rel: "items"
+    method: "GET"
+    href: "/stores/:1/items"
 /items:
   GET:
   - rel: "self"
