@@ -28,7 +28,7 @@ router.post("/stores", function(req, res){
     var store = new Store(req.body);
     store.save(function(err) {
         if (err) { return res.status(500).send(err);}
-        res.status(201).json(store);
+        res.status(201).json(store, store._id);
         console.log(store);
     });
 });
