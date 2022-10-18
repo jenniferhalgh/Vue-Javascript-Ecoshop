@@ -30,7 +30,7 @@ export default {
     if (!host === 'https://group20-ecoshop.herokuapp.com/') {
       host = 'http://localhost:3000/'
     }
-    fetch(`${host}/customer`, {
+    fetch(`${host}customer`, {
       method: 'GET',
       mode: 'cors',
       headers: {
