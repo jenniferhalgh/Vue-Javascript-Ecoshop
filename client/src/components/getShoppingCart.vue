@@ -30,7 +30,7 @@ export default {
     }
     let host = window.location.origin
     if (host === 'https://group20-ecoshop.herokuapp.com') {
-      host = 'http://localhost:5000/'
+      host = '/'
     } else {
       host = 'http://localhost:3000/'
     }
@@ -95,7 +95,7 @@ export default {
       }
       let host = window.location.origin
       if (host === 'https://group20-ecoshop.herokuapp.com/') {
-        host = 'https://group20-ecoshop.herokuapp.com/'
+        host = '/'
       } else {
         host = 'http://localhost:3000/'
         console.log(host)
